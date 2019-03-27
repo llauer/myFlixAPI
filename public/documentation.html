@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>myFlix API Documentation</title>
+</head>
+
+<body>
+  <h1>myFlix API</h1>
+  <p>The server-side component that will provide information about different movies to users. Users will also be able to sign-up, update their information and create a list of favorites.</p>
+  <div>
+    <p>Endpoint routes</p>
+    <ul>
+      <li>/users - user registration - PUT/POST/DELETE</li>
+      <li>/users/:name - user specific profile - PUT/POST/DELETE</li>
+      <li>/movies - displays a list of movies - GET {
+        "title": "The Shawshank Redemption",
+        "rank": "1",
+        "id": "tt0111161"
+        }</li>
+      <li>/movies/:name - displays movie informtion by name - GET</li>
+      <li>/genres - displays all genres - GET</li>
+      <li>/genres/:name - displays genres by name - GET</li>
+      <li>/directors - displays all directors - GET</li>
+      <li>/directors/:name - displays a director by name - GET</li>
+
+    </ul>
+
+  </div>
+
+</body>
+
+</html>
