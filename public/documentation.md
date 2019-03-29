@@ -5,9 +5,6 @@ provide users with access to information about different movies, directors, and 
 will be able to sign up, update their personal information, and create a list of their favorite
 movies.
 
-# REST API
-
-The REST API to the example app is described below.
 
 ## Get list of Movies
 
