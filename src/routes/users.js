@@ -25,6 +25,11 @@ router.post('/', (req, res) => {
     res.status(201).send(newUser);
   }
 });
+
+//allow a user to update information
+router.put('/users/:name/:email/:dateOfBirth', function(req, res) {
+  res.send('PUT handler for /users route.');
+});
 // router.get('/users', (req, res) => {
 //   res.send('You have requested the User Registration Page');
 //   // res.json(users);
@@ -34,7 +39,7 @@ router.post('/', (req, res) => {
 router.get('/users', (req, res) => {
   // res.send('You have requested the User Registration Page');
   res.json(users);
-  next();
+
 });
 
 // params property on request.
@@ -46,6 +51,8 @@ router.get('/users/:name', (req, res) => {
 router.get('/users/:name/favorites', (req, res) => {
   res.send(`You have requested: ${req.params.name}'s favorites`);
 });
+
+
 
 // router.post('/users', (req, res) => {
 //   let newUser = req.body;
