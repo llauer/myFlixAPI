@@ -73,26 +73,6 @@ You have requested the directors
 
 `GET /directors/:name`
 
-### Response
-
-You have requested the director: :name
-
-## Get Genres
-
-## Request
-
-`GET /genres/`
-
-### Response
-
-## Get a director by name
-
-## Request
-
-`GET /directors/:name`
-
-### Response
-
 ## Get Genres
 
 ## Request
@@ -167,6 +147,12 @@ You have requested: Silent Bob's favorites
 
 `DELETE /users/:name`
 
+### Response
 
+## update a user password/email/dateOfBirth
+
+### Request
+
+`PUT /user/:name/:password/:email/:dateOfBirth`
 
 ### Response
