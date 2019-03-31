@@ -16,13 +16,7 @@ movies.
 
 ### Response
 
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Content-Type: application/json; charset=utf-8
-Content-Length: 4494
-ETag: W/"118e-iiEHHkYUwKP9ca98bzVhg0hcmu8"
-Date: Fri, 29 Mar 2019 07:04:28 GMT
-Connection: keep-alive
+The response will be a list of JSON objects. Each will represent a movie.
 
 ## Get movie by name
 
@@ -30,6 +24,7 @@ Connection: keep-alive
 
 ### Response
 
+The response will be a JSON object of a specifc movie. It will contain id, title, year, genres, image URL, storyline, director.
 
 {
     "id": "1",
@@ -65,7 +60,7 @@ Connection: keep-alive
 
 ### Response
 
-You have requested the directors
+A JSON object containing a list of directors including name, bio, year of birth, year of death.
 
 ## Get a director by name
 
@@ -77,25 +72,28 @@ You have requested the directors
 
 ## Request
 
-`GET /genres/`
+`GET /genreNames/`
 
 ### Response
 
-You have requested genres
+Response is a list of JSON objects displaying the different movie genres.
+
+{"Genre": "Action, Adventure, Sci-Fi"};
+
 
 ## Get Genres by name
 
 ## Request
 
-`GET /genres/:genres`
+`GET /genres/:genresName`
 
 ### Response
 
-You have requested the genre: :genres
+This will return a JSON object of a specific movie genre by name and description.
 
 You have requested the genre: Thriller
 
-## Get users registration
+## Get users registration information.
 
 ## Request
 
@@ -122,37 +120,68 @@ You have requested the profile: Larry
 `GET /users/:name/favorites`
 
 ### Response
+A JSON object of a specific users favorite movies.
 
 You have requested: Silent Bob's favorites
+
+## Update users favorites.
+
+## Request
+
+`POST /users/:name/favorites/[movie_name(s)]`
+
+### Response
+A JSON object of a specific movie to add to a users-favorites table.
+A success or failure will also be returned.
+
+## Delete a movie from a users favorites.
+
+## Request
+
+`DELETE /users/:name/favorites/[movie_name(s)]`
+
+### Response
+A JSON object of a specific movie to remove from a users-favorites table.
+
+A success or failure will also be returned.
 
 ## Create a new user
 
 ### Request
 
-`POST /user`
+`POST /users`
 
 ### Response
 
-{
+A JSON object containing id, name, email, date of birth and favorite movies. The information is to be added to the message body of the HTTP request. A success or failure will also be returned. ex. If password does not meet complexity requirements or email is not in a valid format a failure will result. If the user already exists a failure will result. If all the required information and in the correct format as follows a success message will be returned.
+
+``{
     "id": "db3b23a6-23a8-47c2-aaec-5d4649286bdf",
     "name": "Silent Bobs Friend Jay",
     "email": "funnyman2@comicbooks.org",
     "dateOfBirth": "05/16/1985",
     "favoriteMovies": "Jay and Silent Bob Strike back"
-}
+``}
 
-##
+## Allow a user to de-register.
 
 ### Request
 
 `DELETE /users/:name`
 
 ### Response
+A response of success or failure of deleting a specific user. Requires registered users :name.
 
 ## update a user password/email/dateOfBirth
 
 ### Request
 
-`PUT /user/:name/:password/:email/:dateOfBirth`
+`PUT /users/:name/:password/:email/:dateOfBirth`
 
 ### Response
+
+A JSON object in the HTTP request body containing the the users :name and property to update ex. :email.
+
+{"name": "Steve", "email": "newemail@stevesplace.io"}
+
+A success or failure will also be returned.
