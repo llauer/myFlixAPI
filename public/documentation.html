@@ -4,16 +4,23 @@
 provide users with access to information about different movies, directors, and genres. Users<br>
 will be able to sign up, update their personal information, and create a list of their favorite<br>
 movies.</p>
-<h2><a id="Get_list_of_Movies_8"></a>Get list of Movies</h2>
-<h3><a id="Request_10"></a>Request</h3>
+<h2><a id="Example_Failure_Response_7"></a>Example Failure Response</h2>
+<p><code>{ &quot;status&quot;: { &quot;code&quot;: 400, &quot;errorType&quot;: &quot;bad_request&quot;, &quot;errorDetails&quot;: &quot;JSON request is missing&quot; } }</code></p>
+<h2><a id="Example_Success_Response_17"></a>Example Success Response</h2>
+<p><code>{ &quot;status&quot;: { &quot;code&quot;: 200, &quot;errorType&quot;: &quot;success&quot; } }</code></p>
+<h2><a id="Get_list_of_Movies_27"></a>Get list of Movies</h2>
+<h3><a id="Endpoint_29"></a>Endpoint</h3>
+<p><code>/movies/</code></p>
+<h3><a id="Request_33"></a>Request</h3>
 <p><code>GET /movies/</code></p>
-<pre><code>curl -i http://localhost:3000/movies
-</code></pre>
-<h3><a id="Response_16"></a>Response</h3>
+<h2><a id="Response_37"></a>Response</h2>
 <p>The response will be a list of JSON objects. Each will represent a movie.</p>
-<h2><a id="Get_movie_by_name_20"></a>Get movie by name</h2>
+<h2><a id="Get_movie_by_name_41"></a>Get movie by name</h2>
+<h2><a id="Endpoint_43"></a>Endpoint</h2>
+<p><code>/movies/:moviename</code></p>
+<h2><a id="Request_47"></a>Request</h2>
 <p><code>GET /movies/:moviename</code></p>
-<h3><a id="Response_24"></a>Response</h3>
+<h3><a id="Response_51"></a>Response</h3>
 <p>The response will be a JSON object of a specifc movie. It will contain id, title, year, genres, image URL, storyline, director.</p>
 <p>{<br>
 “id”: “1”,<br>
@@ -40,73 +47,132 @@ movies.</p>
 “imdbRating”: “”,<br>
 “posterurl”: &quot;<a href="https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@">https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@</a>.<em>V1_SY500_CR0,0,337,500_AL</em>.jpg&quot;<br>
 }</p>
-<h2><a id="Get_a_list_of_directors_54"></a>Get a list of directors</h2>
-<h3><a id="Request_56"></a>Request</h3>
+<h2><a id="Get_a_list_of_directors_81"></a>Get a list of directors</h2>
+<h3><a id="Endpoint_83"></a>Endpoint</h3>
+<p><code>/directors</code></p>
+<h3><a id="Request_87"></a>Request</h3>
 <p><code>GET /directors/</code></p>
-<h3><a id="Response_60"></a>Response</h3>
+<h3><a id="Response_91"></a>Response</h3>
 <p>A JSON object containing a list of directors including name, bio, year of birth, year of death.</p>
-<h2><a id="Get_a_director_by_name_64"></a>Get a director by name</h2>
-<h2><a id="Request_66"></a>Request</h2>
-<p><code>GET /directors/:name</code></p>
-<h2><a id="response_70"></a>response</h2>
-<p>JSON payload of a specific director by name including bio, date of birth and date of death.</p>
-<h2><a id="Get_Genres_74"></a>Get Genres</h2>
-<h2><a id="Request_76"></a>Request</h2>
-<p><code>GET /genreNames/</code></p>
-<h3><a id="Response_80"></a>Response</h3>
-<p>Response is a list of JSON objects displaying the different movie genres.</p>
-<p>{“Genre”: “Action, Adventure, Sci-Fi”};</p>
-<h2><a id="Get_Genres_by_name_87"></a>Get Genres by name</h2>
-<h2><a id="Request_89"></a>Request</h2>
-<p><code>GET /genres/:genresName</code></p>
-<h3><a id="Response_93"></a>Response</h3>
-<p>This will return a JSON object of a specific movie genre by name and description.</p>
-<p>You have requested the genre: Thriller</p>
-<h2><a id="Get_users_registration_information_99"></a>Get users registration information.</h2>
+<h2><a id="Get_a_director_by_name_95"></a>Get a director by name</h2>
+<h2><a id="Endpoint_97"></a>Endpoint</h2>
+<p><code>/directors/:name</code></p>
 <h2><a id="Request_101"></a>Request</h2>
+<p><code>GET /directors/:name</code></p>
+<h2><a id="response_105"></a>response</h2>
+<p>JSON payload of a specific director by name including bio, date of birth and date of death.</p>
+<h2><a id="Get_Genres_109"></a>Get Genres</h2>
+<h2><a id="Endpoint_111"></a>Endpoint</h2>
+<p><code>/genres/</code></p>
+<h2><a id="Request_115"></a>Request</h2>
+<p><code>GET /genres/</code></p>
+<h3><a id="Response_119"></a>Response</h3>
+<p>Response is a list of JSON objects displaying the different movie genres.</p>
+<p><code>[ {&quot;name&quot;: &quot;comedy&quot;, &quot;description&quot;: &quot;Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered.&quot;} ];</code></p>
+<h2><a id="Get_Genres_by_name_127"></a>Get Genres by name</h2>
+<h2><a id="Endpoint_129"></a>Endpoint</h2>
+<p><code>/genres/:genresName</code></p>
+<h2><a id="Request_133"></a>Request</h2>
+<p><code>GET /genres/:genresName</code></p>
+<h3><a id="Response_137"></a>Response</h3>
+<p>This will return a JSON object of a specific movie genre by name and description.</p>
+<p><code>[ {&quot;name&quot;: &quot;comedy&quot;, &quot;description&quot;: &quot;Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered.&quot;} ];</code></p>
+<h2><a id="Get_users_registration_information_145"></a>Get users registration information.</h2>
+<h2><a id="Endpoint_147"></a>Endpoint</h2>
+<p><code>/users</code></p>
+<h2><a id="Request_151"></a>Request</h2>
 <p><code>GET /users/</code></p>
-<h3><a id="Response_105"></a>Response</h3>
-<p>You have requested the User Registration Page</p>
-<h2><a id="Get_user_by_name_109"></a>Get user by name</h2>
-<h2><a id="Request_111"></a>Request</h2>
+<h3><a id="Response_155"></a>Response</h3>
+<p>if authorized/implemented a list of JSON objects would be returned.</p>
+<p>{<br>
+{<br>
+“id”: “db3b23a6-23a8-47c2-aaec-5d4649286bdf”,<br>
+“name”: “Silent Bobs Friend Jay”,<br>
+“email”: <a href="mailto:%22funnyman2@comicbooks.org">&quot;funnyman2@comicbooks.org</a>&quot;,<br>
+“dateOfBirth”: “05/16/1985”,<br>
+“favoriteMovies”: “Jay and Silent Bob Strike back”</p>
+<p>},</p>
+<p>{<br>
+“id”: “db3b25a6-23a8-47c2-aaec-5d4649286bdf”,<br>
+“name”: “Bobby Smith”,<br>
+“email”: <a href="mailto:%22bsmith99@bademail.com">&quot;bsmith99@bademail.com</a>&quot;,<br>
+“dateOfBirth”: “05/16/1989”,<br>
+“favoriteMovies”: “The Matrix”<br>
+}</p>
+<p>};</p>
+<h2><a id="Get_user_by_name_179"></a>Get user by name</h2>
+<h2><a id="Endpoint_182"></a>Endpoint</h2>
+<p><code>/users/:name</code></p>
+<h2><a id="Request_186"></a>Request</h2>
 <p><code>GET /users/:name</code></p>
-<h3><a id="Response_115"></a>Response</h3>
-<p>You have requested the profile: Larry</p>
-<h2><a id="Get_users_favorites_by_name_119"></a>Get users favorites by name</h2>
-<h2><a id="Request_121"></a>Request</h2>
+<h3><a id="Response_190"></a>Response</h3>
+<p>{<br>
+“id”: “db3b23a6-23a8-47c2-aaec-5d4649286bdf”,<br>
+“name”: “Some Person”,<br>
+“email”: <a href="mailto:%22anybody@testeremail.org">&quot;anybody@testeremail.org</a>&quot;,<br>
+“dateOfBirth”: “05/16/1975”,<br>
+“favoriteMovies”: “Harry Potter”<br>
+};</p>
+<h2><a id="Get_users_favorites_by_name_199"></a>Get users favorites by name</h2>
+<h2><a id="Endpoint_201"></a>Endpoint</h2>
+<p><code>/users/:name/favorites</code></p>
+<h2><a id="Request_205"></a>Request</h2>
 <p><code>GET /users/:name/favorites</code></p>
-<h3><a id="Response_125"></a>Response</h3>
+<h3><a id="Response_209"></a>Response</h3>
 <p>A JSON object of a specific users favorite movies.</p>
-<p>You have requested: Silent Bob’s favorites</p>
-<h2><a id="Update_users_favorites_130"></a>Update users favorites.</h2>
-<h2><a id="Request_132"></a>Request</h2>
-<p><code>POST /users/:name/favorites/[movie_name(s)]</code></p>
-<h3><a id="Response_136"></a>Response</h3>
-<p>A JSON object of a specific movie to add to a users-favorites table.<br>
-A success or failure will also be returned.</p>
-<h2><a id="Delete_a_movie_from_a_users_favorites_140"></a>Delete a movie from a users favorites.</h2>
-<h2><a id="Request_142"></a>Request</h2>
-<p><code>DELETE /users/:name/favorites/[movie_name(s)]</code></p>
-<h3><a id="Response_146"></a>Response</h3>
-<p>A JSON object of a specific movie to remove from a users-favorites table.</p>
+<p>{<br>
+“name”: “Peter Jackson”,<br>
+“favoriteMovies”: “King Kong”<br>
+};</p>
+<h2><a id="Update_users_favorites_217"></a>Update users favorites.</h2>
+<h2><a id="Endpoint_219"></a>Endpoint</h2>
+<p><code>/users/:name/favorites/:movieName</code></p>
+<h2><a id="Request_223"></a>Request</h2>
+<p><code>POST /users/:name/favorites/:movieName</code></p>
+<h3><a id="Response_227"></a>Response</h3>
+<p>A JSON object of a specific movie to add to a users-favorites table.</p>
+<p><code>{ &quot;id&quot;: &quot;1&quot;, &quot;title&quot;: &quot;Game Night&quot;, &quot;year&quot;: &quot;2018&quot;, &quot;genres&quot;: [ &quot;Action&quot;, &quot;Comedy&quot;, &quot;Crime&quot; ], &quot;ratings&quot;: [], &quot;poster&quot;: &quot;MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg&quot;, &quot;contentRating&quot;: &quot;11&quot;, &quot;duration&quot;: &quot;PT100M&quot;, &quot;releaseDate&quot;: &quot;2018-02-28&quot;, &quot;averageRating&quot;: 0, &quot;originalTitle&quot;: &quot;&quot;, &quot;storyline&quot;: &quot;A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.&quot;, &quot;actors&quot;: [ &quot;Rachel McAdams&quot;, &quot;Jesse Plemons&quot;, &quot;Jason Bateman&quot; ], &quot;imdbRating&quot;: &quot;&quot;, &quot;posterurl&quot;: &quot;https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg&quot; }</code></p>
 <p>A success or failure will also be returned.</p>
-<h2><a id="Create_a_new_user_151"></a>Create a new user</h2>
-<h3><a id="Request_153"></a>Request</h3>
+<h2><a id="Delete_a_movie_from_a_users_favorites_259"></a>Delete a movie from a users favorites.</h2>
+<h2><a id="Endpoint_261"></a>Endpoint</h2>
+<p><code>/users/:name/favorites/:movieName</code></p>
+<h2><a id="Request_265"></a>Request</h2>
+<p><code>DELETE /users/:name/favorites/:movieName</code></p>
+<h3><a id="Response_269"></a>Response</h3>
+<p>A success or failure will also be returned.</p>
+<h2><a id="Create_a_new_user_273"></a>Create a new user</h2>
+<h3><a id="Endpoint_275"></a>Endpoint</h3>
+<p><code>/users</code></p>
+<h2><a id="Request_279"></a>Request</h2>
 <p><code>POST /users</code></p>
-<h3><a id="Response_157"></a>Response</h3>
-<p>A JSON object containing id, name, email, date of birth and favorite movies. The information is to be added to the message body of the HTTP request. A success or failure will also be returned. ex. If password does not meet complexity requirements or email is not in a valid format a failure will result. If the user already exists a failure will result. If all the required information and in the correct format as follows a success message will be returned.</p>
-<p><code>{ &quot;id&quot;: &quot;db3b23a6-23a8-47c2-aaec-5d4649286bdf&quot;, &quot;name&quot;: &quot;Silent Bobs Friend Jay&quot;, &quot;email&quot;: &quot;funnyman2@comicbooks.org&quot;, &quot;dateOfBirth&quot;: &quot;05/16/1985&quot;, &quot;favoriteMovies&quot;: &quot;Jay and Silent Bob Strike back&quot;</code>}</p>
-<h2><a id="Allow_a_user_to_deregister_169"></a>Allow a user to de-register.</h2>
-<h3><a id="Request_171"></a>Request</h3>
-<p><code>DELETE /users/:name</code></p>
-<h3><a id="Response_175"></a>Response</h3>
-<p>A response of success or failure of deleting a specific user. Requires registered users :name.</p>
-<h2><a id="update_a_user_passwordemaildateOfBirth_178"></a>update a user password/email/dateOfBirth</h2>
-<h3><a id="Request_180"></a>Request</h3>
-<p><code>PUT /users/:name/:password/:email/:dateOfBirth</code></p>
-<h3><a id="Response_184"></a>Response</h3>
-<p>A JSON object in the HTTP request body containing the the users :name and property to update ex. :email.</p>
-<p>{“name”: “Steve”, “email”: <a href="mailto:%22newemail@stevesplace.io">&quot;newemail@stevesplace.io</a>&quot;}</p>
+<h3><a id="Request_283"></a>Request</h3>
+<p>A JSON object containing id, name, email, date of birth and favorite movies. The information is to be added to the message body of the HTTP request. A success or failure will also be returned.</p>
+<p><code>{ &quot;id&quot;: &quot;db3b23a6-23a8-47c2-aaec-5d4649286bdf&quot;, &quot;name&quot;: &quot;Silent Bobs Friend Jay&quot;, &quot;email&quot;: &quot;funnyman2@comicbooks.org&quot;, &quot;dateOfBirth&quot;: &quot;05/16/1985&quot;, &quot;favoriteMovies&quot;: &quot;Jay and Silent Bob Strike back&quot; }</code></p>
+<h2><a id="Response_295"></a>Response</h2>
 <p>A success or failure will also be returned.</p>
+<h2><a id="Allow_a_user_to_deregister_299"></a>Allow a user to de-register.</h2>
+<h2><a id="Endpoint_301"></a>Endpoint</h2>
+<p><code>/users/:name</code></p>
+<h3><a id="Request_305"></a>Request</h3>
+<p><code>DELETE /users/:name</code></p>
+<h3><a id="Response_309"></a>Response</h3>
+<p>A response of success or failure of deleting a specific user.</p>
+<h2><a id="update_a_users_passwordemaildateOfBirth_312"></a>update a users password/email/dateOfBirth</h2>
+<h3><a id="Endpoint_314"></a>Endpoint</h3>
+<p><code>/users/:name</code></p>
+<h3><a id="Request_318"></a>Request</h3>
+<p><code>PUT /users/:name</code></p>
+<p>email, new passord would be send within the body of the request<br>
+{“name”: “Steve”, “email”: <a href="mailto:%22newemail@stevesplace.io">&quot;newemail@stevesplace.io</a>“, “date_of_birth”: ‘’######”, “password”: “*******”}</p>
+<h3><a id="Response_325"></a>Response</h3>
+<p>A success or failure will also be returned.</p>
+<p><em>update a user password/email/dateOfBirth</em></p>
+<p><em>Endpoint:</em><br>
+PUT /users/:name</p>
+<p><em>Request</em><br>
+email, new passord would be send within the body of the request<br>
+{“name”: “Steve”, “email”: <a href="mailto:%22newemail@stevesplace.io">&quot;newemail@stevesplace.io</a>“, “date_of_birth”: ‘’…”, “password”: “asdasd”}</p>
+<p><em>Response</em><br>
+A success or failure will also be returned.</p>
 
 </body></html>
