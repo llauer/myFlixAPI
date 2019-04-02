@@ -5,13 +5,6 @@ const uuid = require('uuid');
 const app = express();
 
 app.use(express.json());
-app.use(movieRoute);
-app.use(directorsRoute);
-app.use(genresRoute);
-app.use(usersRoute);
-
-//currently logging in UTC.
-// app.use(morgan('common'));
 
 let users = [{
   id: 1,
@@ -36,8 +29,13 @@ let genresRoute = require('./routes/genres');
 let usersRoute = require('./routes/users');
 // let documentation = require('./routes/documentation');
 
+app.use(movieRoute);
+app.use(directorsRoute);
+app.use(genresRoute);
+app.use(usersRoute);
 
-// app.use(documentation);
+//currently logging in UTC.
+// app.use(morgan('common'));
 
 // logs requests to console
 app.use((req, res, next) => {

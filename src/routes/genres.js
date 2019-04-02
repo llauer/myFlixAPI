@@ -6,12 +6,11 @@ let router = express.Router();
 
 
 router.get('/genres', (req, res) => {
-  res.send('You have requested genres');
+  res.send('Genres endpoint reached.');
 });
 
-// params property on request.
 router.get('/genres/:name', (req, res) => {
-  res.send(`You have requested the genre: ${req.params.name}`);
+  res.send('Get Genres by name endpoint reached.');
 });
 
 module.exports = router;
