@@ -24,7 +24,6 @@ movies.
   }
 }`
 
-
 # Get list of Movies
 
 ##### Endpoint
@@ -133,13 +132,12 @@ Response is a list of JSON objects displaying the different movie genres.
 
 This will return a JSON object of a specific movie genre by name and description.
 
-
 `{"name": "comedy", "description": "Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered."}
 ;`
 
-## Get a list of user information.
+# Get a list of user information.
 
-# Endpoint
+##### Endpoint
 
 `GET /users/`
 
@@ -154,9 +152,7 @@ if authorized/implemented a list of JSON objects would be returned.
       "favoriteMovies": "The Matrix"
 }]`
 
-
 # Get user by name
-
 
 ##### Endpoint
 
@@ -168,7 +164,7 @@ if authorized/implemented a list of JSON objects would be returned.
   "name": "Some Person",
   "email": "anybody@testeremail.org",
   "dateOfBirth": "05/16/1975",
-  "favoriteMovies": ["Harry Potter"]
+  "favoriteMovies": "Harry Potter"
 }`
 
 # Get users favorites by name
@@ -182,7 +178,7 @@ A JSON object of a specific users favorite movies.
 
 `{
   "name": "Peter Jackson",
-  "favoriteMovies": ["King Kong"]
+  "favoriteMovies": "King Kong"
 }`
 # Add favorite movie for a user.
 
@@ -218,8 +214,7 @@ A JSON object containing id, name, email, date of birth and favorite movies. The
     "id": "db3b23a6-23a8-47c2-aaec-5d4649286bdf",
     "name": "Silent Bobs Friend Jay",
     "email": "funnyman2@comicbooks.org",
-    "dateOfBirth": "05/16/1985",
-    "favoriteMovies": ["Jay and Silent Bob Strike back", "Spawn"]
+    "dateOfBirth": "05/16/1985"
 }``
 
 ##### Response
@@ -235,11 +230,11 @@ A success or failure will also be returned.
 ##### Response
 A response of success or failure of deleting a specific user.
 
-##### Update a users information name, email, date_of_birth and password
+# Update a users information name, email, date_of_birth and password
 
-# Endpoint
+##### Endpoint
 
-`PUT /users/:name`
+`PUT /users/:name/:email/:date_of_birth`
 
 email, new password would be sent within the body of the request.
 
