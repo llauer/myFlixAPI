@@ -37,11 +37,6 @@ router.get('/users/:name', (req, res) => {
   res.send(`You have requested the profile: ${req.params.name}`);
 });
 
-// testing
-router.get('/users/:name/test', (req, res) => {
-  res.json(`You have requested: ${req.params.email}'s test`);
-});
-
 // params property on request.
 router.get('/users/:name/favorites', (req, res) => {
   res.send(`You have requested: ${req.params.name}'s favorites`);
