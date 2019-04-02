@@ -47,7 +47,7 @@ router.delete('/users/:name', (req, res) => {
 });
 
 router.put('/users/:name/:email/:date_of_birth', (req, res) => {
-  res.send("Update users information endpoint reached.")
+  res.send("Update users information endpoint reached.");
 });
 
 module.exports = router;
