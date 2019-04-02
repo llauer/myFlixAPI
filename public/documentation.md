@@ -149,7 +149,7 @@ if authorized/implemented a list of JSON objects would be returned.
       "name": "Bobby Smith",
       "email": "bsmith99@bademail.com",
       "dateOfBirth": "05/16/1989",
-      "favoriteMovies": "The Matrix"
+      "favoriteMovies": ["The Matrix"]
 }]`
 
 # Get user by name
@@ -164,7 +164,7 @@ if authorized/implemented a list of JSON objects would be returned.
   "name": "Some Person",
   "email": "anybody@testeremail.org",
   "dateOfBirth": "05/16/1975",
-  "favoriteMovies": "Harry Potter"
+  "favoriteMovies": ["Harry Potter"]
 }`
 
 # Get users favorites by name
@@ -178,7 +178,7 @@ A JSON object of a specific users favorite movies.
 
 `{
   "name": "Peter Jackson",
-  "favoriteMovies": "King Kong"
+  "favoriteMovies": ["King Kong"]
 }`
 # Add favorite movie for a user.
 
