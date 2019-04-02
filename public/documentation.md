@@ -1,11 +1,11 @@
-# REST API myFlix
+# **REST API myFlix**
 
 To build the server­side component of a “movies” web application. The web application will
 provide users with access to information about different movies, directors, and genres. Users
 will be able to sign up, update their personal information, and create a list of their favorite
 movies.
 
-## Example Failure Response
+##### Example Failure Response
 
 `{
   "status": {
@@ -15,7 +15,7 @@ movies.
   }
 }`
 
-## Example Success Response
+##### Example Success Response
 
 `{
   "status": {
@@ -25,35 +25,43 @@ movies.
 }`
 
 
-## Get list of Movies
+# Get list of Movies
 
-### Endpoint
-
-`/movies/`
-
-### Request
+##### Endpoint
 
 `GET /movies/`
 
-## Response
+##### Response
 
-The response will be a list of JSON objects. Each will represent a movie.
+The response will be an array of JSON objects. Each will represent a movie.
 
-## Get movie by name
+`[
+  {
+      "id": "1",
+      "title": "Game Night",
+      "year": "2018",
+      "genres": [
+          "Action",
+          "Comedy",
+          "Crime"
+      ],
+      "directors": "John Francis Daley, Jonathan Goldstein",
+      "storyline": "A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.",
+      "image": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg"
+  }
+]`
 
-## Endpoint
+# Get movie by name
 
-`/movies/:moviename`
-
-## Request
+##### Endpoint
 
 `GET /movies/:moviename`
 
-### Response
+##### Response
 
 The response will be a JSON object of a specifc movie. It will contain id, title, year, genres, image URL, storyline, director.
 
-{
+`{
     "id": "1",
     "title": "Game Night",
     "year": "2018",
@@ -62,226 +70,147 @@ The response will be a JSON object of a specifc movie. It will contain id, title
         "Comedy",
         "Crime"
     ],
-    "ratings": [],
-    "poster": "MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg",
-    "contentRating": "11",
-    "duration": "PT100M",
-    "releaseDate": "2018-02-28",
-    "averageRating": 0,
-    "originalTitle": "",
+    "directors": "John Francis Daley, Jonathan Goldstein",
     "storyline": "A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.",
-    "actors": [
-        "Rachel McAdams",
-        "Jesse Plemons",
-        "Jason Bateman"
-    ],
-    "imdbRating": "",
-    "posterurl": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg"
-}
+    "image": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg"
+}`
 
-## Get a list of directors
+# Get a list of directors
 
-### Endpoint
-
-`/directors`
-
-### Request
+##### Endpoint
 
 `GET /directors/`
 
-### Response
+##### Response
 
 A JSON object containing a list of directors including name, bio, year of birth, year of death.
 
-## Get a director by name
+`[{
+    "name": "Quentin Tarantino",
+    "bio": "Born in Tennessee in 1963, Quentin Tarantino moved to California at age 4. His love of movies led to a job in a video store, during which time he wrote the scripts for True Romance and Natural Born Killers. ",
+    "yearBorn": "1963",
+    "yearDied": "N/A"
+}]`
 
-## Endpoint
+# Get a director by name
 
-`/directors/:name`
-
-## Request
+##### Endpoint
 
 `GET /directors/:name`
 
-## response
+##### response
 
-JSON payload of a specific director by name including bio, date of birth and date of death.
+JSON object of a specific director by name including bio, date of birth and date of death.
 
-## Get Genres
+`{
+    "name": "Quentin Tarantino",
+    "bio": "Born in Tennessee in 1963, Quentin Tarantino moved to California at age 4. His love of movies led to a job in a video store, during which time he wrote the scripts for True Romance and Natural Born Killers. ",
+    "yearBorn": "1963",
+    "yearDied": "N/A"
+}`
 
-## Endpoint
+# Get Genres
 
-`/genres/`
-
-## Request
+##### Endpoint
 
 `GET /genres/`
 
-### Response
+##### Response
 
 Response is a list of JSON objects displaying the different movie genres.
 
-``[
+`[
 {"name": "comedy", "description": "Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered."}
-];``
+];`
 
-## Get Genres by name
+# Get Genre by name
 
-## Endpoint
+##### Endpoint
 
-`/genres/:genresName`
+`GET /genres/:genreName`
 
-## Request
-
-`GET /genres/:genresName`
-
-### Response
+##### Response
 
 This will return a JSON object of a specific movie genre by name and description.
 
-``[
-{"name": "comedy", "description": "Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered."}
-];``
 
-## Get users registration information.
+`{"name": "comedy", "description": "Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered."}
+;`
 
-## Endpoint
+## Get a list of user information.
 
-`/users`
-
-## Request
+# Endpoint
 
 `GET /users/`
 
-### Response
+##### Response
 
 if authorized/implemented a list of JSON objects would be returned.
 
-{
-  {
-      "id": "db3b23a6-23a8-47c2-aaec-5d4649286bdf",
-      "name": "Silent Bobs Friend Jay",
-      "email": "funnyman2@comicbooks.org",
-      "dateOfBirth": "05/16/1985",
-      "favoriteMovies": "Jay and Silent Bob Strike back"
-
-  },
-
-  {
-    "id": "db3b25a6-23a8-47c2-aaec-5d4649286bdf",
-    "name": "Bobby Smith",
-    "email": "bsmith99@bademail.com",
-    "dateOfBirth": "05/16/1989",
-    "favoriteMovies": "The Matrix"
-  }
-
-};
-
-## Get user by name
+`[{      "id": "db3b25a6-23a8-47c2-aaec-5d4649286bdf",
+      "name": "Bobby Smith",
+      "email": "bsmith99@bademail.com",
+      "dateOfBirth": "05/16/1989",
+      "favoriteMovies": "The Matrix"
+}]`
 
 
-## Endpoint
+# Get user by name
 
-`/users/:name`
 
-## Request
+##### Endpoint
 
 `GET /users/:name`
 
-### Response
-{
+##### Response
+`{
   "id": "db3b23a6-23a8-47c2-aaec-5d4649286bdf",
   "name": "Some Person",
   "email": "anybody@testeremail.org",
   "dateOfBirth": "05/16/1975",
-  "favoriteMovies": "Harry Potter"
-};
+  "favoriteMovies": ["Harry Potter"]
+}`
 
-## Get users favorites by name
+# Get users favorites by name
 
-## Endpoint
-
-`/users/:name/favorites`
-
-## Request
+##### Endpoint
 
 `GET /users/:name/favorites`
 
-### Response
+##### Response
 A JSON object of a specific users favorite movies.
 
-{
+`{
   "name": "Peter Jackson",
-  "favoriteMovies": "King Kong"
-};
+  "favoriteMovies": ["King Kong"]
+}`
+# Add favorite movie for a user.
 
-## Update users favorites.
-
-## Endpoint
-
-`/users/:name/favorites/:movieName`
-
-## Request
+##### Endpoint
 
 `POST /users/:name/favorites/:movieName`
 
-### Response
-
-A JSON object of a specific movie to add to a users-favorites table.
-
-``{
-    "id": "1",
-    "title": "Game Night",
-    "year": "2018",
-    "genres": [
-        "Action",
-        "Comedy",
-        "Crime"
-    ],
-    "ratings": [],
-    "poster": "MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg",
-    "contentRating": "11",
-    "duration": "PT100M",
-    "releaseDate": "2018-02-28",
-    "averageRating": 0,
-    "originalTitle": "",
-    "storyline": "A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.",
-    "actors": [
-        "Rachel McAdams",
-        "Jesse Plemons",
-        "Jason Bateman"
-    ],
-    "imdbRating": "",
-    "posterurl": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg"
-}``
+##### Response
 
 A success or failure will also be returned.
 
-## Delete a movie from a users favorites.
+# Delete a movie from a users favorites.
 
-## Endpoint
-
-`/users/:name/favorites/:movieName`
-
-## Request
+##### Endpoint
 
 `DELETE /users/:name/favorites/:movieName`
 
-### Response
+##### Response
 
 A success or failure will also be returned.
 
-## Create a new user
+# User sign up
 
-### Endpoint
-
-`/users`
-
-## Request
+##### Endpoint
 
 `POST /users`
 
-### Request
+##### Request
 
 A JSON object containing id, name, email, date of birth and favorite movies. The information is to be added to the message body of the HTTP request. A success or failure will also be returned.
 
@@ -290,53 +219,38 @@ A JSON object containing id, name, email, date of birth and favorite movies. The
     "name": "Silent Bobs Friend Jay",
     "email": "funnyman2@comicbooks.org",
     "dateOfBirth": "05/16/1985",
-    "favoriteMovies": "Jay and Silent Bob Strike back"
+    "favoriteMovies": ["Jay and Silent Bob Strike back", "Spawn"]
 }``
 
-## Response
+##### Response
 
 A success or failure will also be returned.
 
-## Allow a user to de-register.
+# Allow a user to de-register.
 
-## Endpoint
-
-`/users/:name`
-
-### Request
+##### Endpoint
 
 `DELETE /users/:name`
 
-### Response
+##### Response
 A response of success or failure of deleting a specific user.
 
-## update a users password/email/dateOfBirth
+##### Update a users information name, email, date_of_birth and password
 
-### Endpoint
-
-`/users/:name`
-
-### Request
+# Endpoint
 
 `PUT /users/:name`
 
-email, new passord would be send within the body of the request
-{"name": "Steve", "email": "newemail@stevesplace.io", "date_of_birth": ''######", "password": "*******"}
+email, new password would be sent within the body of the request.
 
-### Response
+`{"name": "Thomas A. Anderson", "email": "theone@thematrix.org", "date_of_birth": ''######", "password": "*******"}`
 
-A success or failure will also be returned.
+##### Response
 
-
-
-*update a user password/email/dateOfBirth*
-
-*Endpoint:*
-PUT /users/:name
-
-*Request*
-email, new passord would be send within the body of the request
-{"name": "Steve", "email": "newemail@stevesplace.io", "date_of_birth": ''...", "password": "asdasd"}
-
-*Response*
-A success or failure will also be returned.
+`{
+  "user": {
+    "id":   "db3b23a6-23a8-47c2-aaec-5d4649286bdf",
+    "name": "Thomas A. Anderson",
+    ...
+  }
+}`

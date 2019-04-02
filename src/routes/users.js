@@ -52,6 +52,11 @@ router.get('/users/:name/favorites', (req, res) => {
   res.send(`You have requested: ${req.params.name}'s favorites`);
 });
 
+router.post('/users/:name/favorites', (req, res) => {
+  res.send("You have reached the create a user endpoint.");
+});
+
+//create a user
 
 
 // router.post('/users', (req, res) => {

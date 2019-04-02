@@ -4,6 +4,15 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 
+app.use(express.json());
+app.use(movieRoute);
+app.use(directorsRoute);
+app.use(genresRoute);
+app.use(usersRoute);
+
+//currently logging in UTC.
+// app.use(morgan('common'));
+
 let users = [{
   id: 1,
   name: "Silent Bob",
@@ -21,22 +30,13 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
-//currently logging in UTC.
-// app.use(morgan('common'));
-
 let movieRoute = require('./routes/movies');
 let directorsRoute = require('./routes/directors');
 let genresRoute = require('./routes/genres');
 let usersRoute = require('./routes/users');
 // let documentation = require('./routes/documentation');
 
-app.use(movieRoute);
-app.use(directorsRoute);
-app.use(genresRoute);
-app.use(usersRoute);
-app.use(express.json());
+
 // app.use(documentation);
 
 // logs requests to console
