@@ -46,7 +46,7 @@ router.delete('/users/:name', (req, res) => {
   res.send("Delete user by name endpoint reached.");
 });
 
-router.put('/users/:name/:email/:date_of_birth', (req, res) => {
+router.put('/users/:name', (req, res) => {
   res.send("Update users information endpoint reached.");
 });
 

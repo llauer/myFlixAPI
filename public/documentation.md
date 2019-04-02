@@ -234,7 +234,7 @@ A response of success or failure of deleting a specific user.
 
 ##### Endpoint
 
-`PUT /users/:name/:email/:date_of_birth`
+`PUT /users/:name`
 
 email, new password would be sent within the body of the request.
 
