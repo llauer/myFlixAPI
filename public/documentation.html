@@ -12,7 +12,7 @@ movies.</p>
 <h5><a id="Endpoint_28"></a>Endpoint</h5>
 <p><code>GET /movies/</code></p>
 <h5><a id="Response_32"></a>Response</h5>
-<p>The response will be an array of JSON objects. Each will represent a movie.</p>
+<p>The response will be a list of JSON objects. Each will represent a movie.</p>
 <p><code>{ &quot;id&quot;: &quot;1&quot;, &quot;title&quot;: &quot;Game Night&quot;, &quot;description&quot;: &quot;&quot;A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.&quot;, &quot;genre&quot;: &quot;Comedy&quot;, &quot;director&quot;: &quot;John Francis Daley&quot;, &quot;imagepath&quot;: &quot;https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg&quot;, &quot;featured&quot;: &quot;true&quot; }</code></p>
 <h1><a id="Get_movie_by_name_46"></a>Get movie by name</h1>
 <h5><a id="Endpoint_48"></a>Endpoint</h5>
@@ -87,9 +87,10 @@ movies.</p>
 <h1><a id="Update_a_users_information_name_email_date_of_birth_and_password_225"></a>Update a users information name, email, date_of_birth and password</h1>
 <h5><a id="Endpoint_227"></a>Endpoint</h5>
 <p><code>PUT /users/:name</code></p>
+<h5><a id="Request_231"></a>Request</h5>
 <p>email, new password would be sent within the body of the request.</p>
 <p><code>{&quot;username&quot;: &quot;tanderson&quot;, &quot;password&quot;: &quot;*******&quot;, &quot;email&quot;: &quot;theone@thematrix.org&quot;, &quot;birthday&quot;: &quot;######&quot; }</code></p>
-<h5><a id="Response_235"></a>Response</h5>
+<h5><a id="Response_237"></a>Response</h5>
 <p><code>{ &quot;user&quot;: { &quot;id&quot;: &quot;db3b23a6-23a8-47c2-aaec-5d4649286bdf&quot;, &quot;username&quot;: &quot;tanderson&quot;, ... } }</code></p>
 
 </body></html>

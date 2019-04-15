@@ -32,7 +32,7 @@ movies.
 
 ##### Response
 
-The response will be an array of JSON objects. Each will represent a movie.
+The response will be a list of JSON objects. Each will represent a movie.
 
 `{
     "id": "1",
@@ -228,6 +228,8 @@ A response of success or failure of deleting a specific user.
 ##### Endpoint
 
 `PUT /users/:name`
+
+##### Request
 
 email, new password would be sent within the body of the request.
 
