@@ -41,7 +41,7 @@ The response will be a list of JSON objects. Each will represent a movie.
     "genre": "Comedy",
     "director": "John Francis Daley",
     "imagepath": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg",
-    "featured": "true"
+    "featured": true
 }`
 
 # Get movie by name
@@ -52,7 +52,7 @@ The response will be a list of JSON objects. Each will represent a movie.
 
 ##### Response
 
-The response will be a JSON object of a specifc movie. It will contain id, title, year, genres, image URL, storyline, director.
+The response will be a JSON object of a specifc movie. It will contain id, title, description, genre, director, imagepath and featured.
 
 `{
     "id": "1",
@@ -61,7 +61,7 @@ The response will be a JSON object of a specifc movie. It will contain id, title
     "genre": "Comedy",
     "director": "John Francis Daley",
     "imagepath": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg",
-    "featured": "true"
+    "featured": true
 }`
 
 # Get a list of directors
@@ -74,12 +74,14 @@ The response will be a JSON object of a specifc movie. It will contain id, title
 
 A JSON object containing a list of directors including name, bio, year of birth, year of death.
 
-`[{
-    "name": "Quentin Tarantino",
-    "bio": "Born in Tennessee in 1963, Quentin Tarantino moved to California at age 4. His love of movies led to a job in a video store, during which time he wrote the scripts for True Romance and Natural Born Killers. ",
-    "birth": "1963",
-    "death": "N/A"
-}]`
+`[
+  {
+      "name": "Quentin Tarantino",
+      "bio": "Born in Tennessee in 1963, Quentin Tarantino moved to California at age 4. His love of movies led to a job in a video store, during which time he wrote the scripts for True Romance and Natural Born Killers. ",
+      "birth": "1963",
+      "death": "N/A"
+  }
+]`
 
 # Get a director by name
 
@@ -109,7 +111,10 @@ JSON object of a specific director by name including bio, date of birth and date
 Response is a list of JSON objects displaying the different movie genres.
 
 `[
-{"name": "comedy", "description": "Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered."}
+  {
+    "name": "comedy",
+    "description": "Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered."
+  }
 ];`
 
 # Get Genre by name
@@ -122,8 +127,10 @@ Response is a list of JSON objects displaying the different movie genres.
 
 This will return a JSON object of a specific movie genre by name and description.
 
-`{"name": "comedy", "description": "Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered."}
-;`
+  `{
+    "name": "comedy",
+    "description": "Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered."
+   };`
 
 # Get a list of user information.
 
@@ -141,7 +148,7 @@ if authorized/implemented a list of JSON objects would be returned.
       "password": "*********",
       "email": "bsmith99@bademail.com",
       "birthday": "05/16/1989",
-      "favorites": ["The Matrix"]
+      "favorites": ["ObjectId("5cad022517248cdd9b9d51c0")"]
 }]`
 
 # Get user by name
@@ -156,7 +163,7 @@ if authorized/implemented a list of JSON objects would be returned.
   "username": "Some Person",
   "email": "anybody@testeremail.org",
   "dateOfBirth": "05/16/1975",
-  "favorites": ["Harry Potter"]
+  "favorites": ["ObjectId("5cad022517248cdd9b9d51c0")"]
 }`
 
 # Get users favorites by name
@@ -166,11 +173,12 @@ if authorized/implemented a list of JSON objects would be returned.
 `GET /users/:name/favorites`
 
 ##### Response
+
 A JSON object of a specific users favorite movies.
 
 `{
   "username": "sljackson",
-  "favorites": ["King Kong"]
+  "favorites": ["ObjectId("5cad022517248cdd9b9d51c0")"]
 }`
 # Add favorite movie for a user.
 
@@ -233,7 +241,12 @@ A response of success or failure of deleting a specific user.
 
 email, new password would be sent within the body of the request.
 
-`{"username": "tanderson", "password": "*******", "email": "theone@thematrix.org", "birthday": "######" }`
+`{
+  "username": "tanderson",
+  "password": "*******",
+  "email": "theone@thematrix.org",
+  "birthday": "######"
+}`
 
 ##### Response
 
