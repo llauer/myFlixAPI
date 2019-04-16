@@ -4,6 +4,15 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+  useNewUrlParser: true
+});
+
 app.use(express.json());
 
 //trying a new way of logging. Disabled morgan for now.
