@@ -19,78 +19,78 @@ movies.</p>
 <p><code>GET /movies/:moviename</code></p>
 <h5><a id="Response_52"></a>Response</h5>
 <p>The response will be a JSON object of a specifc movie. It will contain id, title, description, genre, director, imagepath and featured.</p>
-<p><code>{ &quot;id&quot;: &quot;1&quot;, &quot;title&quot;: &quot;Game Night&quot;, &quot;description&quot;: &quot;&quot;A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.&quot;, &quot;genre&quot;: &quot;Comedy&quot;, &quot;director&quot;: &quot;John Francis Daley&quot;, &quot;imagepath&quot;: &quot;https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg&quot;, &quot;featured&quot;: true }</code></p>
-<h1><a id="Get_a_list_of_directors_66"></a>Get a list of directors</h1>
-<h5><a id="Endpoint_68"></a>Endpoint</h5>
+<p><code>[ { &quot;id&quot;: &quot;1&quot;, &quot;title&quot;: &quot;Game Night&quot;, &quot;description&quot;: &quot;&quot;A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.&quot;, &quot;genre&quot;: &quot;Comedy&quot;, &quot;director&quot;: &quot;John Francis Daley&quot;, &quot;imagepath&quot;: &quot;https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg&quot;, &quot;featured&quot;: true } ]</code></p>
+<h1><a id="Get_a_list_of_directors_68"></a>Get a list of directors</h1>
+<h5><a id="Endpoint_70"></a>Endpoint</h5>
 <p><code>GET /directors/</code></p>
-<h5><a id="Response_72"></a>Response</h5>
+<h5><a id="Response_74"></a>Response</h5>
 <p>A JSON object containing a list of directors including name, bio, year of birth, year of death.</p>
 <p><code>[ { &quot;name&quot;: &quot;Quentin Tarantino&quot;, &quot;bio&quot;: &quot;Born in Tennessee in 1963, Quentin Tarantino moved to California at age 4. His love of movies led to a job in a video store, during which time he wrote the scripts for True Romance and Natural Born Killers. &quot;, &quot;birth&quot;: &quot;1963&quot;, &quot;death&quot;: &quot;N/A&quot; } ]</code></p>
-<h1><a id="Get_a_director_by_name_85"></a>Get a director by name</h1>
-<h5><a id="Endpoint_87"></a>Endpoint</h5>
+<h1><a id="Get_a_director_by_name_87"></a>Get a director by name</h1>
+<h5><a id="Endpoint_89"></a>Endpoint</h5>
 <p><code>GET /directors/:name</code></p>
-<h5><a id="response_91"></a>response</h5>
+<h5><a id="response_93"></a>response</h5>
 <p>JSON object of a specific director by name including bio, date of birth and date of death.</p>
 <p><code>{ &quot;name&quot;: &quot;Quentin Tarantino&quot;, &quot;bio&quot;: &quot;Born in Tennessee in 1963, Quentin Tarantino moved to California at age 4. His love of movies led to a job in a video store, during which time he wrote the scripts for True Romance and Natural Born Killers. &quot;, &quot;birth&quot;: &quot;1963&quot;, &quot;death&quot;: &quot;N/A&quot; }</code></p>
-<h1><a id="Get_Genres_102"></a>Get Genres</h1>
-<h5><a id="Endpoint_104"></a>Endpoint</h5>
+<h1><a id="Get_Genres_104"></a>Get Genres</h1>
+<h5><a id="Endpoint_106"></a>Endpoint</h5>
 <p><code>GET /genres/</code></p>
-<h5><a id="Response_108"></a>Response</h5>
+<h5><a id="Response_110"></a>Response</h5>
 <p>Response is a list of JSON objects displaying the different movie genres.</p>
 <p><code>[ { &quot;name&quot;: &quot;comedy&quot;, &quot;description&quot;: &quot;Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered.&quot; } ];</code></p>
-<h1><a id="Get_Genre_by_name_119"></a>Get Genre by name</h1>
-<h5><a id="Endpoint_121"></a>Endpoint</h5>
+<h1><a id="Get_Genre_by_name_121"></a>Get Genre by name</h1>
+<h5><a id="Endpoint_123"></a>Endpoint</h5>
 <p><code>GET /genres/:genreName</code></p>
-<h5><a id="Response_125"></a>Response</h5>
+<h5><a id="Response_127"></a>Response</h5>
 <p>This will return a JSON object of a specific movie genre by name and description.</p>
 <p><code>{ &quot;name&quot;: &quot;comedy&quot;, &quot;description&quot;: &quot;Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered.&quot; };</code></p>
-<h1><a id="Get_a_list_of_user_information_134"></a>Get a list of user information.</h1>
-<h5><a id="Endpoint_136"></a>Endpoint</h5>
+<h1><a id="Get_a_list_of_user_information_136"></a>Get a list of user information.</h1>
+<h5><a id="Endpoint_138"></a>Endpoint</h5>
 <p><code>GET /users/</code></p>
-<h5><a id="Response_140"></a>Response</h5>
+<h5><a id="Response_142"></a>Response</h5>
 <p>if authorized/implemented a list of JSON objects would be returned.</p>
 <p><code>[{ &quot;id&quot;: &quot;db3b25a6-23a8-47c2-aaec-5d4649286bdf&quot;, &quot;username&quot;: &quot;bsmith99&quot;, &quot;password&quot;: &quot;*********&quot;, &quot;email&quot;: &quot;bsmith99@bademail.com&quot;, &quot;birthday&quot;: &quot;05/16/1989&quot;, &quot;favorites&quot;: [&quot;ObjectId(&quot;5cad022517248cdd9b9d51c0&quot;)&quot;] }]</code></p>
-<h1><a id="Get_user_by_name_153"></a>Get user by name</h1>
-<h5><a id="Endpoint_155"></a>Endpoint</h5>
+<h1><a id="Get_user_by_name_155"></a>Get user by name</h1>
+<h5><a id="Endpoint_157"></a>Endpoint</h5>
 <p><code>GET /users/:name</code></p>
-<h5><a id="Response_159"></a>Response</h5>
+<h5><a id="Response_161"></a>Response</h5>
 <p><code>{ &quot;id&quot;: &quot;db3b23a6-23a8-47c2-aaec-5d4649286bdf&quot;, &quot;username&quot;: &quot;Some Person&quot;, &quot;email&quot;: &quot;anybody@testeremail.org&quot;, &quot;dateOfBirth&quot;: &quot;05/16/1975&quot;, &quot;favorites&quot;: [&quot;ObjectId(&quot;5cad022517248cdd9b9d51c0&quot;)&quot;] }</code></p>
-<h1><a id="Get_users_favorites_by_name_168"></a>Get users favorites by name</h1>
-<h5><a id="Endpoint_170"></a>Endpoint</h5>
+<h1><a id="Get_users_favorites_by_name_170"></a>Get users favorites by name</h1>
+<h5><a id="Endpoint_172"></a>Endpoint</h5>
 <p><code>GET /users/:name/favorites</code></p>
-<h5><a id="Response_174"></a>Response</h5>
+<h5><a id="Response_176"></a>Response</h5>
 <p>A JSON object of a specific users favorite movies.</p>
 <p><code>{ &quot;username&quot;: &quot;sljackson&quot;, &quot;favorites&quot;: [&quot;ObjectId(&quot;5cad022517248cdd9b9d51c0&quot;)&quot;] }</code></p>
-<h1><a id="Add_favorite_movie_for_a_user_182"></a>Add favorite movie for a user.</h1>
-<h5><a id="Endpoint_184"></a>Endpoint</h5>
+<h1><a id="Add_favorite_movie_for_a_user_184"></a>Add favorite movie for a user.</h1>
+<h5><a id="Endpoint_186"></a>Endpoint</h5>
 <p><code>POST /users/:name/favorites/:movieName</code></p>
-<h5><a id="Response_188"></a>Response</h5>
+<h5><a id="Response_190"></a>Response</h5>
 <p>A success or failure will also be returned.</p>
-<h1><a id="Delete_a_movie_from_a_users_favorites_192"></a>Delete a movie from a users favorites.</h1>
-<h5><a id="Endpoint_194"></a>Endpoint</h5>
+<h1><a id="Delete_a_movie_from_a_users_favorites_194"></a>Delete a movie from a users favorites.</h1>
+<h5><a id="Endpoint_196"></a>Endpoint</h5>
 <p><code>DELETE /users/:name/favorites/:movieName</code></p>
-<h5><a id="Response_198"></a>Response</h5>
+<h5><a id="Response_200"></a>Response</h5>
 <p>A success or failure will also be returned.</p>
-<h1><a id="User_sign_up_202"></a>User sign up</h1>
-<h5><a id="Endpoint_204"></a>Endpoint</h5>
+<h1><a id="User_sign_up_204"></a>User sign up</h1>
+<h5><a id="Endpoint_206"></a>Endpoint</h5>
 <p><code>POST /users</code></p>
-<h5><a id="Request_208"></a>Request</h5>
+<h5><a id="Request_210"></a>Request</h5>
 <p>A JSON object containing id, name, email and birthday. The information is to be added to the message body of the HTTP request. A success or failure will also be returned.</p>
 <p><code>{ &quot;id&quot;: &quot;db3b23a6-23a8-47c2-aaec-5d4649286bdf&quot;, &quot;username&quot;: &quot;tanderson&quot;, &quot;password&quot;: &quot;********&quot; &quot;email&quot;: &quot;funnyman2@comicbooks.org&quot;, &quot;birthday&quot;: &quot;05/16/1985&quot; }</code></p>
-<h5><a id="Response_220"></a>Response</h5>
+<h5><a id="Response_222"></a>Response</h5>
 <p>A success or failure will also be returned.</p>
-<h1><a id="Allow_a_user_to_deregister_224"></a>Allow a user to de-register.</h1>
-<h5><a id="Endpoint_226"></a>Endpoint</h5>
+<h1><a id="Allow_a_user_to_deregister_226"></a>Allow a user to de-register.</h1>
+<h5><a id="Endpoint_228"></a>Endpoint</h5>
 <p><code>DELETE /users/:name</code></p>
-<h5><a id="Response_230"></a>Response</h5>
+<h5><a id="Response_232"></a>Response</h5>
 <p>A response of success or failure of deleting a specific user.</p>
-<h1><a id="Update_a_users_information_name_email_date_of_birth_and_password_233"></a>Update a users information name, email, date_of_birth and password</h1>
-<h5><a id="Endpoint_235"></a>Endpoint</h5>
+<h1><a id="Update_a_users_information_name_email_date_of_birth_and_password_235"></a>Update a users information name, email, date_of_birth and password</h1>
+<h5><a id="Endpoint_237"></a>Endpoint</h5>
 <p><code>PUT /users/:name</code></p>
-<h5><a id="Request_239"></a>Request</h5>
+<h5><a id="Request_241"></a>Request</h5>
 <p>email, new password would be sent within the body of the request.</p>
 <p><code>{ &quot;username&quot;: &quot;tanderson&quot;, &quot;password&quot;: &quot;*******&quot;, &quot;email&quot;: &quot;theone@thematrix.org&quot;, &quot;birthday&quot;: &quot;######&quot; }</code></p>
-<h5><a id="Response_250"></a>Response</h5>
+<h5><a id="Response_252"></a>Response</h5>
 <p><code>{ &quot;user&quot;: { &quot;id&quot;: &quot;db3b23a6-23a8-47c2-aaec-5d4649286bdf&quot;, &quot;username&quot;: &quot;tanderson&quot;, ... } }</code></p>
 
 </body></html>

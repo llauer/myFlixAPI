@@ -54,15 +54,17 @@ The response will be a list of JSON objects. Each will represent a movie.
 
 The response will be a JSON object of a specifc movie. It will contain id, title, description, genre, director, imagepath and featured.
 
-`{
-    "id": "1",
-    "title": "Game Night",
-    "description": ""A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.",
-    "genre": "Comedy",
-    "director": "John Francis Daley",
-    "imagepath": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg",
-    "featured": true
-}`
+`[
+  {
+      "id": "1",
+      "title": "Game Night",
+      "description": ""A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.",
+      "genre": "Comedy",
+      "director": "John Francis Daley",
+      "imagepath": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg",
+      "featured": true
+  }
+]`
 
 # Get a list of directors
 
