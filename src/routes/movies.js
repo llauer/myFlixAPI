@@ -1,5 +1,9 @@
 //jshint esversion:6
 
+const mongoose = require('mongoose');
+const Models = require('../models.js');
+
+const Movies = Models.Movie;
 
 let express = require('express');
 
