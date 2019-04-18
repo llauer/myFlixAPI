@@ -8,7 +8,7 @@ var movieSchema = mongoose.Schema({
   Description: {
     type: String,
     required: true
-  };
+  },
   Genre: {
     Name: String,
     Description: String
@@ -41,9 +41,7 @@ var userSchema = mongoose.Schema({
     ref: 'Movie'
   }]
 });
-
 var Movie = mongoose.model('Movie', movieSchema);
 var User = mongoose.model('User', userSchema);
-
 module.exports.Movie = Movie;
 module.exports.User = User;

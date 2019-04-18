@@ -1,11 +1,9 @@
 //jshint esversion:6
 
-const express = require('express');
-const uuid = require('uuid');
-const app = express();
-
 const mongoose = require('mongoose');
+
 const Models = require('./models.js');
+
 const Movies = Models.Movie;
 const Users = Models.User;
 
@@ -13,6 +11,12 @@ mongoose.connect('mongodb://localhost:27017/myFlixDB', {
   useNewUrlParser: true
 });
 
+
+
+
+const express = require('express');
+const uuid = require('uuid');
+const app = express();
 app.use(express.json());
 
 //trying a new way of logging. Disabled morgan for now.
@@ -52,4 +56,4 @@ app.use(function(err, req, res, next) {
 // grabs the port from the env or uses 3000
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.info(`Server has started on ${PORT}`));
+app.listen(PORT, () => console.info(`Server has started on port ${PORT}`));
