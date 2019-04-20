@@ -1,42 +1,41 @@
 //jshint esversion:6
-const mongoose = require('mongoose');
-const Models = require('../models.js');
+const mongoose = require("mongoose");
+const Models = require("../models.js");
 
 const Users = Models.User;
 
-let express = require('express');
+let express = require("express");
 
 let router = express.Router();
 
-// const uuid = require("uuid");
+// get request for all users
+router.get("/users", (req, res) => {
+  Users.find()
+    .then(function(users) {
+      res.status(201).json(users);
+    })
+    .catch(function(err) {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
+});
 
-// let users = [{
-//   id: 1,
-//   name: "Silent Bob",
-//   email: "funnyman@comicbooks.org",
-//   date_of_birth: "05/16/1985",
-//   favoriteMovies: ['Jay and Silent Bob']
-// }];
-
-router.get('/users', (req, res) => {
-  // res.send('You have requested the User Registration Page');
-  res.json(users);
-
+// Get a user by username.
+router.get("/users/:Username", function(req, res) {
+  Users.findOne({ Username: req.params.Username })
+    .then(function(user) {
+      res.json(user);
+    })
+    .catch(function(err) {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
 });
 
 // params property on request.
-router.get('/users/:name', (req, res) => {
-  res.send(`You have requested the profile: ${req.params.name}`);
-});
-
-// params property on request.
-router.get('/users/:name/favorites', (req, res) => {
+router.get("/users/:name/favorites", (req, res) => {
   res.send(`You have requested: ${req.params.name}'s favorites`);
 });
-
-// router.post('/users', (req, res) => {
-//   res.send("You have reached the create a user endpoint.");
-// });
 
 //Add a user
 /* We’ll expect JSON in this format
@@ -47,59 +46,106 @@ router.get('/users/:name/favorites', (req, res) => {
  Email : String,
  Birthday : Date
 }*/
-router.post('/users', (req, res) => {
+router.post("/users", (req, res) => {
   console.log(req);
   Users.findOne({
-      Username: req.body.Username
-    })
+    Username: req.body.Username
+  })
     .then(function(user) {
       if (user) {
         return res.status(400).send(req.body.Username + "already exists");
       } else {
-        Users
-          .create({
-            Username: req.body.Username,
-            Password: req.body.Password,
-            Email: req.body.Email,
-            Birthday: req.body.Birthday
-          })
+        Users.create({
+          Username: req.body.Username,
+          Password: req.body.Password,
+          Email: req.body.Email,
+          Birthday: req.body.Birthday
+        })
           .then(function(user) {
-            res.status(201).json(user)
+            res.status(201).json(user);
           })
           .catch(function(error) {
             console.error(error);
             res.status(500).send("Error: " + error);
-          })
+          });
       }
-    }).catch(function(error) {
+    })
+    .catch(function(error) {
       console.error(error);
       res.status(500).send("Error: " + error);
     });
 });
-//Add a user
-/* We'll expect JSON in this format
-{
-  ID : Integer,
-  Username : String,
-  Password : String,
-  Email : String,
-  Birthday : Date
-}*/
 
-router.post('/users/:name/favorites/:movieName', (req, res) => {
-  res.send("Add favorite movies endpoint reached.");
+router.post("/users/:Username/Movies/:MovieID", (req, res) => {
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    {
+      $push: { FavoriteMovies: req.params.MovieID }
+    },
+    { new: true },
+    function(err, updatedUser) {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error " + err);
+      } else {
+        res.json(updatedUser);
+      }
+    }
+  );
 });
 
-router.delete('/users/:name/favorites/:movieName', (req, res) => {
+router.delete("/users/:name/favorites/:movieName", (req, res) => {
   res.send("Delete favorite movies endpoint reached.");
 });
 
-router.delete('/users/:name', (req, res) => {
-  res.send("Delete user by name endpoint reached.");
+router.delete("/users/:Username", (req, res) => {
+  Users.findOneAndRemove({ Username: req.params.Username })
+    .then(function(user) {
+      if (!user) {
+        res.status(400).send(req.params.Username + " was not found");
+      } else {
+        res.status(200).send(req.params.Username + " was deleted.");
+      }
+    })
+    .catch(function(err) {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
 });
 
-router.put('/users/:name', (req, res) => {
-  res.send("Update users information endpoint reached.");
+// Update a user's info, by username
+/* We’ll expect JSON in this format
+{
+  Username: String,
+  (required)
+  Password: String,
+  (required)
+  Email: String,
+  (required)
+  Birthday: Date
+}*/
+
+router.put("/users/:Username", (req, res) => {
+  Users.update(
+    { Username: req.params.Username },
+    {
+      $set: {
+        Username: req.body.Username,
+        Password: req.body.Password,
+        Email: req.body.Email,
+        Birthday: req.body.Birthday
+      }
+    },
+    { new: true }, //updated document is returned
+    function(err, updatedUser) {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      } else {
+        res.json(updatedUser);
+      }
+    }
+  );
 });
 
 module.exports = router;
