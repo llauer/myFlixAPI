@@ -32,11 +32,17 @@ router.get("/users/:Username", function(req, res) {
     });
 });
 
-// params property on request.
-router.get("/users/:name/favorites", (req, res) => {
-  res.send(`You have requested: ${req.params.name}'s favorites`);
+// GET favoriteMovies by username.
+router.get("/users/:Username/Movies", (req, res) => {
+  Users.findOne({ Username: req.params.Username })
+    .then(function(movie) {
+      res.json(movie);
+    })
+    .catch(function(err) {
+      console.error(err);
+      res.status(500).send("Error " + err);
+    });
 });
-
 //Add a user
 /* We’ll expect JSON in this format
 {
