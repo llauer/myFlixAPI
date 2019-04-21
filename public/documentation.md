@@ -144,14 +144,18 @@ This will return a JSON object of a specific movie genre by name and description
 
 if authorized/implemented a list of JSON objects would be returned.
 
-`[{      
-      "id": "db3b25a6-23a8-47c2-aaec-5d4649286bdf",
-      "username": "bsmith99",
-      "password": "*********",
-      "email": "bsmith99@bademail.com",
-      "birthday": "05/16/1989",
-      "favorites": ["ObjectId("5cad022517248cdd9b9d51c0")"]
-}]`
+`[
+    {
+        "FavoriteMovies": [
+            "5cad017d17248cdd9b9d51ba"
+        ],
+        "_id": "5cad03b817248cdd9b9d51c2",
+        "Username": "jdoe",
+        "Password": "IamaBadPassword",
+        "Email": "jdoe@unknown.com",
+        "Birthday": "1985-02-19T00:00:00.000Z"
+    }
+]`
 
 # Get user by name
 
@@ -161,27 +165,34 @@ if authorized/implemented a list of JSON objects would be returned.
 
 ##### Response
 `{
-  "id": "db3b23a6-23a8-47c2-aaec-5d4649286bdf",
-  "username": "Some Person",
-  "email": "anybody@testeremail.org",
-  "dateOfBirth": "05/16/1975",
-  "favorites": ["ObjectId("5cad022517248cdd9b9d51c0")"]
+    "FavoriteMovies": [
+        "5cad017d17248cdd9b9d51ba"
+    ],
+    "_id": "5cad03b817248cdd9b9d51c2",
+    "Username": "jdoe",
+    "Password": "IamaBadPassword",
+    "Email": "jdoe@unknown.com",
+    "Birthday": "1985-02-19T00:00:00.000Z"
 }`
 
 # Get users favorites by name
 
 ##### Endpoint
 
-`GET /users/:Username/favorites`
+`GET /users/:Username/Movies`
 
 ##### Response
 
 A JSON object of a specific users favorite movies.
 
 `{
-  "username": "sljackson",
-  "favorites": ["ObjectId("5cad022517248cdd9b9d51c0")"]
+    "FavoriteMovies": [
+        "5cad017d17248cdd9b9d51ba"
+    ],
+    "_id": "5cad03b817248cdd9b9d51c2",
+    "Username": "jdoe"
 }`
+
 # Add favorite movie for a user.
 
 ##### Endpoint
@@ -190,7 +201,17 @@ A JSON object of a specific users favorite movies.
 
 ##### Response
 
-A success or failure will also be returned.
+`{
+    "FavoriteMovies": [
+        "5cad022517248cdd9b9d51c0",
+        "5cad017d17248cdd9b9d51ba"
+    ],
+    "_id": "5cad05ad17248cdd9b9d51c6",
+    "Username": "rjohnson",
+    "Password": "@!9Mhj30101",
+    "Email": "randy@someemail.com",
+    "Birthday": "1978-05-12T00:00:00.000Z"
+}`
 
 # Delete a movie from a users favorites.
 
@@ -200,7 +221,18 @@ A success or failure will also be returned.
 
 ##### Response
 
-A success or failure will also be returned.
+`{
+    "FavoriteMovies": [
+        "5cad023417248cdd9b9d51c1",
+        "5cad021217248cdd9b9d51bf",
+        "5cad017d17248cdd9b9d51ba"
+    ],
+    "_id": "5cad049717248cdd9b9d51c3",
+    "Username": "bsmith",
+    "Password": "passW0rd",
+    "Email": "bsmith@noemail.com",
+    "Birthday": "1975-05-10T00:00:00.000Z"
+}`
 
 # User sign up
 

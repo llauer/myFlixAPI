@@ -34,7 +34,10 @@ router.get("/users/:Username", function(req, res) {
 
 // GET favoriteMovies by username.
 router.get("/users/:Username/Movies", (req, res) => {
-  Users.findOne({ Username: req.params.Username })
+  Users.findOne(
+    { Username: req.params.Username },
+    { Username: true, FavoriteMovies: true }
+  )
     .then(function(movie) {
       res.json(movie);
     })
@@ -90,6 +93,7 @@ router.post("/users/:Username/Movies/:MovieID", (req, res) => {
       $push: { FavoriteMovies: req.params.MovieID }
     },
     { new: true },
+    { Username: true, FavoriteMovies: true },
     function(err, updatedUser) {
       if (err) {
         console.error(err);
