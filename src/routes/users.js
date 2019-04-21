@@ -76,6 +76,7 @@ router.post("/users", (req, res) => {
     });
 });
 
+// add a movie to a users favorites
 router.post("/users/:Username/Movies/:MovieID", (req, res) => {
   Users.findOneAndUpdate(
     { Username: req.params.Username },
@@ -94,8 +95,23 @@ router.post("/users/:Username/Movies/:MovieID", (req, res) => {
   );
 });
 
-router.delete("/users/:name/favorites/:movieName", (req, res) => {
-  res.send("Delete favorite movies endpoint reached.");
+// delete favorite by ID.
+router.delete("/users/:Username/Movies/:MovieID", (req, res) => {
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    {
+      $pull: { FavoriteMovies: req.params.MovieID }
+    },
+    { new: true },
+    function(err, updatedUser) {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error " + err);
+      } else {
+        res.json(updatedUser);
+      }
+    }
+  );
 });
 
 router.delete("/users/:Username", (req, res) => {

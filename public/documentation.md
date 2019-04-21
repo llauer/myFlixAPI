@@ -157,7 +157,7 @@ if authorized/implemented a list of JSON objects would be returned.
 
 ##### Endpoint
 
-`GET /users/:name`
+`GET /users/:Username`
 
 ##### Response
 `{
@@ -172,7 +172,7 @@ if authorized/implemented a list of JSON objects would be returned.
 
 ##### Endpoint
 
-`GET /users/:name/favorites`
+`GET /users/:Username/favorites`
 
 ##### Response
 
@@ -186,7 +186,7 @@ A JSON object of a specific users favorite movies.
 
 ##### Endpoint
 
-`POST /users/:name/favorites/:movieName`
+`POST /users/:Username/Movies/:MovieID`
 
 ##### Response
 
@@ -196,7 +196,7 @@ A success or failure will also be returned.
 
 ##### Endpoint
 
-`DELETE /users/:name/favorites/:movieName`
+`DELETE /users/:Username/Movies/:MovieID`
 
 ##### Response
 
@@ -228,7 +228,7 @@ A success or failure will also be returned.
 
 ##### Endpoint
 
-`DELETE /users/:name`
+`DELETE /users/:Username`
 
 ##### Response
 A response of success or failure of deleting a specific user.
@@ -237,7 +237,7 @@ A response of success or failure of deleting a specific user.
 
 ##### Endpoint
 
-`PUT /users/:name`
+`PUT /users/:Username`
 
 ##### Request
 
