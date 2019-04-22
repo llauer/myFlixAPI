@@ -93,7 +93,6 @@ router.post("/users/:Username/Movies/:MovieID", (req, res) => {
       $push: { FavoriteMovies: req.params.MovieID }
     },
     { new: true },
-    { Username: true, FavoriteMovies: true },
     function(err, updatedUser) {
       if (err) {
         console.error(err);

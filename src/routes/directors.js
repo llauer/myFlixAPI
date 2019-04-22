@@ -1,16 +1,24 @@
 //jshint esversion:6
 
-let express = require('express');
+const mongoose = require("mongoose");
+const Models = require("../models.js");
+
+const Movies = Models.Movie;
+
+let express = require("express");
 
 let router = express.Router();
 
-router.get('/directors', (req, res) => {
-  res.send('Directors endpoint reached.');
-});
-
-// params property on request.
-router.get('/directors/:name', (req, res) => {
-  res.send('Directors by name endpoint reached.');
+// GETs movies by director
+router.get("/movies/directors/:director", (req, res) => {
+  Movies.find({ "Director.Name": req.params.director })
+    .then(movies => {
+      res.status(201).json(movies);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send("Error: " + error);
+    });
 });
 
 module.exports = router;

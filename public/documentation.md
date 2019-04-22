@@ -66,73 +66,70 @@ The response will be a JSON object of a specifc movie. It will contain id, title
       "featured": true
 }`
 
-# Get a list of directors
-
-##### Endpoint
-
-`GET /directors/`
-
-##### Response
-
-A JSON object containing a list of directors including name, bio, year of birth, year of death.
-
-`[
-  {
-      "name": "Quentin Tarantino",
-      "bio": "Born in Tennessee in 1963, Quentin Tarantino moved to California at age 4. His love of movies led to a job in a video store, during which time he wrote the scripts for True Romance and Natural Born Killers. ",
-      "birth": "1963",
-      "death": "N/A"
-  }
-]`
-
 # Get a director by name
 
 ##### Endpoint
 
-`GET /directors/:name`
+`GET /movies/directors/:name`
 
 ##### response
 
-JSON object of a specific director by name including bio, date of birth and date of death.
-
-`{
-    "name": "Quentin Tarantino",
-    "bio": "Born in Tennessee in 1963, Quentin Tarantino moved to California at age 4. His love of movies led to a job in a video store, during which time he wrote the scripts for True Romance and Natural Born Killers. ",
-    "birth": "1963",
-    "death": "N/A"
-}`
-
-# Get Genres
-
-##### Endpoint
-
-`GET /genres/`
-
-##### Response
-
-Response is a list of JSON objects displaying the different movie genres.
+JSON list of objects by a specific director by name including bio, date of birth and date of death.
 
 `[
   {
-    "name": "comedy",
-    "description": "Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered."
+    "Genre": {
+        "Name": "Comedy",
+        "Description": "Comedy is a genre of film in which the main emphasis is on humour. These films are designed to make the audience laugh through amusement and most often work by exaggerating characteristics for humorous effect."
+    },
+    "Director": {
+        "Name": "Tim Miller",
+        "Bio": "Tim Miller is an American animator, film director, creative director and visual effects artist. He was nominated for the Academy Award for Best Animated Short Film for the work on his short animated film Gopher Broke. He made his directing debut with Deadpool.",
+        "Birth": "1970",
+        "Death": "N/A"
+    },
+    "Actors": [],
+    "_id": "5cad021217248cdd9b9d51bf",
+    "Title": "Deadpool",
+    "Description": "A wisecracking mercenary gets experimented on and becomes immortal but ugly, and sets out to track down the man who ruined his looks.",
+    "ImagePath": "deadpool.png",
+    "Featured": true
   }
-];`
+]`
+
 
 # Get Genre by name
 
 ##### Endpoint
 
-`GET /genres/:genreName`
+`GET /movies/genres/:genreName`
 
 ##### Response
 
-This will return a JSON object of a specific movie genre by name and description.
+Response is a list of JSON objects displaying the different movies by genre.
 
-  `{
-    "name": "comedy",
-    "description": "Comedy may be divided into multiple genres based on the source of humor, the method of delivery, and the context in which it is delivered."
-   };`
+`[
+  {
+    "Genre": {
+        "Name": "Thriller",
+        "Description": "Thriller film, also known as suspense film of suspense thriller, is a broad film genre that involves excitement and suspense in the audience."
+    },
+    "Director": {
+        "Name": "Jonathan Demme",
+        "Bio": "Robert Jonathan Demme was an American director, producer, and screenwriter.",
+        "Birth": "1944",
+        "Death": "2017"
+    },
+    "Actors": [
+        "Kasi Lemmings"
+    ],
+    "_id": "5cac3643ac119bc385bb590c",
+    "Title": "Silence of the Lambs",
+    "Description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer.",
+    "ImagePath": "silenceofthelambs.png",
+    "Featured": true
+  }
+]`
 
 # Get a list of user information.
 
