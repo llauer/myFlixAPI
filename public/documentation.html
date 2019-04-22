@@ -36,7 +36,7 @@ movies.</p>
 <h5><a id="Endpoint_135"></a>Endpoint</h5>
 <p><code>GET /users/</code></p>
 <h5><a id="Response_139"></a>Response</h5>
-<p>if authorized/implemented a list of JSON objects would be returned.</p>
+<p>A list of JSON objects would be returned.</p>
 <p><code>[ { &quot;FavoriteMovies&quot;: [ &quot;5cad017d17248cdd9b9d51ba&quot; ], &quot;_id&quot;: &quot;5cad03b817248cdd9b9d51c2&quot;, &quot;Username&quot;: &quot;jdoe&quot;, &quot;Password&quot;: &quot;IamaBadPassword&quot;, &quot;Email&quot;: &quot;jdoe@unknown.com&quot;, &quot;Birthday&quot;: &quot;1985-02-19T00:00:00.000Z&quot; } ]</code></p>
 <h1><a id="Get_user_by_name_156"></a>Get user by name</h1>
 <h5><a id="Endpoint_158"></a>Endpoint</h5>
@@ -64,7 +64,7 @@ movies.</p>
 <p><code>POST /users</code></p>
 <h5><a id="Request_239"></a>Request</h5>
 <p>A JSON object containing id, name, email and birthday. The information is to be added to the message body of the HTTP request. A success or failure will also be returned.</p>
-<p><code>{ &quot;id&quot;: &quot;db3b23a6-23a8-47c2-aaec-5d4649286bdf&quot;, &quot;username&quot;: &quot;tanderson&quot;, &quot;password&quot;: &quot;********&quot; &quot;email&quot;: &quot;funnyman2@comicbooks.org&quot;, &quot;birthday&quot;: &quot;05/16/1985&quot; }</code></p>
+<p><code>{ &quot;Username&quot; : &quot;TestUser99&quot;, &quot;Password&quot; : &quot;Imapassword&quot;, &quot;Email&quot; : &quot;tu99@gmail.com&quot;, &quot;Birthday&quot;: &quot;1985-02-19&quot; }</code></p>
 <h5><a id="Response_251"></a>Response</h5>
 <p>A success or failure will also be returned.</p>
 <h1><a id="Allow_a_user_to_deregister_255"></a>Allow a user to de-register.</h1>
@@ -72,13 +72,13 @@ movies.</p>
 <p><code>DELETE /users/:Username</code></p>
 <h5><a id="Response_261"></a>Response</h5>
 <p>A response of success or failure of deleting a specific user.</p>
-<h1><a id="Update_a_users_information_name_email_date_of_birth_and_password_264"></a>Update a users information name, email, date_of_birth and password</h1>
+<h1><a id="Update_a_users_information_Name_Email_Birthday_and_Password_264"></a>Update a users information Name, Email, Birthday and Password</h1>
 <h5><a id="Endpoint_266"></a>Endpoint</h5>
 <p><code>PUT /users/:Username</code></p>
 <h5><a id="Request_270"></a>Request</h5>
 <p>email, new password would be sent within the body of the request.</p>
-<p><code>{ &quot;username&quot;: &quot;tanderson&quot;, &quot;password&quot;: &quot;*******&quot;, &quot;email&quot;: &quot;theone@thematrix.org&quot;, &quot;birthday&quot;: &quot;######&quot; }</code></p>
+<p><code>{ &quot;Username&quot; : &quot;TestUser99&quot;, &quot;Password&quot; : &quot;StillBadPassword&quot;, &quot;Email&quot; : &quot;tu99Updated@gmail.com&quot;, &quot;Birthday&quot; : &quot;1985-19-2&quot; }</code></p>
 <h5><a id="Response_281"></a>Response</h5>
-<p><code>{ &quot;user&quot;: { &quot;id&quot;: &quot;db3b23a6-23a8-47c2-aaec-5d4649286bdf&quot;, &quot;username&quot;: &quot;tanderson&quot;, ... } }</code></p>
+<p><code>{ &quot;n&quot;: 1, &quot;nModified&quot;: 1, &quot;ok&quot;: 1 }</code></p>
 
 </body></html>

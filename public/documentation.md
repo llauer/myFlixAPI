@@ -139,7 +139,7 @@ Response is a list of JSON objects displaying the different movies by genre.
 
 ##### Response
 
-if authorized/implemented a list of JSON objects would be returned.
+A list of JSON objects would be returned.
 
 `[
     {
@@ -241,13 +241,13 @@ A JSON object of a specific users favorite movies.
 
 A JSON object containing id, name, email and birthday. The information is to be added to the message body of the HTTP request. A success or failure will also be returned.
 
-``{
-    "id": "db3b23a6-23a8-47c2-aaec-5d4649286bdf",
-    "username": "tanderson",
-    "password": "********"
-    "email": "funnyman2@comicbooks.org",
-    "birthday": "05/16/1985"
-}``
+`{
+	"Username" : "TestUser99",
+	"Password" : "Imapassword",
+	"Email" : "tu99@gmail.com",
+	"Birthday": "1985-02-19"
+}`
+	
 
 ##### Response
 
@@ -262,7 +262,7 @@ A success or failure will also be returned.
 ##### Response
 A response of success or failure of deleting a specific user.
 
-# Update a users information name, email, date_of_birth and password
+# Update a users information Name, Email, Birthday and Password
 
 ##### Endpoint
 
@@ -273,18 +273,16 @@ A response of success or failure of deleting a specific user.
 email, new password would be sent within the body of the request.
 
 `{
-  "username": "tanderson",
-  "password": "*******",
-  "email": "theone@thematrix.org",
-  "birthday": "######"
+	"Username" : "TestUser99",
+	"Password" : "StillBadPassword",
+	"Email" : "tu99Updated@gmail.com",
+  "Birthday" : "1985-19-2"
 }`
 
 ##### Response
 
 `{
-  "user": {
-    "id":   "db3b23a6-23a8-47c2-aaec-5d4649286bdf",
-    "username": "tanderson",
-    ...
-  }
+    "n": 1,
+    "nModified": 1,
+    "ok": 1
 }`
