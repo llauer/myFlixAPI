@@ -5,25 +5,6 @@ provide users with access to information about different movies, directors, and 
 will be able to sign up, update their personal information, and create a list of their favorite
 movies.
 
-##### Example Failure Response
-
-`{
-  "status": {
-    "code": 400,
-    "errorType": "bad_request",
-    "errorDetails": "JSON request is missing"
-  }
-}`
-
-##### Example Success Response
-
-`{
-  "status": {
-    "code": 200,
-    "errorType": "success"
-  }
-}`
-
 # Get list of Movies
 
 ##### Endpoint
@@ -36,13 +17,22 @@ The response will be a list of JSON objects. Each will represent a movie.
 
 `[
   {
-      "id": "1",
-      "title": "Game Night",
-      "description": ""A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.",
-      "genre": "Comedy",
-      "director": "John Francis Daley",
-      "imagepath": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg",
-      "featured": true
+    "Genre": {
+        "Name": "Comedy",
+        "Description": "Comedy is a genre of film in which the main emphasis is on humour. These films are designed to make the audience laugh through amusement and most often work by exaggerating characteristics for humorous effect."
+    },
+    "Director": {
+        "Name": "Guy Ritchie",
+        "Bio": "Guy Ritchie was born in Hatfield, Hertfordshire, UK on September 10, 1968. After watching Butch Cassidy and the Sundance Kid (1969) as a child, Guy realized that what he wanted to do was make films. He never attended film school, saying that the work of film school graduates was boring and unwatchable.",
+        "Birth": "1968",
+        "Death": "N/A"
+    },
+    "Actors": [],
+    "_id": "5cad023417248cdd9b9d51c1",
+    "Title": "Snatch",
+    "Description": "Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers and supposedly Jewish jewelers fight to track down a priceless stolen diamond.",
+    "ImagePath": "snatch.png",
+    "Featured": true
   }
 ]`
 
@@ -50,85 +40,71 @@ The response will be a list of JSON objects. Each will represent a movie.
 
 ##### Endpoint
 
-`GET /movies/:moviename`
+`GET /movies/:title`
 
 ##### Response
 
 The response will be a JSON object of a specifc movie. It will contain id, title, description, genre, director, imagepath and featured.
 
 `{
-      "id": "1",
-      "title": "Game Night",
-      "description": ""A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.",
-      "genre": "Comedy",
-      "director": "John Francis Daley",
-      "imagepath": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg",
-      "featured": true
+    "Genre": {
+        "Name": "Action",
+        "Description": "Action film is a film genre in which the protagonist or protagonists are thrust into a series of challenges that typically include violence, extended fighting, physical feats, and frantic chases."
+    },
+    "Director": {
+        "Name": "Michael Bay",
+        "Bio": "A graduate of Wesleyan University, Michael Bay spent his 20s working on advertisements and music videos. His first projects after film school were in the music video business. He created music videos for Tina Turner, Meat Loaf, Lionel Richie, Wilson Phillips, Donny Osmond and Divinyls.",
+        "Birth": "1965",
+        "Death": "N/A"
+    },
+    "Actors": [],
+    "_id": "5cad01ed17248cdd9b9d51bd",
+    "Title": "Transformers",
+    "Description": "An ancient struggle between two Cybertronian races, the heroic Autobots and the evil Decepticons, comes to Earth, with a clue to the ultimate power held by a teenager.",
+    "ImagePath": "transformers.png",
+    "Featured": true
 }`
 
 # Get a director by name
 
 ##### Endpoint
 
-`GET /movies/directors/:name`
+`GET /directors/:name`
 
 ##### response
 
 JSON list of objects by a specific director by name including bio, date of birth and date of death.
 
 `[
-  {
-    "Genre": {
-        "Name": "Comedy",
-        "Description": "Comedy is a genre of film in which the main emphasis is on humour. These films are designed to make the audience laugh through amusement and most often work by exaggerating characteristics for humorous effect."
-    },
-    "Director": {
-        "Name": "Tim Miller",
-        "Bio": "Tim Miller is an American animator, film director, creative director and visual effects artist. He was nominated for the Academy Award for Best Animated Short Film for the work on his short animated film Gopher Broke. He made his directing debut with Deadpool.",
-        "Birth": "1970",
-        "Death": "N/A"
-    },
-    "Actors": [],
-    "_id": "5cad021217248cdd9b9d51bf",
-    "Title": "Deadpool",
-    "Description": "A wisecracking mercenary gets experimented on and becomes immortal but ugly, and sets out to track down the man who ruined his looks.",
-    "ImagePath": "deadpool.png",
-    "Featured": true
-  }
+    {
+        "Director": {
+            "Name": "Tim Miller",
+            "Bio": "Tim Miller is an American animator, film director, creative director and visual effects artist. He was nominated for the Academy Award for Best Animated Short Film for the work on his short animated film Gopher Broke. He made his directing debut with Deadpool.",
+            "Birth": "1970",
+            "Death": "N/A"
+        },
+        "_id": "5cad021217248cdd9b9d51bf"
+    }
 ]`
-
 
 # Get Genre by name
 
 ##### Endpoint
 
-`GET /movies/genres/:genreName`
+`GET /genres/:genreName`
 
 ##### Response
 
-Response is a list of JSON objects displaying the different movies by genre.
+Response is a JSON object displaying information about a genre.
 
 `[
-  {
-    "Genre": {
-        "Name": "Thriller",
-        "Description": "Thriller film, also known as suspense film of suspense thriller, is a broad film genre that involves excitement and suspense in the audience."
-    },
-    "Director": {
-        "Name": "Jonathan Demme",
-        "Bio": "Robert Jonathan Demme was an American director, producer, and screenwriter.",
-        "Birth": "1944",
-        "Death": "2017"
-    },
-    "Actors": [
-        "Kasi Lemmings"
-    ],
-    "_id": "5cac3643ac119bc385bb590c",
-    "Title": "Silence of the Lambs",
-    "Description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer.",
-    "ImagePath": "silenceofthelambs.png",
-    "Featured": true
-  }
+    {
+        "Genre": {
+            "Name": "Thriller",
+            "Description": "Thriller film, also known as suspense film of suspense thriller, is a broad film genre that involves excitement and suspense in the audience."
+        },
+        "_id": "5cac3643ac119bc385bb590c"
+    }
 ]`
 
 # Get a list of user information.
@@ -142,16 +118,16 @@ Response is a list of JSON objects displaying the different movies by genre.
 A list of JSON objects would be returned.
 
 `[
-    {
-        "FavoriteMovies": [
-            "5cad017d17248cdd9b9d51ba"
-        ],
-        "_id": "5cad03b817248cdd9b9d51c2",
-        "Username": "jdoe",
-        "Password": "IamaBadPassword",
-        "Email": "jdoe@unknown.com",
-        "Birthday": "1985-02-19T00:00:00.000Z"
-    }
+  {
+    "FavoriteMovies": [
+        "5cad017d17248cdd9b9d51ba"
+    ],
+    "_id": "5cad03b817248cdd9b9d51c2",
+    "Username": "jdoe",
+    "Password": "IamaBadPassword",
+    "Email": "jdoe@unknown.com",
+    "Birthday": "1985-02-19T00:00:00.000Z"
+  }
 ]`
 
 # Get user by name
@@ -183,11 +159,11 @@ A list of JSON objects would be returned.
 A JSON object of a specific users favorite movies.
 
 `{
-    "FavoriteMovies": [
-        "5cad017d17248cdd9b9d51ba"
-    ],
-    "_id": "5cad03b817248cdd9b9d51c2",
-    "Username": "jdoe"
+  "FavoriteMovies": [
+      "5cad017d17248cdd9b9d51ba"
+  ],
+  "_id": "5cad03b817248cdd9b9d51c2",
+  "Username": "jdoe"
 }`
 
 # Add favorite movie for a user.
@@ -273,16 +249,23 @@ A response of success or failure of deleting a specific user.
 email, new password would be sent within the body of the request.
 
 `{
-	"Username" : "TestUser99",
-	"Password" : "StillBadPassword",
-	"Email" : "tu99Updated@gmail.com",
-  "Birthday" : "1985-19-2"
+    "FavoriteMovies": [],
+    "_id": "5cbe390607388c053ad7994c",
+    "Username": "TestUser99",
+    "Password": "StillBadPassword",
+    "Email": "tu99Updated@gmail.com",
+    "Birthday": "1998-02-07T07:00:00.000Z",
+    "__v": 0
 }`
 
 ##### Response
 
 `{
-    "n": 1,
-    "nModified": 1,
-    "ok": 1
+    "FavoriteMovies": [],
+    "_id": "5cbe390607388c053ad7994c",
+    "Username": "TestUser99",
+    "Password": "StillBadPassword",
+    "Email": "tu99Updated@gmail.com",
+    "Birthday": "1998-02-07T07:00:00.000Z",
+    "__v": 0
 }`

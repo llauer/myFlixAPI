@@ -62,7 +62,7 @@ router.post("/users", (req, res) => {
   })
     .then(function(user) {
       if (user) {
-        return res.status(400).send(req.body.Username + "already exists");
+        return res.status(400).send(req.body.Username + " already exists");
       } else {
         Users.create({
           Username: req.body.Username,
@@ -151,7 +151,7 @@ router.delete("/users/:Username", (req, res) => {
 }*/
 
 router.put("/users/:Username", (req, res) => {
-  Users.update(
+  Users.findOneAndUpdate(
     { Username: req.params.Username },
     {
       $set: {

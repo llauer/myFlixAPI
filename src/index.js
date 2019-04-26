@@ -1,21 +1,15 @@
 //jshint esversion:6
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const Models = require('./models.js');
+const Models = require("./models.js");
 
-const Movies = Models.Movie;
-const Users = Models.User;
-
-mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+mongoose.connect("mongodb://localhost:27017/myFlixDB", {
   useNewUrlParser: true
 });
 
-
-
-
-const express = require('express');
-const uuid = require('uuid');
+const express = require("express");
+const uuid = require("uuid");
 const app = express();
 app.use(express.json());
 
@@ -25,10 +19,10 @@ app.use((req, res, next) => {
   next();
 });
 
-let movieRoute = require('./routes/movies');
-let directorsRoute = require('./routes/directors');
-let genresRoute = require('./routes/genres');
-let usersRoute = require('./routes/users');
+let movieRoute = require("./routes/movies");
+let directorsRoute = require("./routes/directors");
+let genresRoute = require("./routes/genres");
+let usersRoute = require("./routes/users");
 // let documentation = require('./routes/documentation');
 
 app.use(movieRoute);
@@ -40,17 +34,17 @@ app.use(usersRoute);
 // app.use(morgan('common'));
 
 //serves up all static pages.
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 //catches all not found urls.
-app.all('*', function(req, res) {
-  res.send('<h1>I am sorry I cannot find that.</h1>');
+app.all("*", function(req, res) {
+  res.send("<h1>I am sorry I cannot find that.</h1>");
 });
 
 //error handeling
 app.use(function(err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('<h1>Oooops somethings wrong!</h1>');
+  res.status(500).send("<h1>Oooops somethings wrong!</h1>");
 });
 
 // grabs the port from the env or uses 3000

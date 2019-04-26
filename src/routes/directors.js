@@ -10,8 +10,8 @@ let express = require("express");
 let router = express.Router();
 
 // GETs movies by director
-router.get("/movies/directors/:director", (req, res) => {
-  Movies.find({ "Director.Name": req.params.director })
+router.get("/directors/:director", (req, res) => {
+  Movies.find({ "Director.Name": req.params.director }, "Director")
     .then(movies => {
       res.status(201).json(movies);
     })
