@@ -69,7 +69,7 @@ The response will be a JSON object of a specifc movie. It will contain id, title
 
 ##### Endpoint
 
-`GET /directors/:name`
+`GET /directors/:director`
 
 ##### response
 
@@ -215,7 +215,7 @@ A JSON object of a specific users favorite movies.
 
 ##### Request
 
-A JSON object containing id, name, email and birthday. The information is to be added to the message body of the HTTP request. A success or failure will also be returned.
+A JSON object containing username, password, email and birthday. The information is to be added to the message body of the HTTP request. A success or failure will also be returned.
 
 `{
 	"Username" : "TestUser99",
@@ -227,7 +227,15 @@ A JSON object containing id, name, email and birthday. The information is to be 
 
 ##### Response
 
-A success or failure will also be returned.
+`{
+    "FavoriteMovies": [],
+    "_id": "5cc27e4dbf6ebb234d910d48",
+    "Username": "TestUser73",
+    "Password": "Imapassword",
+    "Email": "any@gmail.com",
+    "Birthday": "1978-02-14T00:00:00.000Z",
+    "__v": 0
+}`
 
 # Allow a user to de-register.
 
@@ -236,7 +244,10 @@ A success or failure will also be returned.
 `DELETE /users/:Username`
 
 ##### Response
+
 A response of success or failure of deleting a specific user.
+
+`TestUser73 was deleted.`
 
 # Update a users information Name, Email, Birthday and Password
 

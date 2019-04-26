@@ -10,7 +10,7 @@ let express = require("express");
 let router = express.Router();
 
 // GETs movies of a specific genre.
-router.get("/genres/:genre", (req, res) => {
+router.get("/genres/:genreName", (req, res) => {
   Movies.find({ "Genre.Name": req.params.genre }, "Genre")
     .then(movies => {
       res.status(201).json(movies);

@@ -4,81 +4,78 @@
 provide users with access to information about different movies, directors, and genres. Users<br>
 will be able to sign up, update their personal information, and create a list of their favorite<br>
 movies.</p>
-<h5><a id="Example_Failure_Response_7"></a>Example Failure Response</h5>
-<p><code>{ &quot;status&quot;: { &quot;code&quot;: 400, &quot;errorType&quot;: &quot;bad_request&quot;, &quot;errorDetails&quot;: &quot;JSON request is missing&quot; } }</code></p>
-<h5><a id="Example_Success_Response_17"></a>Example Success Response</h5>
-<p><code>{ &quot;status&quot;: { &quot;code&quot;: 200, &quot;errorType&quot;: &quot;success&quot; } }</code></p>
-<h1><a id="Get_list_of_Movies_26"></a>Get list of Movies</h1>
-<h5><a id="Endpoint_28"></a>Endpoint</h5>
+<h1><a id="Get_list_of_Movies_7"></a>Get list of Movies</h1>
+<h5><a id="Endpoint_9"></a>Endpoint</h5>
 <p><code>GET /movies/</code></p>
-<h5><a id="Response_32"></a>Response</h5>
+<h5><a id="Response_13"></a>Response</h5>
 <p>The response will be a list of JSON objects. Each will represent a movie.</p>
-<p><code>[ { &quot;id&quot;: &quot;1&quot;, &quot;title&quot;: &quot;Game Night&quot;, &quot;description&quot;: &quot;&quot;A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.&quot;, &quot;genre&quot;: &quot;Comedy&quot;, &quot;director&quot;: &quot;John Francis Daley&quot;, &quot;imagepath&quot;: &quot;https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg&quot;, &quot;featured&quot;: true } ]</code></p>
-<h1><a id="Get_movie_by_name_48"></a>Get movie by name</h1>
-<h5><a id="Endpoint_50"></a>Endpoint</h5>
-<p><code>GET /movies/:moviename</code></p>
-<h5><a id="Response_54"></a>Response</h5>
+<p><code>[ { &quot;Genre&quot;: { &quot;Name&quot;: &quot;Comedy&quot;, &quot;Description&quot;: &quot;Comedy is a genre of film in which the main emphasis is on humour. These films are designed to make the audience laugh through amusement and most often work by exaggerating characteristics for humorous effect.&quot; }, &quot;Director&quot;: { &quot;Name&quot;: &quot;Guy Ritchie&quot;, &quot;Bio&quot;: &quot;Guy Ritchie was born in Hatfield, Hertfordshire, UK on September 10, 1968. After watching Butch Cassidy and the Sundance Kid (1969) as a child, Guy realized that what he wanted to do was make films. He never attended film school, saying that the work of film school graduates was boring and unwatchable.&quot;, &quot;Birth&quot;: &quot;1968&quot;, &quot;Death&quot;: &quot;N/A&quot; }, &quot;Actors&quot;: [], &quot;_id&quot;: &quot;5cad023417248cdd9b9d51c1&quot;, &quot;Title&quot;: &quot;Snatch&quot;, &quot;Description&quot;: &quot;Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers and supposedly Jewish jewelers fight to track down a priceless stolen diamond.&quot;, &quot;ImagePath&quot;: &quot;snatch.png&quot;, &quot;Featured&quot;: true } ]</code></p>
+<h1><a id="Get_movie_by_name_38"></a>Get movie by name</h1>
+<h5><a id="Endpoint_40"></a>Endpoint</h5>
+<p><code>GET /movies/:title</code></p>
+<h5><a id="Response_44"></a>Response</h5>
 <p>The response will be a JSON object of a specifc movie. It will contain id, title, description, genre, director, imagepath and featured.</p>
-<p><code>{ &quot;id&quot;: &quot;1&quot;, &quot;title&quot;: &quot;Game Night&quot;, &quot;description&quot;: &quot;&quot;A group of friends who meet regularly for game nights find themselves trying to solve a murder mystery.&quot;, &quot;genre&quot;: &quot;Comedy&quot;, &quot;director&quot;: &quot;John Francis Daley&quot;, &quot;imagepath&quot;: &quot;https://images-na.ssl-images-amazon.com/images/M/MV5BMjQxMDE5NDg0NV5BMl5BanBnXkFtZTgwNTA5MDE2NDM@._V1_SY500_CR0,0,337,500_AL_.jpg&quot;, &quot;featured&quot;: true }</code></p>
-<h1><a id="Get_a_director_by_name_68"></a>Get a director by name</h1>
-<h5><a id="Endpoint_70"></a>Endpoint</h5>
-<p><code>GET /movies/directors/:name</code></p>
-<h5><a id="response_74"></a>response</h5>
+<p><code>{ &quot;Genre&quot;: { &quot;Name&quot;: &quot;Action&quot;, &quot;Description&quot;: &quot;Action film is a film genre in which the protagonist or protagonists are thrust into a series of challenges that typically include violence, extended fighting, physical feats, and frantic chases.&quot; }, &quot;Director&quot;: { &quot;Name&quot;: &quot;Michael Bay&quot;, &quot;Bio&quot;: &quot;A graduate of Wesleyan University, Michael Bay spent his 20s working on advertisements and music videos. His first projects after film school were in the music video business. He created music videos for Tina Turner, Meat Loaf, Lionel Richie, Wilson Phillips, Donny Osmond and Divinyls.&quot;, &quot;Birth&quot;: &quot;1965&quot;, &quot;Death&quot;: &quot;N/A&quot; }, &quot;Actors&quot;: [], &quot;_id&quot;: &quot;5cad01ed17248cdd9b9d51bd&quot;, &quot;Title&quot;: &quot;Transformers&quot;, &quot;Description&quot;: &quot;An ancient struggle between two Cybertronian races, the heroic Autobots and the evil Decepticons, comes to Earth, with a clue to the ultimate power held by a teenager.&quot;, &quot;ImagePath&quot;: &quot;transformers.png&quot;, &quot;Featured&quot;: true }</code></p>
+<h1><a id="Get_a_director_by_name_67"></a>Get a director by name</h1>
+<h5><a id="Endpoint_69"></a>Endpoint</h5>
+<p><code>GET /directors/:director</code></p>
+<h5><a id="response_73"></a>response</h5>
 <p>JSON list of objects by a specific director by name including bio, date of birth and date of death.</p>
-<p><code>[ { &quot;Genre&quot;: { &quot;Name&quot;: &quot;Comedy&quot;, &quot;Description&quot;: &quot;Comedy is a genre of film in which the main emphasis is on humour. These films are designed to make the audience laugh through amusement and most often work by exaggerating characteristics for humorous effect.&quot; }, &quot;Director&quot;: { &quot;Name&quot;: &quot;Tim Miller&quot;, &quot;Bio&quot;: &quot;Tim Miller is an American animator, film director, creative director and visual effects artist. He was nominated for the Academy Award for Best Animated Short Film for the work on his short animated film Gopher Broke. He made his directing debut with Deadpool.&quot;, &quot;Birth&quot;: &quot;1970&quot;, &quot;Death&quot;: &quot;N/A&quot; }, &quot;Actors&quot;: [], &quot;_id&quot;: &quot;5cad021217248cdd9b9d51bf&quot;, &quot;Title&quot;: &quot;Deadpool&quot;, &quot;Description&quot;: &quot;A wisecracking mercenary gets experimented on and becomes immortal but ugly, and sets out to track down the man who ruined his looks.&quot;, &quot;ImagePath&quot;: &quot;deadpool.png&quot;, &quot;Featured&quot;: true } ]</code></p>
-<h1><a id="Get_Genre_by_name_100"></a>Get Genre by name</h1>
-<h5><a id="Endpoint_102"></a>Endpoint</h5>
-<p><code>GET /movies/genres/:genreName</code></p>
-<h5><a id="Response_106"></a>Response</h5>
-<p>Response is a list of JSON objects displaying the different movies by genre.</p>
-<p><code>[ { &quot;Genre&quot;: { &quot;Name&quot;: &quot;Thriller&quot;, &quot;Description&quot;: &quot;Thriller film, also known as suspense film of suspense thriller, is a broad film genre that involves excitement and suspense in the audience.&quot; }, &quot;Director&quot;: { &quot;Name&quot;: &quot;Jonathan Demme&quot;, &quot;Bio&quot;: &quot;Robert Jonathan Demme was an American director, producer, and screenwriter.&quot;, &quot;Birth&quot;: &quot;1944&quot;, &quot;Death&quot;: &quot;2017&quot; }, &quot;Actors&quot;: [ &quot;Kasi Lemmings&quot; ], &quot;_id&quot;: &quot;5cac3643ac119bc385bb590c&quot;, &quot;Title&quot;: &quot;Silence of the Lambs&quot;, &quot;Description&quot;: &quot;A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer.&quot;, &quot;ImagePath&quot;: &quot;silenceofthelambs.png&quot;, &quot;Featured&quot;: true } ]</code></p>
-<h1><a id="Get_a_list_of_user_information_133"></a>Get a list of user information.</h1>
-<h5><a id="Endpoint_135"></a>Endpoint</h5>
+<p><code>[ { &quot;Director&quot;: { &quot;Name&quot;: &quot;Tim Miller&quot;, &quot;Bio&quot;: &quot;Tim Miller is an American animator, film director, creative director and visual effects artist. He was nominated for the Academy Award for Best Animated Short Film for the work on his short animated film Gopher Broke. He made his directing debut with Deadpool.&quot;, &quot;Birth&quot;: &quot;1970&quot;, &quot;Death&quot;: &quot;N/A&quot; }, &quot;_id&quot;: &quot;5cad021217248cdd9b9d51bf&quot; } ]</code></p>
+<h1><a id="Get_Genre_by_name_89"></a>Get Genre by name</h1>
+<h5><a id="Endpoint_91"></a>Endpoint</h5>
+<p><code>GET /genres/:genreName</code></p>
+<h5><a id="Response_95"></a>Response</h5>
+<p>Response is a JSON object displaying information about a genre.</p>
+<p><code>[ { &quot;Genre&quot;: { &quot;Name&quot;: &quot;Thriller&quot;, &quot;Description&quot;: &quot;Thriller film, also known as suspense film of suspense thriller, is a broad film genre that involves excitement and suspense in the audience.&quot; }, &quot;_id&quot;: &quot;5cac3643ac119bc385bb590c&quot; } ]</code></p>
+<h1><a id="Get_a_list_of_user_information_109"></a>Get a list of user information.</h1>
+<h5><a id="Endpoint_111"></a>Endpoint</h5>
 <p><code>GET /users/</code></p>
-<h5><a id="Response_139"></a>Response</h5>
+<h5><a id="Response_115"></a>Response</h5>
 <p>A list of JSON objects would be returned.</p>
 <p><code>[ { &quot;FavoriteMovies&quot;: [ &quot;5cad017d17248cdd9b9d51ba&quot; ], &quot;_id&quot;: &quot;5cad03b817248cdd9b9d51c2&quot;, &quot;Username&quot;: &quot;jdoe&quot;, &quot;Password&quot;: &quot;IamaBadPassword&quot;, &quot;Email&quot;: &quot;jdoe@unknown.com&quot;, &quot;Birthday&quot;: &quot;1985-02-19T00:00:00.000Z&quot; } ]</code></p>
-<h1><a id="Get_user_by_name_156"></a>Get user by name</h1>
-<h5><a id="Endpoint_158"></a>Endpoint</h5>
+<h1><a id="Get_user_by_name_132"></a>Get user by name</h1>
+<h5><a id="Endpoint_134"></a>Endpoint</h5>
 <p><code>GET /users/:Username</code></p>
-<h5><a id="Response_162"></a>Response</h5>
+<h5><a id="Response_138"></a>Response</h5>
 <p><code>{ &quot;FavoriteMovies&quot;: [ &quot;5cad017d17248cdd9b9d51ba&quot; ], &quot;_id&quot;: &quot;5cad03b817248cdd9b9d51c2&quot;, &quot;Username&quot;: &quot;jdoe&quot;, &quot;Password&quot;: &quot;IamaBadPassword&quot;, &quot;Email&quot;: &quot;jdoe@unknown.com&quot;, &quot;Birthday&quot;: &quot;1985-02-19T00:00:00.000Z&quot; }</code></p>
-<h1><a id="Get_users_favorites_by_name_174"></a>Get users favorites by name</h1>
-<h5><a id="Endpoint_176"></a>Endpoint</h5>
+<h1><a id="Get_users_favorites_by_name_150"></a>Get users favorites by name</h1>
+<h5><a id="Endpoint_152"></a>Endpoint</h5>
 <p><code>GET /users/:Username/Movies</code></p>
-<h5><a id="Response_180"></a>Response</h5>
+<h5><a id="Response_156"></a>Response</h5>
 <p>A JSON object of a specific users favorite movies.</p>
 <p><code>{ &quot;FavoriteMovies&quot;: [ &quot;5cad017d17248cdd9b9d51ba&quot; ], &quot;_id&quot;: &quot;5cad03b817248cdd9b9d51c2&quot;, &quot;Username&quot;: &quot;jdoe&quot; }</code></p>
-<h1><a id="Add_favorite_movie_for_a_user_192"></a>Add favorite movie for a user.</h1>
-<h5><a id="Endpoint_194"></a>Endpoint</h5>
+<h1><a id="Add_favorite_movie_for_a_user_168"></a>Add favorite movie for a user.</h1>
+<h5><a id="Endpoint_170"></a>Endpoint</h5>
 <p><code>POST /users/:Username/Movies/:MovieID</code></p>
-<h5><a id="Response_198"></a>Response</h5>
+<h5><a id="Response_174"></a>Response</h5>
 <p><code>{ &quot;FavoriteMovies&quot;: [ &quot;5cad022517248cdd9b9d51c0&quot;, &quot;5cad017d17248cdd9b9d51ba&quot; ], &quot;_id&quot;: &quot;5cad05ad17248cdd9b9d51c6&quot;, &quot;Username&quot;: &quot;rjohnson&quot;, &quot;Password&quot;: &quot;@!9Mhj30101&quot;, &quot;Email&quot;: &quot;randy@someemail.com&quot;, &quot;Birthday&quot;: &quot;1978-05-12T00:00:00.000Z&quot; }</code></p>
-<h1><a id="Delete_a_movie_from_a_users_favorites_212"></a>Delete a movie from a users favorites.</h1>
-<h5><a id="Endpoint_214"></a>Endpoint</h5>
+<h1><a id="Delete_a_movie_from_a_users_favorites_188"></a>Delete a movie from a users favorites.</h1>
+<h5><a id="Endpoint_190"></a>Endpoint</h5>
 <p><code>DELETE /users/:Username/Movies/:MovieID</code></p>
-<h5><a id="Response_218"></a>Response</h5>
+<h5><a id="Response_194"></a>Response</h5>
 <p><code>{ &quot;FavoriteMovies&quot;: [ &quot;5cad023417248cdd9b9d51c1&quot;, &quot;5cad021217248cdd9b9d51bf&quot;, &quot;5cad017d17248cdd9b9d51ba&quot; ], &quot;_id&quot;: &quot;5cad049717248cdd9b9d51c3&quot;, &quot;Username&quot;: &quot;bsmith&quot;, &quot;Password&quot;: &quot;passW0rd&quot;, &quot;Email&quot;: &quot;bsmith@noemail.com&quot;, &quot;Birthday&quot;: &quot;1975-05-10T00:00:00.000Z&quot; }</code></p>
-<h1><a id="User_sign_up_233"></a>User sign up</h1>
-<h5><a id="Endpoint_235"></a>Endpoint</h5>
+<h1><a id="User_sign_up_209"></a>User sign up</h1>
+<h5><a id="Endpoint_211"></a>Endpoint</h5>
 <p><code>POST /users</code></p>
-<h5><a id="Request_239"></a>Request</h5>
-<p>A JSON object containing id, name, email and birthday. The information is to be added to the message body of the HTTP request. A success or failure will also be returned.</p>
+<h5><a id="Request_215"></a>Request</h5>
+<p>A JSON object containing username, password, email and birthday. The information is to be added to the message body of the HTTP request. A success or failure will also be returned.</p>
 <p><code>{ &quot;Username&quot; : &quot;TestUser99&quot;, &quot;Password&quot; : &quot;Imapassword&quot;, &quot;Email&quot; : &quot;tu99@gmail.com&quot;, &quot;Birthday&quot;: &quot;1985-02-19&quot; }</code></p>
-<h5><a id="Response_251"></a>Response</h5>
-<p>A success or failure will also be returned.</p>
-<h1><a id="Allow_a_user_to_deregister_255"></a>Allow a user to de-register.</h1>
-<h5><a id="Endpoint_257"></a>Endpoint</h5>
+<h5><a id="Response_227"></a>Response</h5>
+<p><code>{ &quot;FavoriteMovies&quot;: [], &quot;_id&quot;: &quot;5cc27e4dbf6ebb234d910d48&quot;, &quot;Username&quot;: &quot;TestUser73&quot;, &quot;Password&quot;: &quot;Imapassword&quot;, &quot;Email&quot;: &quot;any@gmail.com&quot;, &quot;Birthday&quot;: &quot;1978-02-14T00:00:00.000Z&quot;, &quot;__v&quot;: 0 }</code></p>
+<h1><a id="Allow_a_user_to_deregister_239"></a>Allow a user to de-register.</h1>
+<h5><a id="Endpoint_241"></a>Endpoint</h5>
 <p><code>DELETE /users/:Username</code></p>
-<h5><a id="Response_261"></a>Response</h5>
+<h5><a id="Response_245"></a>Response</h5>
 <p>A response of success or failure of deleting a specific user.</p>
-<h1><a id="Update_a_users_information_Name_Email_Birthday_and_Password_264"></a>Update a users information Name, Email, Birthday and Password</h1>
-<h5><a id="Endpoint_266"></a>Endpoint</h5>
+<p><code>TestUser73 was deleted.</code></p>
+<h1><a id="Update_a_users_information_Name_Email_Birthday_and_Password_251"></a>Update a users information Name, Email, Birthday and Password</h1>
+<h5><a id="Endpoint_253"></a>Endpoint</h5>
 <p><code>PUT /users/:Username</code></p>
-<h5><a id="Request_270"></a>Request</h5>
+<h5><a id="Request_257"></a>Request</h5>
 <p>email, new password would be sent within the body of the request.</p>
-<p><code>{ &quot;Username&quot; : &quot;TestUser99&quot;, &quot;Password&quot; : &quot;StillBadPassword&quot;, &quot;Email&quot; : &quot;tu99Updated@gmail.com&quot;, &quot;Birthday&quot; : &quot;1985-19-2&quot; }</code></p>
-<h5><a id="Response_281"></a>Response</h5>
-<p><code>{ &quot;n&quot;: 1, &quot;nModified&quot;: 1, &quot;ok&quot;: 1 }</code></p>
+<p><code>{ &quot;FavoriteMovies&quot;: [], &quot;_id&quot;: &quot;5cbe390607388c053ad7994c&quot;, &quot;Username&quot;: &quot;TestUser99&quot;, &quot;Password&quot;: &quot;StillBadPassword&quot;, &quot;Email&quot;: &quot;tu99Updated@gmail.com&quot;, &quot;Birthday&quot;: &quot;1998-02-07T07:00:00.000Z&quot;, &quot;__v&quot;: 0 }</code></p>
+<h5><a id="Response_271"></a>Response</h5>
+<p><code>{ &quot;FavoriteMovies&quot;: [], &quot;_id&quot;: &quot;5cbe390607388c053ad7994c&quot;, &quot;Username&quot;: &quot;TestUser99&quot;, &quot;Password&quot;: &quot;StillBadPassword&quot;, &quot;Email&quot;: &quot;tu99Updated@gmail.com&quot;, &quot;Birthday&quot;: &quot;1998-02-07T07:00:00.000Z&quot;, &quot;__v&quot;: 0 }</code></p>
 
 </body></html>
