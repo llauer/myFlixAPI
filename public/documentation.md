@@ -75,17 +75,15 @@ The response will be a JSON object of a specifc movie. It will contain id, title
 
 JSON list of objects by a specific director by name including bio, date of birth and date of death.
 
-`[
-    {
-        "Director": {
-            "Name": "Tim Miller",
-            "Bio": "Tim Miller is an American animator, film director, creative director and visual effects artist. He was nominated for the Academy Award for Best Animated Short Film for the work on his short animated film Gopher Broke. He made his directing debut with Deadpool.",
-            "Birth": "1970",
-            "Death": "N/A"
-        },
-        "_id": "5cad021217248cdd9b9d51bf"
-    }
-]`
+`{
+    "Director": {
+        "Name": "Tim Miller",
+        "Bio": "Tim Miller is an American animator, film director, creative director and visual effects artist. He was nominated for the Academy Award for Best Animated Short Film for the work on his short animated film Gopher Broke. He made his directing debut with Deadpool.",
+        "Birth": "1970",
+        "Death": "N/A"
+    },
+    "_id": "5cad021217248cdd9b9d51bf"
+}`
 
 # Get Genre by name
 
@@ -97,15 +95,13 @@ JSON list of objects by a specific director by name including bio, date of birth
 
 Response is a JSON object displaying information about a genre.
 
-`[
-    {
-        "Genre": {
-            "Name": "Thriller",
-            "Description": "Thriller film, also known as suspense film of suspense thriller, is a broad film genre that involves excitement and suspense in the audience."
-        },
-        "_id": "5cac3643ac119bc385bb590c"
-    }
-]`
+`{
+    "Genre": {
+        "Name": "Thriller",
+        "Description": "Thriller film, also known as suspense film of suspense thriller, is a broad film genre that involves excitement and suspense in the audience."
+    },
+    "_id": "5cac3643ac119bc385bb590c"
+}`
 
 # Get a list of user information.
 
