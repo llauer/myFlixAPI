@@ -13,6 +13,11 @@ const uuid = require("uuid");
 const app = express();
 app.use(express.json());
 
+const passport = require("passport");
+require("./passport");
+
+var auth = require("./auth")(app);
+
 //trying a new way of logging. Disabled morgan for now.
 app.use((req, res, next) => {
   console.log(`${new Date().toString()} => ${req.originalUrl}`);
