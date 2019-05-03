@@ -28,12 +28,14 @@ let movieRoute = require("./routes/movies");
 let directorsRoute = require("./routes/directors");
 let genresRoute = require("./routes/genres");
 let usersRoute = require("./routes/users");
+let loginRoute = require("./routes/login");
 // let documentation = require('./routes/documentation');
 
 app.use(movieRoute);
 app.use(directorsRoute);
 app.use(genresRoute);
 app.use(usersRoute);
+app.use(loginRoute);
 
 //currently logging in UTC.
 // app.use(morgan('common'));

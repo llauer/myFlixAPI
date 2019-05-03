@@ -77,5 +77,16 @@ movies.</p>
 <p><code>{ &quot;FavoriteMovies&quot;: [], &quot;_id&quot;: &quot;5cbe390607388c053ad7994c&quot;, &quot;Username&quot;: &quot;TestUser99&quot;, &quot;Password&quot;: &quot;StillBadPassword&quot;, &quot;Email&quot;: &quot;tu99Updated@gmail.com&quot;, &quot;Birthday&quot;: &quot;1998-02-07T07:00:00.000Z&quot;, &quot;__v&quot;: 0 }</code></p>
 <h5><a id="Response_267"></a>Response</h5>
 <p><code>{ &quot;FavoriteMovies&quot;: [], &quot;_id&quot;: &quot;5cbe390607388c053ad7994c&quot;, &quot;Username&quot;: &quot;TestUser99&quot;, &quot;Password&quot;: &quot;StillBadPassword&quot;, &quot;Email&quot;: &quot;tu99Updated@gmail.com&quot;, &quot;Birthday&quot;: &quot;1998-02-07T07:00:00.000Z&quot;, &quot;__v&quot;: 0 }</code></p>
+<h1><a id="Authentication_279"></a>Authentication</h1>
+<h5><a id="Endpoint_281"></a>Endpoint</h5>
+<p><code>GET /login</code></p>
+<h5><a id="Request_285"></a>Request</h5>
+<p>Key value query params sent</p>
+<p><code>?Username=TestUser&amp;Password=TestPassword</code></p>
+<h5><a id="Response_292"></a>Response</h5>
+<p>A success with JWT token or failure will be sent</p>
+<p><code>{ &quot;user&quot;: { &quot;FavoriteMovies&quot;: [ &quot;5cad022517248cdd9b9d51c0&quot;, &quot;5cad022517248cdd9b9d51c0&quot; ], &quot;_id&quot;: &quot;5cbe390607388c053ad7994c&quot;, &quot;Username&quot;: &quot;TestUser99&quot;, &quot;Password&quot;: &quot;StillBadPassword&quot;, &quot;Email&quot;: &quot;tu99Updated@gmail.com&quot;, &quot;Birthday&quot;: &quot;1998-02-07T07:00:00.000Z&quot;, &quot;__v&quot;: 0 }, &quot;token&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJGYXZvcml0ZU1vdmllcyI6WyI1Y2FkMDIyNTE3MjQ4Y2RkOWI5ZDUxYzAiLCI1Y2FkMDIyNTE3MjQ4Y2RkOWI5ZDUxYzAiXSwiX2lkIjoiNWNiZTM5MDYwNzM4OGMwNTNhZDc5OTRjIiwiVXNlcm5hbWUiOiJUZXN0VXNlcjk5IiwiUGFzc3dvcmQiOiJTdGlsbEJhZFBhc3N3b3JkIiwiRW1haWwiOiJ0dTk5VXBkYXRlZEBnbWFpbC5jb20iLCJCaXJ0aGRheSI6IjE5OTgtMDItMDdUMDc6MDA6MDAuMDAwWiIsIl9fdiI6MCwiaWF0IjoxNTU2NzY5NjgzLCJleHAiOjE1NTczNzQ0ODMsInN1YiI6IlRlc3RVc2VyOTkifQ.aWjbHJH0jJFTsRouvHecSP5eG0y7tdGFkOiDmC06pO0&quot; }</code></p>
+<p>Error</p>
+<p><code>{ &quot;message&quot;: &quot;Something is not right&quot;, &quot;user&quot;: false }</code></p>
 
 </body></html>

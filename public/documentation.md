@@ -276,3 +276,43 @@ email, new password would be sent within the body of the request.
     "Birthday": "1998-02-07T07:00:00.000Z",
     "__v": 0
 }`
+
+# Authentication
+
+##### Endpoint
+
+`GET /login`
+
+##### Request
+
+Key value query params sent
+
+`?Username=TestUser&Password=TestPassword`
+
+
+##### Response
+
+A success with JWT token or failure will be sent
+
+`{
+    "user": {
+        "FavoriteMovies": [
+            "5cad022517248cdd9b9d51c0",
+            "5cad022517248cdd9b9d51c0"
+        ],
+        "_id": "5cbe390607388c053ad7994c",
+        "Username": "TestUser99",
+        "Password": "StillBadPassword",
+        "Email": "tu99Updated@gmail.com",
+        "Birthday": "1998-02-07T07:00:00.000Z",
+        "__v": 0
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJGYXZvcml0ZU1vdmllcyI6WyI1Y2FkMDIyNTE3MjQ4Y2RkOWI5ZDUxYzAiLCI1Y2FkMDIyNTE3MjQ4Y2RkOWI5ZDUxYzAiXSwiX2lkIjoiNWNiZTM5MDYwNzM4OGMwNTNhZDc5OTRjIiwiVXNlcm5hbWUiOiJUZXN0VXNlcjk5IiwiUGFzc3dvcmQiOiJTdGlsbEJhZFBhc3N3b3JkIiwiRW1haWwiOiJ0dTk5VXBkYXRlZEBnbWFpbC5jb20iLCJCaXJ0aGRheSI6IjE5OTgtMDItMDdUMDc6MDA6MDAuMDAwWiIsIl9fdiI6MCwiaWF0IjoxNTU2NzY5NjgzLCJleHAiOjE1NTczNzQ0ODMsInN1YiI6IlRlc3RVc2VyOTkifQ.aWjbHJH0jJFTsRouvHecSP5eG0y7tdGFkOiDmC06pO0"
+}`
+
+Error
+
+`{
+    "message": "Something is not right",
+    "user": false
+}`
