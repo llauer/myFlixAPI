@@ -16,7 +16,7 @@ app.use(express.json());
 const passport = require("passport");
 require("./passport");
 
-var auth = require("./auth")(app);
+var auth = require("./routes/auth")(app);
 
 //trying a new way of logging. Disabled morgan for now.
 app.use((req, res, next) => {
@@ -28,14 +28,14 @@ let movieRoute = require("./routes/movies");
 let directorsRoute = require("./routes/directors");
 let genresRoute = require("./routes/genres");
 let usersRoute = require("./routes/users");
-let loginRoute = require("./routes/login");
+// let loginRoute = require("./routes/login");
 // let documentation = require('./routes/documentation');
 
 app.use(movieRoute);
 app.use(directorsRoute);
 app.use(genresRoute);
 app.use(usersRoute);
-app.use(loginRoute);
+// app.use(loginRoute);
 
 //currently logging in UTC.
 // app.use(morgan('common'));
