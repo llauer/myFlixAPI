@@ -281,7 +281,7 @@ email, new password would be sent within the body of the request.
 
 ##### Endpoint
 
-`GET /login`
+`POST /login`
 
 ##### Request
 
