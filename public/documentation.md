@@ -285,9 +285,14 @@ email, new password would be sent within the body of the request.
 
 ##### Request
 
-Key value query params sent
+The username and password is sent in the request body.
 
-`?Username=TestUser&Password=TestPassword`
+`{
+
+        "Username": "TestUser99",
+        "Password": "StillBadPassword"
+			
+}`
 
 
 ##### Response
