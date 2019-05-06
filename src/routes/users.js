@@ -1,6 +1,7 @@
 //jshint esversion:6
 const mongoose = require("mongoose");
 const Models = require("../models.js");
+const validator = require("express-validator");
 
 const Users = Models.User;
 
@@ -10,6 +11,8 @@ let router = express.Router();
 
 const passport = require("passport");
 require("../passport");
+
+app.use(validator());
 
 // get request for all users
 router.get(
