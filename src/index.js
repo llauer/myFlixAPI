@@ -9,7 +9,7 @@ const Models = require("./models.js");
 // });
 
 mongoose.connect(
-  "mongodb+srv://myFlixDBadmin:71fPMtsAvjups7aT@myFlixDB-mmibf.mongodb.net/myflixdb?retryWrites=true",
+  "mongodb+srv://myFlixDBadmin:71fPMtsAvjups7aT@myflixdb-mmibf.mongodb.net/myflixdb?retryWrites=true",
   {
     useNewUrlParser: true
   }
