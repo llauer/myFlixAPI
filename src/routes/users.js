@@ -74,7 +74,27 @@ router.post(
   "/users",
   // passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log(req);
+    //here is were the validation checks go.
+    req.checkBody("Username", "Username is required").notEmpty();
+    req
+      .checkBody(
+        "Username",
+        "Username contains non alphanumeric characters - not allowed"
+      )
+      .isAlphanumeric();
+    req.checkBody("Password", "Password is required").notEmpty();
+    req.checkBody("Email", "Email is required").notEmpty();
+    req.checkBody("Email", "Email does not appear to be valid").isEmail();
+
+    //check the validation object for errors
+    var errors = req.validationErrors();
+
+    if (errors) {
+      return res.status(422).json({ errors: errors });
+    }
+
+    var hashedPassword = Users.hashedPassword;
+
     Users.findOne({
       Username: req.body.Username
     })
@@ -185,6 +205,25 @@ router.put(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    //here is were the validation checks go.
+    req.checkBody("Username", "Username is required").notEmpty();
+    req
+      .checkBody(
+        "Username",
+        "Username contains non alphanumeric characters - not allowed"
+      )
+      .isAlphanumeric();
+    req.checkBody("Password", "Password is required").notEmpty();
+    req.checkBody("Email", "Email is required").notEmpty();
+    req.checkBody("Email", "Email does not appear to be valid").isEmail();
+
+    //check the validation object for errors
+    var errors = req.validationErrors();
+
+    if (errors) {
+      return res.status(422).json({ errors: errors });
+    }
+
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       {

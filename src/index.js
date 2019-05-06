@@ -8,8 +8,13 @@ mongoose.connect("mongodb://localhost:27017/myFlixDB", {
   useNewUrlParser: true
 });
 
+const validator = require("express-validator");
+
 const express = require("express");
 const uuid = require("uuid");
+
+const cors = require("cors"); //added for validation
+
 const app = express();
 app.use(express.json());
 
@@ -34,6 +39,8 @@ app.use(directorsRoute);
 app.use(genresRoute);
 app.use(usersRoute);
 app.use(authRoute);
+app.use(cors());
+app.use(validator()); //added for validation
 
 //currently logging in UTC.
 // app.use(morgan('common'));
