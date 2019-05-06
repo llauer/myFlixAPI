@@ -4,9 +4,16 @@ const mongoose = require("mongoose");
 
 const Models = require("./models.js");
 
-mongoose.connect("mongodb://localhost:27017/myFlixDB", {
-  useNewUrlParser: true
-});
+// mongoose.connect("mongodb://localhost:27017/myFlixDB", {
+//   useNewUrlParser: true
+// });
+
+mongoose.connect(
+  "mongodb+srv://myFlixDBadmin:71fPMtsAvjups7aT@myflixdb-mmibf.mongodb.net/myflixdb?retryWrites=true",
+  {
+    useNewUrlParser: true
+  }
+);
 
 const validator = require("express-validator");
 
