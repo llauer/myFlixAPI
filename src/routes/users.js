@@ -12,7 +12,7 @@ let router = express.Router();
 const passport = require("passport");
 require("../passport");
 
-app.use(validator());
+router.use(validator());
 
 // get request for all users
 router.get(
