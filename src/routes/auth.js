@@ -13,7 +13,27 @@ function generateJWTToken(user) {
   });
 }
 
-/* POST login */
+// /* POST login */
+// router.post("/login", (req, res) => {
+//   passport.authenticate("local", { session: false }, (error, user, info) => {
+//     if (error || !user) {
+//       return res.status(400).json({
+//         message: 'Something is not right',
+//         user: user
+//       });
+//     }
+//     req.login(user, { session: false }, error => {
+//       if (error) {
+//         res.send(error);
+//       }
+//       var token = generateJWTToken(user.toJSON());
+//       return res.json({ user, token }); // es6 shorthand
+//     });
+//   })(req, res);
+// });
+
+/* POST login. */
+
 router.post("/login", (req, res) => {
   passport.authenticate("local", { session: false }, (error, user, info) => {
     if (error || !user) {
@@ -27,7 +47,7 @@ router.post("/login", (req, res) => {
         res.send(error);
       }
       var token = generateJWTToken(user.toJSON());
-      return res.json({ user, token }); // es6 shorthand
+      return res.json({ user, token });
     });
   })(req, res);
 });
