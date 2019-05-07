@@ -189,7 +189,7 @@ router.put('/users/:Username', passport.authenticate('jwt', { session: false }),
 
   var hashedPassword = Users.hashPassword(req.body.Password);
 
-  Users.update(
+  Users.findOneAndUpdate(
     { Username: req.params.Username },
     {
       $set: {
