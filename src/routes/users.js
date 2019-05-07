@@ -8,6 +8,8 @@ const Users = Models.User;
 let express = require("express");
 
 let router = express.Router();
+const cors = require("cors");
+router.use(cors());
 
 const passport = require("passport");
 require("../passport");
