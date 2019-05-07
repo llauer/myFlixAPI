@@ -4,8 +4,6 @@ const passport = require("passport");
 require("../passport"); // your local passport file.
 let express = require("express");
 let router = express.Router();
-const cors = require("cors");
-router.use(cors());
 
 function generateJWTToken(user) {
   return jwt.sign(user, jwtSecret, {
