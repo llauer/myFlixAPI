@@ -172,75 +172,34 @@ router.delete('/users/:Username', passport.authenticate('jwt', { session: false 
   Birthday: Date
 }*/
 
-// router.put("/users/:Username", passport.authenticate("jwt", { session: false }), (req, res) => {
-//   //here is were the validation checks go.
-//   req.checkBody("Username", "Username is required").notEmpty();
-//   req
-//     .checkBody("Username", "Username contains non alphanumeric characters - not allowed")
-//     .isAlphanumeric();
-//   req.checkBody("Password", "Password is required").notEmpty();
-//   req.checkBody("Email", "Email is required").notEmpty();
-//   req.checkBody("Email", "Email does not appear to be valid").isEmail();
+router.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+  //here is were the validation checks go.
+  req.checkBody('Username', 'Username is required').notEmpty();
+  req.checkBody('Username', 'Username contains non alphanumeric characters - not allowed').isAlphanumeric();
+  req.checkBody('Password', 'Password is required').notEmpty();
+  req.checkBody('Email', 'Email is required').notEmpty();
+  req.checkBody('Email', 'Email does not appear to be valid').isEmail();
 
-//   //check the validation object for errors
-//   var errors = req.validationErrors();
-
-//   if (errors) {
-//     return res.status(422).json({ errors: errors });
-//   }
-
-//   var hashedPassword = Users.hashPassword(req.body.Password);
-
-//   Users.findOneAndUpdate(
-//     { Username: req.params.Username },
-//     {
-//       $set: {
-//         Username: req.body.Username,
-//         Password: hashedPassword,
-//         Email: req.body.Email,
-//         Birthday: req.body.Birthday
-//       }
-//     },
-//     { new: true }, //updated document is returned
-//     function(err, updatedUser) {
-//       if (err) {
-//         console.error(err);
-//         res.status(500).send("Error: " + err);
-//       } else {
-//         res.json(updatedUser);
-//       }
-//     }
-//   );
-// });
-
-router.put('/users/:Username', passport.authenticate('jwt', { session: false }), function(req, res) {
-  // validation for this PUT request
-  req.checkBody('username', 'username is required').notEmpty();
-  req.checkBody('username', 'Username can contain only alphanumeric characters.').isAlphanumeric();
-  req.checkBody('password', 'password is required').notEmpty();
-  req.checkBody('email', 'email is required').notEmpty();
-  req.checkBody('email', 'email does not appear to be valid').isEmail();
-
-  // check validation object for errors
+  //check the validation object for errors
   var errors = req.validationErrors();
 
   if (errors) {
     return res.status(422).json({ errors: errors });
   }
 
-  var hashedPassword = Users.hashPassword(req.body.password);
+  var hashedPassword = Users.hashPassword(req.body.Password);
 
-  Users.update(
-    { username: req.params.username },
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
     {
       $set: {
-        username: req.body.username,
-        password: hashedPassword,
-        email: req.body.email,
-        birthday: req.body.birthday
+        Username: req.body.Username,
+        Password: hashedPassword,
+        Email: req.body.Email,
+        Birthday: req.body.Birthday
       }
     },
-    { new: true }, //This line makes sure that the updated document is returned
+    { new: true }, //updated document is returned
     function(err, updatedUser) {
       if (err) {
         console.error(err);
@@ -251,5 +210,44 @@ router.put('/users/:Username', passport.authenticate('jwt', { session: false }),
     }
   );
 });
+
+// router.put('/users/:Username', passport.authenticate('jwt', { session: false }), function(req, res) {
+//   // validation for this PUT request
+//   req.checkBody('username', 'username is required').notEmpty();
+//   req.checkBody('username', 'Username can contain only alphanumeric characters.').isAlphanumeric();
+//   req.checkBody('password', 'password is required').notEmpty();
+//   req.checkBody('email', 'email is required').notEmpty();
+//   req.checkBody('email', 'email does not appear to be valid').isEmail();
+
+//   // check validation object for errors
+//   var errors = req.validationErrors();
+
+//   if (errors) {
+//     return res.status(422).json({ errors: errors });
+//   }
+
+//   var hashedPassword = Users.hashPassword(req.body.password);
+
+//   Users.update(
+//     { username: req.params.username },
+//     {
+//       $set: {
+//         username: req.body.username,
+//         password: hashedPassword,
+//         email: req.body.email,
+//         birthday: req.body.birthday
+//       }
+//     },
+//     { new: true }, //This line makes sure that the updated document is returned
+//     function(err, updatedUser) {
+//       if (err) {
+//         console.error(err);
+//         res.status(500).send('Error: ' + err);
+//       } else {
+//         res.json(updatedUser);
+//       }
+//     }
+//   );
+// });
 
 module.exports = router;
