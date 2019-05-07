@@ -96,7 +96,7 @@ router.post(
       return res.status(422).json({ errors: errors });
     }
 
-    var hashedPassword = Users.hashedPassword;
+    var hashedPassword = Users.hashPassword;
 
     Users.findOne({
       Username: req.body.Username
@@ -107,7 +107,7 @@ router.post(
         } else {
           Users.create({
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
