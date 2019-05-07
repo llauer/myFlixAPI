@@ -15,46 +15,38 @@ require("../passport");
 router.use(validator());
 
 // get request for all users
-router.get(
-  "/users",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Users.find()
-      .then(function(users) {
-        res.status(201).json(users);
-      })
-      .catch(function(err) {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
-  }
-);
+router.get("/users", passport.authenticate("jwt", { session: false }), (req, res) => {
+  Users.find()
+    .then(function(users) {
+      res.status(201).json(users);
+    })
+    .catch(function(err) {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
+});
 
 // Get a user by username.
-router.get(
-  "/users/:Username",
-  passport.authenticate("jwt", { session: false }),
-  function(req, res) {
-    Users.findOne({ Username: req.params.Username })
-      .then(function(user) {
-        res.json(user);
-      })
-      .catch(function(err) {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
-  }
-);
+router.get("/users/:Username", passport.authenticate("jwt", { session: false }), function(
+  req,
+  res
+) {
+  Users.findOne({ Username: req.params.Username })
+    .then(function(user) {
+      res.json(user);
+    })
+    .catch(function(err) {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
+});
 
 // GET favoriteMovies by username.
 router.get(
   "/users/:Username/Movies",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Users.findOne(
-      { Username: req.params.Username },
-      { Username: true, FavoriteMovies: true }
-    )
+    Users.findOne({ Username: req.params.Username }, { Username: true, FavoriteMovies: true })
       .then(function(movie) {
         res.json(movie);
       })
@@ -80,10 +72,7 @@ router.post(
     //here is were the validation checks go.
     req.checkBody("Username", "Username is required").notEmpty();
     req
-      .checkBody(
-        "Username",
-        "Username contains non alphanumeric characters - not allowed"
-      )
+      .checkBody("Username", "Username contains non alphanumeric characters - not allowed")
       .isAlphanumeric();
     req.checkBody("Password", "Password is required").notEmpty();
     req.checkBody("Email", "Email is required").notEmpty();
@@ -173,24 +162,20 @@ router.delete(
   }
 );
 
-router.delete(
-  "/users/:Username",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Users.findOneAndRemove({ Username: req.params.Username })
-      .then(function(user) {
-        if (!user) {
-          res.status(400).send(req.params.Username + " was not found");
-        } else {
-          res.status(200).send(req.params.Username + " was deleted.");
-        }
-      })
-      .catch(function(err) {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
-  }
-);
+router.delete("/users/:Username", passport.authenticate("jwt", { session: false }), (req, res) => {
+  Users.findOneAndRemove({ Username: req.params.Username })
+    .then(function(user) {
+      if (!user) {
+        res.status(400).send(req.params.Username + " was not found");
+      } else {
+        res.status(200).send(req.params.Username + " was deleted.");
+      }
+    })
+    .catch(function(err) {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
+});
 
 // Update a user's info, by username
 /* We’ll expect JSON in this format
@@ -204,52 +189,45 @@ router.delete(
   Birthday: Date
 }*/
 
-router.put(
-  "/users/:Username",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    //here is were the validation checks go.
-    req.checkBody("Username", "Username is required").notEmpty();
-    req
-      .checkBody(
-        "Username",
-        "Username contains non alphanumeric characters - not allowed"
-      )
-      .isAlphanumeric();
-    req.checkBody("Password", "Password is required").notEmpty();
-    req.checkBody("Email", "Email is required").notEmpty();
-    req.checkBody("Email", "Email does not appear to be valid").isEmail();
+router.put("/users/:Username", passport.authenticate("jwt", { session: false }), (req, res) => {
+  //here is were the validation checks go.
+  req.checkBody("Username", "Username is required").notEmpty();
+  req
+    .checkBody("Username", "Username contains non alphanumeric characters - not allowed")
+    .isAlphanumeric();
+  req.checkBody("Password", "Password is required").notEmpty();
+  req.checkBody("Email", "Email is required").notEmpty();
+  req.checkBody("Email", "Email does not appear to be valid").isEmail();
 
-    //check the validation object for errors
-    var errors = req.validationErrors();
+  //check the validation object for errors
+  var errors = req.validationErrors();
 
-    if (errors) {
-      return res.status(422).json({ errors: errors });
-    }
-
-    var hashedPassword = Users.hashPassword(req.body.Password);
-
-    Users.findOneAndUpdate(
-      { Username: req.params.Username },
-      {
-        $set: {
-          Username: req.body.Username,
-          Password: hashedPassword,
-          Email: req.body.Email,
-          Birthday: req.body.Birthday
-        }
-      },
-      { new: true }, //updated document is returned
-      function(err, updatedUser) {
-        if (err) {
-          console.error(err);
-          res.status(500).send("Error: " + err);
-        } else {
-          res.json(updatedUser);
-        }
-      }
-    );
+  if (errors) {
+    return res.status(422).json({ errors: errors });
   }
-);
+
+  var hashedPassword = Users.hashPassword(req.body.Password);
+
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    {
+      $set: {
+        Username: req.body.Username,
+        Password: hashedPassword,
+        Email: req.body.Email,
+        Birthday: req.body.Birthday
+      }
+    },
+    { new: true }, //updated document is returned
+    function(err, updatedUser) {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      } else {
+        res.json(updatedUser);
+      }
+    }
+  );
+});
 
 module.exports = router;
