@@ -186,30 +186,29 @@ router.put('/users/:Username', passport.authenticate('jwt', { session: false }),
   if (errors) {
     return res.status(422).json({ errors: errors });
   }
-
-  var hashedPassword = Users.hashPassword(req.body.Password);
-
-  Users.findOneAndUpdate(
-    { Username: req.params.Username },
-    {
-      $set: {
-        Username: req.body.Username,
-        Password: hashedPassword,
-        Email: req.body.Email,
-        Birthday: req.body.Birthday
-      }
-    },
-    { new: true }, //updated document is returned
-    function(err, updatedUser) {
-      if (err) {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-      } else {
-        res.json(updatedUser);
-      }
-    }
-  );
 });
+var hashedPassword = Users.hashPassword(req.body.Password);
+
+Users.findOneAndUpdate(
+  { Username: req.params.Username },
+  {
+    $set: {
+      Username: req.body.Username,
+      Password: hashedPassword,
+      Email: req.body.Email,
+      Birthday: req.body.Birthday
+    }
+  },
+  { new: true }, //updated document is returned
+  function(err, updatedUser) {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser);
+    }
+  }
+);
 
 // router.put('/users/:Username', passport.authenticate('jwt', { session: false }), function(req, res) {
 //   // validation for this PUT request
