@@ -51,6 +51,7 @@ app.use(validator()); //added for validation
 
 //serves up all static pages.
 app.use(express.static('public'));
+app.use('/client', express.static('dist'));
 
 //catches all not found urls.
 app.all('*', function(req, res) {
