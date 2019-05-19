@@ -20,6 +20,7 @@ const uuid = require('uuid');
 const cors = require('cors'); //added for validation
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const passport = require('passport');
@@ -43,7 +44,7 @@ app.use(directorsRoute);
 app.use(genresRoute);
 app.use(usersRoute);
 app.use(authRoute);
-app.use(cors());
+
 app.use(validator()); //added for validation
 
 //currently logging in UTC.
