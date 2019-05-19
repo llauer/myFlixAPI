@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { MainView } from './components/main-view/main-view';
+import { MovieCard } from './components/movie-card/movie-card';
 
 // Import statement to indicate that we need to bundle `./index.scss`
 import './index.scss';
