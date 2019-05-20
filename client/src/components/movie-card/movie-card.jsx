@@ -7,6 +7,8 @@ export class MovieCard extends React.Component {
     // connected to your database via the movies endpoint of your API
     const { movie } = this.props;
 
-    return <div className="movie-card">{movie.Title}</div>;
+    return(
+      <div onClick={() => onClick(movie)} className="movie-card">{movie.title}</div>
+    );
   }
 }
