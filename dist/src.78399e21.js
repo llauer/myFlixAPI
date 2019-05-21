@@ -27440,23 +27440,15 @@ function (_React$Component) {
       // This is given to the <MovieCard/> component by the outer world
       // which, in this case, is `MainView`, as `MainView` is what’s
       // connected to your database via the movies endpoint of your API
-      var movie = this.props.movie;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          _onClick = _this$props.onClick;
       return _react.default.createElement("div", {
-        onClick: function (_onClick) {
-          function onClick() {
-            return _onClick.apply(this, arguments);
-          }
-
-          onClick.toString = function () {
-            return _onClick.toString();
-          };
-
-          return onClick;
-        }(function () {
-          return onClick(movie);
-        }),
+        onClick: function onClick() {
+          return _onClick(movie);
+        },
         className: "movie-card"
-      }, movie.title);
+      }, movie.Title);
     }
   }]);
 
@@ -27636,6 +27628,8 @@ function (_React$Component) {
         _this2.setState({
           movies: response.data
         });
+
+        e;
       }).catch(function (error) {
         console.log(error);
       });
@@ -27838,7 +27832,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41761" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35523" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

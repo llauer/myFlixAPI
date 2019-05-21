@@ -26,7 +26,7 @@ export class MainView extends React.Component {
         // Assign the result to the state
         this.setState({
           movies: response.data
-        });
+        });e
       })
       .catch(function(error) {
         console.log(error);
