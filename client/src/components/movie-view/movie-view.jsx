@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export class MovieView extends React.Component {
   constructor() {
@@ -31,6 +31,7 @@ export class MovieView extends React.Component {
           <div className="label">Director</div>
           <div className="value">{movie.Director.Name}</div>
         </div>
+        <button onClick={() => onClick()}>Back</button>
       </div>
     );
   }
