@@ -27504,7 +27504,9 @@ function (_React$Component) {
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
-      var movie = this.props.movie;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          _onClick = _this$props.onClick;
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"
@@ -27536,19 +27538,9 @@ function (_React$Component) {
       }, "Director"), _react.default.createElement("div", {
         className: "value"
       }, movie.Director.Name)), _react.default.createElement("button", {
-        onClick: function (_onClick) {
-          function onClick() {
-            return _onClick.apply(this, arguments);
-          }
-
-          onClick.toString = function () {
-            return _onClick.toString();
-          };
-
-          return onClick;
-        }(function () {
-          return onClick();
-        })
+        onClick: function onClick() {
+          return _onClick();
+        }
       }, "Back"));
     }
   }]);
@@ -27628,8 +27620,6 @@ function (_React$Component) {
         _this2.setState({
           movies: response.data
         });
-
-        e;
       }).catch(function (error) {
         console.log(error);
       });
@@ -27639,6 +27629,13 @@ function (_React$Component) {
     value: function onMovieClick(movie) {
       this.setState({
         selectedMovie: movie
+      });
+    }
+  }, {
+    key: "goMainView",
+    value: function goMainView() {
+      this.setState({
+        selectedMovie: null
       });
     }
   }, {
@@ -27656,7 +27653,10 @@ function (_React$Component) {
       return _react.default.createElement("div", {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie
+        movie: selectedMovie,
+        onClick: function onClick(button) {
+          return _this3.goMainView();
+        }
       }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
@@ -27832,7 +27832,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35523" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42537" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
