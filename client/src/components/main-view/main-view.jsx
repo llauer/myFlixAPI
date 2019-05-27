@@ -85,7 +85,6 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view" />;
 
     return (
-<<<<<<< HEAD
       // <div className="main-view">
       //   {selectedMovie ? (
       //     <MovieView movie={selectedMovie} onClick={button => this.goMainView()} />
@@ -110,15 +109,6 @@ export class MainView extends React.Component {
           )}
         </Row>
       </Container>
-=======
-      <div className="main-view">
-        {selectedMovie ? (
-          <MovieView movie={selectedMovie} onClick={() => this.goMainView()} />
-        ) : (
-          movies.map(movie => <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />)
-        )}
-      </div>
->>>>>>> 31484a6783ccb30b1a00c887aa6bfbc68a653b5b
     );
   }
 }
