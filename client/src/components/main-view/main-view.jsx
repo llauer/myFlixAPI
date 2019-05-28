@@ -59,7 +59,7 @@ export class MainView extends React.Component {
       newUser: true
     });
   }
-  UserRegistered() {
+  Registered() {
     this.setState({
       newUser: null
     });
@@ -70,28 +70,22 @@ export class MainView extends React.Component {
 
     if (newUser)
       return (
-        <RegistrationView UserRegistered={() => this.UserRegistered()} OnLoggedIn={user => this.OnLoggedIn(user)} />
+        <RegistrationView Registered={() => this.Registered()} OnLoggedIn={user => this.OnLoggedIn(user)} />
       );
     else
       return (
         <LoginView
           OnLoggedIn={user => this.OnLoggedIn(user)}
           NewUser={() => this.RegisterUser()}
-          UserRegistered={() => this.UserRegistered()}
+          UserRegistered={() => this.Registered()}
         />
-      );
+      )
 
     // Before the movies have been loaded
     if (!movies) return <div className="main-view" />;
 
     return (
-      // <div className="main-view">
-      //   {selectedMovie ? (
-      //     <MovieView movie={selectedMovie} onClick={button => this.goMainView()} />
-      //   ) : (
-      //     movies.map(movie => <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />)
-      //   )}
-      // </div>
+     
       <Container className="main-view" fluid="true">
         <Row>
           {selectedMovie ? (

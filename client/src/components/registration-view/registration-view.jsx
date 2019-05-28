@@ -18,40 +18,42 @@ export function RegistrationView(props) {
   };
 
   return (
-    <Container className="registration-view">
-      <h1>Register</h1>
+    <Container className="registration-view mt-10 mb-3">
+      <h1 className="font-weight-bold text-center">myFlix</h1>
+      <h3>Register Here</h3>
       <Form>
-        <Form.Group controlId="formNewUsername">
+        <Form.Group controlId="regUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
+            autoFocus
             size="sm"
             type="text"
-            placeholder="Your username"
+            placeholder="Desired Username"
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="formNewPassword">
+        <Form.Group controlId="regPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             size="sm"
             type="password"
-            placeholder="Your password"
+            placeholder="Password"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="formNewEmail">
+        <Form.Group controlId="regEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control
             size="sm"
             type="email"
-            placeholder="your@email.com"
+            placeholder="Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="formNewBirthday">
+        <Form.Group controlId="regBirthday">
           <Form.Label>Birthday</Form.Label>
           <Form.Control
             size="sm"
@@ -61,30 +63,24 @@ export function RegistrationView(props) {
             onChange={e => setBirthday(e.target.value)}
           />
         </Form.Group>
-        <Button variant="primary" onClick={SuccessfulRegistration}>
+        <Button className="btn-lg btn-dark btn-block" variant="primary" onClick={SuccessfulRegistration}>
           Register
         </Button>
-        <Form.Group controlId="formNewUser">
-          <Form.Text>
-            Already registered? Click{" "}
-            <Button style={{ padding: 0 }} variant="link" onClick={() => props.UserRegistered()}>
-              {" "}
-              here{" "}
-            </Button>{" "}
-            to login
-          </Form.Text>
-        </Form.Group>
+        <Button variant="link" onClick={() => props.Registered()}>
+          Have a logon?
+          </Button>
+        
       </Form>
     </Container>
   );
 }
 
-RegistrationView.propTypes = {
-  username: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  birthday: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  UserRegistered: PropTypes.func.isRequired,
-  OnLoggedIn: PropTypes.func.isRequired
-};
+// RegistrationView.propTypes = {
+//   username: PropTypes.string.isRequired,
+//   password: PropTypes.string.isRequired,
+//   email: PropTypes.string.isRequired,
+//   birthday: PropTypes.string.isRequired,
+//   onClick: PropTypes.func.isRequired,
+//   Registered: PropTypes.func.isRequired,
+//   onLoggedIn: PropTypes.func.isRequired
+// };

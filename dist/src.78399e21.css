@@ -1,17 +1,10 @@
-.btn-link {
-  font-size: 100%;
-}
-
-.form-text {
-  vertical-align: middle;
-}
-
-.login-view {
-  background-color: white;
-  width: 18rem;
-  margin-top: 1rem;
-  padding: 1rem;
-  box-shadow: 0 2px 10px 0 rgba(134, 141, 155, 0.2);
+.login-form {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+  box-shadow: 0 0px 20px 0 rgba(15, 15, 15, 0.4);
 }
 .movie-view {
   background-color: white;
@@ -20,11 +13,12 @@
   margin-top: 1rem;
 }
 .registration-view {
-  background-color: white;
-  width: 18rem;
-  margin-top: 1rem;
-  padding: 1rem;
-  box-shadow: 0 2px 10px 0 rgba(134, 141, 155, 0.2);
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+  box-shadow: 0 0px 20px 0 rgba(15, 15, 15, 0.4);
 }
 .main-view {
   margin-left: auto;
@@ -33,10 +27,12 @@
 }
 
 .card {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  min-height: 34rem;
-  box-shadow: 0 2px 10px 0 rgba(134, 141, 155, 0.2);
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+  box-shadow: 0 0px 20px 0 rgba(15, 15, 15, 0.4);
 }
 
 .card:hover {
