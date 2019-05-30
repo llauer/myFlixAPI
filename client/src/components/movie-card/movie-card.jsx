@@ -11,7 +11,7 @@ export class MovieCard extends React.Component {
     const { movie, onClick } = this.props;
 
     return (
-      <Card style={{ width: "16rem" }}>
+      <Card style={{ width: "16rem" }} key={movie.Title}>
         <Card.Img variant="top" src={movie.ImagePath} />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>

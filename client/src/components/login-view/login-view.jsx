@@ -14,9 +14,9 @@ export function LoginView(props) {
     console.log(username, password);
     /* Send a request to the server for authentication */
     /* then call props.onLoggedIn(username) */
-    // props.onLoggedIn(username);
+    props.onLoggedIn(username);
   };
-
+console.log(props)
   return (
     <Container className="login-form">
       <h1 className="font-weight-bold text-center">myFlix</h1>
@@ -45,13 +45,12 @@ export function LoginView(props) {
             onChange={e => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button className="btn-lg btn-dark btn-block" variant="primary" onClick={handleSubmit}>
+        <Button className="btn-lg btn-dark btn-block" type="submit" variant="primary" onClick={handleSubmit}>
           Log In
         </Button>
         
-            
-          <Button variant="link" onClick={() => props.NewUser()}>
-          New here?
+        <Button variant="link" onClick={props.NewUser}>
+          New Here?
           </Button>
             
   

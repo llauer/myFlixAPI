@@ -18,7 +18,7 @@ export class MainView extends React.Component {
       movies: null,
       selectedMovie: null,
       user: null,
-      newUser: null
+      newuser: null
     };
   }
 
@@ -42,12 +42,6 @@ export class MainView extends React.Component {
     });
   }
 
-  goMainView() {
-    this.setState({
-      selectedMovie: null
-    });
-  }
-
   onLoggedIn(user) {
     this.setState({
       user
@@ -59,50 +53,31 @@ export class MainView extends React.Component {
       newUser: true
     });
   }
-  Registered() {
-    this.setState({
-      newUser: null
-    });
-  }
+
 
   render() {
     const { movies, selectedMovie, user, newUser } = this.state;
 
-    if (newUser)
+    if (!user && !newUser) {
+      
+      return <LoginView onLoggedIn={user => this.onLoggedIn(user)} NewUser={() => this.RegisterUser()} />
+    } else if (!user && newUser) {
+      
+      return <RegistrationView />
+    } else if (user) {
+      
       return (
-        <RegistrationView Registered={() => this.Registered()} OnLoggedIn={user => this.OnLoggedIn(user)} />
+        <div className="main-view">
+          {selectedMovie
+            ? <MovieView movie={selectedMovie} />
+            : movies.map(movie => (
+              <MovieCard key={movie.id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
+            ))
+          }
+        </div>
       );
-    else
-      return (
-        <LoginView
-          OnLoggedIn={user => this.OnLoggedIn(user)}
-          NewUser={() => this.RegisterUser()}
-          UserRegistered={() => this.Registered()}
-        />
-      )
-
-    // Before the movies have been loaded
-    if (!movies) return <div className="main-view" />;
-
-    return (
-     
-      <Container className="main-view" fluid="true">
-        <Row>
-          {selectedMovie ? (
-            <Col>
-              <MovieView returnCallback={() => this.ResetMainView()} movie={selectedMovie} />
-            </Col>
-          ) : (
-            movies.map(movie => {
-              return (
-                <Col xl={3} sm={6} md={4} xs={12}>
-                  <MovieCard key={movie._id} movie={movie} onClick={movie => this.OnMovieClick(movie)} />
-                </Col>
-              );
-            })
-          )}
-        </Row>
-      </Container>
-    );
+    }
+    
   }
 }
+

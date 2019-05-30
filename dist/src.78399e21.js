@@ -29697,9 +29697,11 @@ function LoginView(props) {
     /* Send a request to the server for authentication */
 
     /* then call props.onLoggedIn(username) */
-    // props.onLoggedIn(username);
+
+    props.onLoggedIn(username);
   };
 
+  console.log(props);
   return _react.default.createElement(_Container.default, {
     className: "login-form"
   }, _react.default.createElement("h1", {
@@ -29729,14 +29731,13 @@ function LoginView(props) {
     }
   })), _react.default.createElement(_Button.default, {
     className: "btn-lg btn-dark btn-block",
+    type: "submit",
     variant: "primary",
     onClick: handleSubmit
   }, "Log In"), _react.default.createElement(_Button.default, {
     variant: "link",
-    onClick: function onClick() {
-      return props.NewUser();
-    }
-  }, "New here?")));
+    onClick: props.NewUser
+  }, "New Here?")));
 }
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Form":"../../node_modules/react-bootstrap/Form.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","./login-view.scss":"components/login-view/login-view.scss"}],"../../node_modules/react-bootstrap/utils/divWithClassName.js":[function(require,module,exports) {
 "use strict";
@@ -29960,7 +29961,8 @@ function (_React$Component) {
       return _react.default.createElement(_Card.default, {
         style: {
           width: "16rem"
-        }
+        },
+        key: movie.Title
       }, _react.default.createElement(_Card.default.Img, {
         variant: "top",
         src: movie.ImagePath
@@ -30353,7 +30355,7 @@ function (_React$Component) {
       movies: null,
       selectedMovie: null,
       user: null,
-      newUser: null
+      newuser: null
     };
     return _this;
   }
@@ -30380,13 +30382,6 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "goMainView",
-    value: function goMainView() {
-      this.setState({
-        selectedMovie: null
-      });
-    }
-  }, {
     key: "onLoggedIn",
     value: function onLoggedIn(user) {
       this.setState({
@@ -30401,13 +30396,6 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "Registered",
-    value: function Registered() {
-      this.setState({
-        newUser: null
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -30417,55 +30405,106 @@ function (_React$Component) {
           selectedMovie = _this$state.selectedMovie,
           user = _this$state.user,
           newUser = _this$state.newUser;
-      if (newUser) return _react.default.createElement(_registrationView.RegistrationView, {
-        Registered: function Registered() {
-          return _this3.Registered();
-        },
-        OnLoggedIn: function OnLoggedIn(user) {
-          return _this3.OnLoggedIn(user);
-        }
-      });else return _react.default.createElement(_loginView.LoginView, {
-        OnLoggedIn: function OnLoggedIn(user) {
-          return _this3.OnLoggedIn(user);
-        },
-        NewUser: function NewUser() {
-          return _this3.RegisterUser();
-        },
-        UserRegistered: function UserRegistered() {
-          return _this3.Registered();
-        }
-      }); // Before the movies have been loaded
 
-      if (!movies) return _react.default.createElement("div", {
-        className: "main-view"
-      });
-      return _react.default.createElement(_Container.default, {
-        className: "main-view",
-        fluid: "true"
-      }, _react.default.createElement(_Row.default, null, selectedMovie ? _react.default.createElement(_Col.default, null, _react.default.createElement(_movieView.MovieView, {
-        returnCallback: function returnCallback() {
-          return _this3.ResetMainView();
-        },
-        movie: selectedMovie
-      })) : movies.map(function (movie) {
-        return _react.default.createElement(_Col.default, {
-          xl: 3,
-          sm: 6,
-          md: 4,
-          xs: 12
-        }, _react.default.createElement(_movieCard.MovieCard, {
-          key: movie._id,
-          movie: movie,
-          onClick: function onClick(movie) {
-            return _this3.OnMovieClick(movie);
+      if (!user && !newUser) {
+        return _react.default.createElement(_loginView.LoginView, {
+          onLoggedIn: function onLoggedIn(user) {
+            return _this3.onLoggedIn(user);
+          },
+          NewUser: function NewUser() {
+            return _this3.RegisterUser();
           }
+        });
+      } else if (!user && newUser) {
+        return _react.default.createElement(_registrationView.RegistrationView, null);
+      } else if (user) {
+        return _react.default.createElement("div", {
+          className: "main-view"
+        }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
+          movie: selectedMovie
+        }) : movies.map(function (movie) {
+          return _react.default.createElement(_movieCard.MovieCard, {
+            key: movie.id,
+            movie: movie,
+            onClick: function onClick(movie) {
+              return _this3.onMovieClick(movie);
+            }
+          });
         }));
-      })));
+      } // Before the movies have been loaded
+      // if (!movies) return <div className="main-view" />;
+      // if (newUser) return <RegistrationView Registered={() => this.Registered} onLoggedIn={user => this.onLoggedIn} />
+      // if (newUser)
+      //   // return (
+      //     <RegistrationView Registered={() => this.Registered()} OnLoggedIn={user => this.OnLoggedIn(user)} />
+
     }
   }]);
 
   return MainView;
-}(_react.default.Component);
+}(_react.default.Component); //   onMovieClick(movie) {
+//     this.setState({
+//       selectedMovie: movie
+//     });
+//   }
+//   goMainView() {
+//     this.setState({
+//       selectedMovie: null
+//     });
+//   }
+//   onLoggedIn(username) {
+//     this.setState({
+//       user
+//     });
+//   }
+//   RegisterUser() {
+//     this.setState({
+//       newUser: true
+//     });
+//   }
+//   Registered() {
+//     this.setState({
+//       newUser: null
+//     });
+//   }
+//   render() {
+//     const { movies, selectedMovie, user, newUser } = this.state;
+//     if (newUser)
+//       return (
+//         <RegistrationView Registered={() => this.Registered()} OnLoggedIn={user => this.OnLoggedIn(user)} />
+//       );
+//     else
+//       return (
+//         <LoginView
+//           OnLoggedIn={user => this.OnLoggedIn(user)}
+//           NewUser={() => this.RegisterUser()}
+//           UserRegistered={() => this.Registered()}
+//         />
+//       )
+//     // Before the movies have been loaded
+//     if (!movies) return <div className="main-view" />;
+//     return (
+//       <Container className="main-view" fluid="true">
+//         <Row>
+//           {selectedMovie ? (
+//             <Col>
+//               <MovieView returnCallback={() => this.ResetMainView()} movie={selectedMovie} />
+//             </Col>
+//           ) : (
+//             movies.map(movie => {
+//               return (
+//                 <Col xl={3} sm={6} md={4} xs={12}>
+//                   <MovieCard key={movie._id} movie={movie} onClick={movie => this.OnMovieClick(movie)} />
+//                 </Col>
+//               );
+//             })
+//           )}
+//         </Row>
+//       </Container>
+//     );
+//   }
+// }
+
 
 exports.MainView = MainView;
 },{"react":"../../node_modules/react/index.js","axios":"../../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","./main-view.scss":"components/main-view/main-view.scss"}],"index.scss":[function(require,module,exports) {
@@ -30560,7 +30599,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60964" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57224" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
