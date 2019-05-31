@@ -63,10 +63,10 @@ export function RegistrationView(props) {
             onChange={e => setBirthday(e.target.value)}
           />
         </Form.Group>
-        <Button className="btn-lg btn-dark btn-block" variant="primary" onClick={SuccessfulRegistration}>
+        <Button className="btn-lg btn-dark btn-block" type="submit" variant="primary" onClick={SuccessfulRegistration}>
           Register
         </Button>
-        <Button variant="link" onClick={() => props.Registered()}>
+        <Button variant="link" onClick={props.allReadyUser}>
           Have a logon?
           </Button>
         

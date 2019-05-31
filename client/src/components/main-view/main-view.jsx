@@ -18,7 +18,7 @@ export class MainView extends React.Component {
       movies: null,
       selectedMovie: null,
       user: null,
-      newuser: null
+      newuser: false
     };
   }
 
@@ -49,8 +49,10 @@ export class MainView extends React.Component {
   }
 
   RegisterUser() {
-    this.setState({
-      newUser: true
+    this.setState((state, props) => {
+      return {
+        newUser: !state.newUser
+      }
     });
   }
 
@@ -63,7 +65,7 @@ export class MainView extends React.Component {
       return <LoginView onLoggedIn={user => this.onLoggedIn(user)} NewUser={() => this.RegisterUser()} />
     } else if (!user && newUser) {
       
-      return <RegistrationView />
+      return <RegistrationView allReadyUser={() => this.RegisterUser()}/>
     } else if (user) {
       
       return (

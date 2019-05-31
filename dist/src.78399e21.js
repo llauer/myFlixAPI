@@ -30215,23 +30215,14 @@ function RegistrationView(props) {
     }
   })), _react.default.createElement(_Button.default, {
     className: "btn-lg btn-dark btn-block",
+    type: "submit",
     variant: "primary",
     onClick: SuccessfulRegistration
   }, "Register"), _react.default.createElement(_Button.default, {
     variant: "link",
-    onClick: function onClick() {
-      return props.Registered();
-    }
+    onClick: props.allReadyUser
   }, "Have a logon?")));
-} // RegistrationView.propTypes = {
-//   username: PropTypes.string.isRequired,
-//   password: PropTypes.string.isRequired,
-//   email: PropTypes.string.isRequired,
-//   birthday: PropTypes.string.isRequired,
-//   onClick: PropTypes.func.isRequired,
-//   Registered: PropTypes.func.isRequired,
-//   onLoggedIn: PropTypes.func.isRequired
-// };
+}
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Form":"../../node_modules/react-bootstrap/Form.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"../../node_modules/react-bootstrap/Row.js":[function(require,module,exports) {
 "use strict";
 
@@ -30355,7 +30346,7 @@ function (_React$Component) {
       movies: null,
       selectedMovie: null,
       user: null,
-      newuser: null
+      newuser: false
     };
     return _this;
   }
@@ -30391,8 +30382,10 @@ function (_React$Component) {
   }, {
     key: "RegisterUser",
     value: function RegisterUser() {
-      this.setState({
-        newUser: true
+      this.setState(function (state, props) {
+        return {
+          newUser: !state.newUser
+        };
       });
     }
   }, {
@@ -30416,7 +30409,11 @@ function (_React$Component) {
           }
         });
       } else if (!user && newUser) {
-        return _react.default.createElement(_registrationView.RegistrationView, null);
+        return _react.default.createElement(_registrationView.RegistrationView, {
+          allReadyUser: function allReadyUser() {
+            return _this3.RegisterUser();
+          }
+        });
       } else if (user) {
         return _react.default.createElement("div", {
           className: "main-view"
@@ -30431,80 +30428,12 @@ function (_React$Component) {
             }
           });
         }));
-      } // Before the movies have been loaded
-      // if (!movies) return <div className="main-view" />;
-      // if (newUser) return <RegistrationView Registered={() => this.Registered} onLoggedIn={user => this.onLoggedIn} />
-      // if (newUser)
-      //   // return (
-      //     <RegistrationView Registered={() => this.Registered()} OnLoggedIn={user => this.OnLoggedIn(user)} />
-
+      }
     }
   }]);
 
   return MainView;
-}(_react.default.Component); //   onMovieClick(movie) {
-//     this.setState({
-//       selectedMovie: movie
-//     });
-//   }
-//   goMainView() {
-//     this.setState({
-//       selectedMovie: null
-//     });
-//   }
-//   onLoggedIn(username) {
-//     this.setState({
-//       user
-//     });
-//   }
-//   RegisterUser() {
-//     this.setState({
-//       newUser: true
-//     });
-//   }
-//   Registered() {
-//     this.setState({
-//       newUser: null
-//     });
-//   }
-//   render() {
-//     const { movies, selectedMovie, user, newUser } = this.state;
-//     if (newUser)
-//       return (
-//         <RegistrationView Registered={() => this.Registered()} OnLoggedIn={user => this.OnLoggedIn(user)} />
-//       );
-//     else
-//       return (
-//         <LoginView
-//           OnLoggedIn={user => this.OnLoggedIn(user)}
-//           NewUser={() => this.RegisterUser()}
-//           UserRegistered={() => this.Registered()}
-//         />
-//       )
-//     // Before the movies have been loaded
-//     if (!movies) return <div className="main-view" />;
-//     return (
-//       <Container className="main-view" fluid="true">
-//         <Row>
-//           {selectedMovie ? (
-//             <Col>
-//               <MovieView returnCallback={() => this.ResetMainView()} movie={selectedMovie} />
-//             </Col>
-//           ) : (
-//             movies.map(movie => {
-//               return (
-//                 <Col xl={3} sm={6} md={4} xs={12}>
-//                   <MovieCard key={movie._id} movie={movie} onClick={movie => this.OnMovieClick(movie)} />
-//                 </Col>
-//               );
-//             })
-//           )}
-//         </Row>
-//       </Container>
-//     );
-//   }
-// }
-
+}(_react.default.Component);
 
 exports.MainView = MainView;
 },{"react":"../../node_modules/react/index.js","axios":"../../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","react-bootstrap/Row":"../../node_modules/react-bootstrap/Row.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","./main-view.scss":"components/main-view/main-view.scss"}],"index.scss":[function(require,module,exports) {
@@ -30599,7 +30528,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57224" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62899" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
