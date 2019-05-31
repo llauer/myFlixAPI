@@ -35,8 +35,10 @@ export class MovieView extends React.Component {
           <div className="label">Director</div>
           <div className="value">{movie.Director.Name}</div>
         </div>
-        <button onClick={() => onClick()}>Back</button>
+        <button onClick={() => onClick()}>BACK</button>
+
       </div>
+      
     );
   }
 }
@@ -52,5 +54,5 @@ MovieView.propTypes = {
       Name: PropTypes.string
     })
   }).isRequired,
-  onClick: PropTypes.func.isRequired
+  // onClick: PropTypes.func.isRequired
 };

@@ -16,7 +16,7 @@ export function LoginView(props) {
     /* then call props.onLoggedIn(username) */
     props.onLoggedIn(username);
   };
-console.log(props)
+// console.log(props)
   return (
     <Container className="login-form">
       <h1 className="font-weight-bold text-center">myFlix</h1>

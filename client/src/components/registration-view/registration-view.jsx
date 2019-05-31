@@ -58,7 +58,7 @@ export function RegistrationView(props) {
           <Form.Control
             size="sm"
             type="date"
-            placeholder="MM/DD/YYYY"
+            placeholder="MM-DD-YYYY"
             value={birthday}
             onChange={e => setBirthday(e.target.value)}
           />

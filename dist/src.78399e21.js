@@ -29699,9 +29699,9 @@ function LoginView(props) {
     /* then call props.onLoggedIn(username) */
 
     props.onLoggedIn(username);
-  };
+  }; // console.log(props)
 
-  console.log(props);
+
   return _react.default.createElement(_Container.default, {
     className: "login-form"
   }, _react.default.createElement("h1", {
@@ -29902,7 +29902,12 @@ Card.ImgOverlay = (0, _createWithBsPrefix.default)('card-img-overlay');
 var _default = Card;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireWildcard":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/interopRequireWildcard.js","@babel/runtime/helpers/interopRequireDefault":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutPropertiesLoose":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js","classnames":"../../node_modules/classnames/index.js","react":"../../node_modules/react/index.js","./ThemeProvider":"../../node_modules/react-bootstrap/ThemeProvider.js","./utils/createWithBsPrefix":"../../node_modules/react-bootstrap/utils/createWithBsPrefix.js","./utils/divWithClassName":"../../node_modules/react-bootstrap/utils/divWithClassName.js","./CardContext":"../../node_modules/react-bootstrap/CardContext.js","./CardImg":"../../node_modules/react-bootstrap/CardImg.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireWildcard":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/interopRequireWildcard.js","@babel/runtime/helpers/interopRequireDefault":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutPropertiesLoose":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js","classnames":"../../node_modules/classnames/index.js","react":"../../node_modules/react/index.js","./ThemeProvider":"../../node_modules/react-bootstrap/ThemeProvider.js","./utils/createWithBsPrefix":"../../node_modules/react-bootstrap/utils/createWithBsPrefix.js","./utils/divWithClassName":"../../node_modules/react-bootstrap/utils/divWithClassName.js","./CardContext":"../../node_modules/react-bootstrap/CardContext.js","./CardImg":"../../node_modules/react-bootstrap/CardImg.js"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../node_modules/parcel/src/builtins/css-loader.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29917,6 +29922,8 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
+
+require("./movie-card.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29960,7 +29967,7 @@ function (_React$Component) {
           _onClick = _this$props.onClick;
       return _react.default.createElement(_Card.default, {
         style: {
-          width: "16rem"
+          width: '18rem'
         },
         key: movie.Title
       }, _react.default.createElement(_Card.default.Img, {
@@ -29976,16 +29983,16 @@ function (_React$Component) {
   }]);
 
   return MovieCard;
-}(_react.default.Component);
+}(_react.default.Component); // MovieCard.propTypes = {
+//   movie: PropTypes.shape({
+//     title: PropTypes.string
+//   }).isRequired,
+//   onClick: PropTypes.func.isRequired
+// };
+
 
 exports.MovieCard = MovieCard;
-MovieCard.propTypes = {
-  movie: _propTypes.default.shape({
-    title: _propTypes.default.string
-  }).isRequired,
-  onClick: _propTypes.default.func.isRequired
-};
-},{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -30083,7 +30090,7 @@ function (_React$Component) {
         onClick: function onClick() {
           return _onClick();
         }
-      }, "Back"));
+      }, "BACK"));
     }
   }]);
 
@@ -30101,8 +30108,8 @@ MovieView.propTypes = {
     Director: _propTypes.default.shape({
       Name: _propTypes.default.string
     })
-  }).isRequired,
-  onClick: _propTypes.default.func.isRequired
+  }).isRequired // onClick: PropTypes.func.isRequired
+
 };
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","../main-view/main-view":"components/main-view/main-view.jsx","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -30208,7 +30215,7 @@ function RegistrationView(props) {
   }, _react.default.createElement(_Form.default.Label, null, "Birthday"), _react.default.createElement(_Form.default.Control, {
     size: "sm",
     type: "date",
-    placeholder: "MM/DD/YYYY",
+    placeholder: "MM-DD-YYYY",
     value: birthday,
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
@@ -30366,6 +30373,13 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "goMainView",
+    value: function goMainView() {
+      this.setState({
+        selectedMovie: null
+      });
+    }
+  }, {
     key: "onMovieClick",
     value: function onMovieClick(movie) {
       this.setState({
@@ -30418,15 +30432,20 @@ function (_React$Component) {
         return _react.default.createElement("div", {
           className: "main-view"
         }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-          movie: selectedMovie
+          movie: selectedMovie,
+          onClick: function onClick() {
+            return _this3.goMainView();
+          }
         }) : movies.map(function (movie) {
-          return _react.default.createElement(_movieCard.MovieCard, {
-            key: movie.id,
+          return _react.default.createElement(_Col.default, {
+            className: "col-xs-12 well"
+          }, _react.default.createElement(_movieCard.MovieCard, {
+            key: movie._id,
             movie: movie,
             onClick: function onClick(movie) {
               return _this3.onMovieClick(movie);
             }
-          });
+          }));
         }));
       }
     }
@@ -30528,7 +30547,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62899" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58007" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
