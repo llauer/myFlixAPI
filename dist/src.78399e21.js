@@ -29923,6 +29923,8 @@ var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
+var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
+
 require("./movie-card.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -29965,20 +29967,18 @@ function (_React$Component) {
       var _this$props = this.props,
           movie = _this$props.movie,
           _onClick = _this$props.onClick;
-      return _react.default.createElement(_Card.default, {
-        style: {
-          width: '18rem'
-        },
+      return _react.default.createElement(_Col.default, {
         key: movie.Title
       }, _react.default.createElement(_Card.default.Img, {
-        variant: "top",
+        style: {
+          width: "250px"
+        },
         src: movie.ImagePath
       }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, movie.Title), _react.default.createElement(_Card.default.Text, null, movie.Description), _react.default.createElement(_Button.default, {
         onClick: function onClick() {
           return _onClick(movie);
-        },
-        variant: "link"
-      }, "Open")));
+        }
+      }, "Info")));
     }
   }]);
 
@@ -29992,12 +29992,72 @@ function (_React$Component) {
 
 
 exports.MovieCard = MovieCard;
-},{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../node_modules/parcel/src/builtins/css-loader.js"}],"components/movie-view/movie-view.jsx":[function(require,module,exports) {
+},{"_css_loader":"../../node_modules/parcel/src/builtins/css-loader.js"}],"../../node_modules/react-bootstrap/Jumbotron.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+var defaultProps = {
+  as: 'div',
+  fluid: false
+};
+
+var Jumbotron =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inheritsLoose2.default)(Jumbotron, _React$Component);
+
+  function Jumbotron() {
+    return _React$Component.apply(this, arguments) || this;
+  }
+
+  var _proto = Jumbotron.prototype;
+
+  _proto.render = function render() {
+    var _classes;
+
+    var _this$props = this.props,
+        Component = _this$props.as,
+        className = _this$props.className,
+        fluid = _this$props.fluid,
+        bsPrefix = _this$props.bsPrefix,
+        props = (0, _objectWithoutPropertiesLoose2.default)(_this$props, ["as", "className", "fluid", "bsPrefix"]);
+    var classes = (_classes = {}, _classes[bsPrefix] = true, _classes[bsPrefix + "-fluid"] = fluid, _classes);
+    return _react.default.createElement(Component, (0, _extends2.default)({}, props, {
+      className: (0, _classnames.default)(className, classes)
+    }));
+  };
+
+  return Jumbotron;
+}(_react.default.Component);
+
+Jumbotron.defaultProps = defaultProps;
+
+var _default = (0, _ThemeProvider.createBootstrapComponent)(Jumbotron, 'jumbotron');
+
+exports.default = _default;
+module.exports = exports["default"];
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutPropertiesLoose":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js","@babel/runtime/helpers/inheritsLoose":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/inheritsLoose.js","react":"../../node_modules/react/index.js","classnames":"../../node_modules/classnames/index.js","./ThemeProvider":"../../node_modules/react-bootstrap/ThemeProvider.js"}],"components/movie-view/movie-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30014,6 +30074,10 @@ var _mainView = require("../main-view/main-view");
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 require("./movie-view.scss");
+
+var _Jumbotron = _interopRequireDefault(require("react-bootstrap/Jumbotron"));
+
+var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30055,42 +30119,47 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           movie = _this$props.movie,
-          _onClick = _this$props.onClick;
+          goBack = _this$props.goBack;
       if (!movie) return null;
-      return _react.default.createElement("div", {
-        className: "movie-view"
-      }, _react.default.createElement("div", {
+      return _react.default.createElement(_Col.default, {
+        className: "text-center"
+      }, _react.default.createElement(_Jumbotron.default, null, _react.default.createElement("div", {
         className: "movie-title"
-      }, _react.default.createElement("div", {
-        className: "label"
-      }, "Title"), _react.default.createElement("div", {
-        className: "value"
-      }, movie.Title)), _react.default.createElement("div", {
-        className: "movie-description"
-      }, _react.default.createElement("div", {
+      }, _react.default.createElement("h1", {
+        className: "display-3"
+      }, movie.Title)), _react.default.createElement("hr", {
+        className: "my-2"
+      }), _react.default.createElement("img", {
+        className: "rounded mb-0 movie-poster",
+        src: movie.ImagePath
+      }), _react.default.createElement("div", {
+        className: "lead movie-description"
+      }, _react.default.createElement("h3", {
         className: "label"
       }, "Description"), _react.default.createElement("div", {
         className: "value"
-      }, movie.Description)), _react.default.createElement("img", {
-        className: "movie-poster",
-        src: movie.ImagePath
+      }, movie.Description)), _react.default.createElement("hr", {
+        className: "my-2"
       }), _react.default.createElement("div", {
         className: "movie-genre"
-      }, _react.default.createElement("div", {
+      }, _react.default.createElement("h3", {
         className: "label"
       }, "Genre"), _react.default.createElement("div", {
         className: "value"
-      }, movie.Genre.Name)), _react.default.createElement("div", {
+      }, movie.Genre.Name)), _react.default.createElement("hr", {
+        className: "my-2"
+      }), _react.default.createElement("div", {
         className: "movie-director"
-      }, _react.default.createElement("div", {
+      }, _react.default.createElement("h3", {
         className: "label"
       }, "Director"), _react.default.createElement("div", {
         className: "value"
-      }, movie.Director.Name)), _react.default.createElement("button", {
+      }, movie.Director.Name)), _react.default.createElement(_Button.default, {
+        className: "movieBack",
         onClick: function onClick() {
-          return _onClick();
+          return goBack();
         }
-      }, "BACK"));
+      }, "Back")));
     }
   }]);
 
@@ -30111,7 +30180,7 @@ MovieView.propTypes = {
   }).isRequired // onClick: PropTypes.func.isRequired
 
 };
-},{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","../main-view/main-view":"components/main-view/main-view.jsx","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","../main-view/main-view":"components/main-view/main-view.jsx","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","./movie-view.scss":"components/movie-view/movie-view.scss","react-bootstrap/Jumbotron":"../../node_modules/react-bootstrap/Jumbotron.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -30429,23 +30498,20 @@ function (_React$Component) {
           }
         });
       } else if (user) {
-        return _react.default.createElement("div", {
-          className: "main-view"
+        return _react.default.createElement(_Row.default, {
+          className: "mx-auto main-view"
         }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
           movie: selectedMovie,
-          onClick: function onClick() {
+          goBack: function goBack() {
             return _this3.goMainView();
           }
         }) : movies.map(function (movie) {
-          return _react.default.createElement(_Col.default, {
-            className: "col-xs-12 well"
-          }, _react.default.createElement(_movieCard.MovieCard, {
-            key: movie._id,
+          return _react.default.createElement(_movieCard.MovieCard, {
             movie: movie,
             onClick: function onClick(movie) {
               return _this3.onMovieClick(movie);
             }
-          }));
+          });
         }));
       }
     }
@@ -30547,7 +30613,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58007" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52380" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

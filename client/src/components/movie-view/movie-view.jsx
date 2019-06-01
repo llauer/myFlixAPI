@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { MainView } from "../main-view/main-view";
 import Button from "react-bootstrap/Button";
 import "./movie-view.scss";
-
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Col from "react-bootstrap/Col";
 export class MovieView extends React.Component {
   constructor(props) {
     super(props);
@@ -12,32 +13,37 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie, onClick } = this.props;
+    const { movie, goBack } = this.props;
 
     if (!movie) return null;
 
     return (
-      <div className="movie-view">
+      <Col className="text-center">
+      <Jumbotron>
         <div className="movie-title">
-          <div className="label">Title</div>
-          <div className="value">{movie.Title}</div>
+          {/* <div className="label">Title</div> */}
+          <h1 className="display-3">{movie.Title}</h1>
         </div>
-        <div className="movie-description">
-          <div className="label">Description</div>
+        <hr className="my-2" />
+        <img className="rounded mb-0 movie-poster" src={movie.ImagePath} />
+        <div className="lead movie-description">
+          <h3 className="label">Description</h3>
           <div className="value">{movie.Description}</div>
         </div>
-        <img className="movie-poster" src={movie.ImagePath} />
+        <hr className="my-2" />
         <div className="movie-genre">
-          <div className="label">Genre</div>
+          <h3 className="label">Genre</h3>
           <div className="value">{movie.Genre.Name}</div>
         </div>
+        <hr className="my-2" />
         <div className="movie-director">
-          <div className="label">Director</div>
+          <h3 className="label">Director</h3>
           <div className="value">{movie.Director.Name}</div>
         </div>
-        <button onClick={() => onClick()}>BACK</button>
+        <Button className="movieBack" onClick={() => goBack()}>Back</Button>
 
-      </div>
+      </Jumbotron>
+      </Col>
       
     );
   }
