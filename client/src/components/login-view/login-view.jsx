@@ -49,7 +49,7 @@ export function LoginView(props) {
           Log In
         </Button>
         
-        <Button variant="link" onClick={props.NewUser}>
+        <Button variant="link" onClick={props.onNewHereLinkClicked}>
           New Here?
           </Button>
             

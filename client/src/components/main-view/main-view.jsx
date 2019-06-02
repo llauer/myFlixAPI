@@ -18,7 +18,7 @@ export class MainView extends React.Component {
       movies: null,
       selectedMovie: null,
       user: null,
-      newuser: false
+      newUser: false
     };
   }
 
@@ -54,7 +54,7 @@ export class MainView extends React.Component {
     });
   }
 
-  RegisterUser() {
+  toggleNewUserState() {
     this.setState((state, props) => {
       return {
         newUser: !state.newUser
@@ -68,10 +68,10 @@ export class MainView extends React.Component {
 
     if (!user && !newUser) {
       
-      return <LoginView onLoggedIn={user => this.onLoggedIn(user)} NewUser={() => this.RegisterUser()} />
+      return <LoginView onLoggedIn={user => this.onLoggedIn(user)} onNewHereLinkClicked={() => this.toggleNewUserState()} />
     } else if (!user && newUser) {
       
-      return <RegistrationView allReadyUser={() => this.RegisterUser()}/>
+      return <RegistrationView allReadyUser={() => this.toggleNewUserState()} onUserRegistered={user => this.onLoggedIn(user)}/>
     } else if (user) {
       
       return (

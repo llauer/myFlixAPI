@@ -13,8 +13,7 @@ export function RegistrationView(props) {
 
   const SuccessfulRegistration = e => {
     e.preventDefault();
-    props.UserRegistered();
-    props.OnLoggedIn(username);
+    props.onUserRegistered(username);
   };
 
   return (

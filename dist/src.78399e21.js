@@ -29736,7 +29736,7 @@ function LoginView(props) {
     onClick: handleSubmit
   }, "Log In"), _react.default.createElement(_Button.default, {
     variant: "link",
-    onClick: props.NewUser
+    onClick: props.onNewHereLinkClicked
   }, "New Here?")));
 }
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Form":"../../node_modules/react-bootstrap/Form.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","./login-view.scss":"components/login-view/login-view.scss"}],"../../node_modules/react-bootstrap/utils/divWithClassName.js":[function(require,module,exports) {
@@ -30240,8 +30240,7 @@ function RegistrationView(props) {
 
   var SuccessfulRegistration = function SuccessfulRegistration(e) {
     e.preventDefault();
-    props.UserRegistered();
-    props.OnLoggedIn(username);
+    props.onUserRegistered(username);
   };
 
   return _react.default.createElement(_Container.default, {
@@ -30422,7 +30421,7 @@ function (_React$Component) {
       movies: null,
       selectedMovie: null,
       user: null,
-      newuser: false
+      newUser: false
     };
     return _this;
   }
@@ -30463,8 +30462,8 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "RegisterUser",
-    value: function RegisterUser() {
+    key: "toggleNewUserState",
+    value: function toggleNewUserState() {
       this.setState(function (state, props) {
         return {
           newUser: !state.newUser
@@ -30487,14 +30486,17 @@ function (_React$Component) {
           onLoggedIn: function onLoggedIn(user) {
             return _this3.onLoggedIn(user);
           },
-          NewUser: function NewUser() {
-            return _this3.RegisterUser();
+          onNewHereLinkClicked: function onNewHereLinkClicked() {
+            return _this3.toggleNewUserState();
           }
         });
       } else if (!user && newUser) {
         return _react.default.createElement(_registrationView.RegistrationView, {
           allReadyUser: function allReadyUser() {
-            return _this3.RegisterUser();
+            return _this3.toggleNewUserState();
+          },
+          onUserRegistered: function onUserRegistered(user) {
+            return _this3.onLoggedIn(user);
           }
         });
       } else if (user) {
@@ -30613,7 +30615,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52380" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57688" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
