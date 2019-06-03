@@ -53,12 +53,12 @@ export function LoginView(props) {
           New Here?
           </Button>
             
-  
       </Form>
     </Container>
   );
 }
 
 LoginView.propTypes = {
+  onNewHereLinkClicked: PropTypes.func.isRequired,
   onLoggedIn: PropTypes.func.isRequired
 };

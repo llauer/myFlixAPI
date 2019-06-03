@@ -6,9 +6,7 @@ import Col from 'react-bootstrap/Col';
 import "./movie-card.scss";
 export class MovieCard extends React.Component {
   render() {
-    // This is given to the <MovieCard/> component by the outer world
-    // which, in this case, is `MainView`, as `MainView` is what’s
-    // connected to your database via the movies endpoint of your API
+
     const { movie, onClick } = this.props;
 
     return (
@@ -28,7 +26,9 @@ export class MovieCard extends React.Component {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    title: PropTypes.string
-  }).isRequired,
-  onClick: PropTypes.func.isRequired
+    Title: PropTypes.string,
+    ImagePath: PropTypes.string,
+    Description: PropTypes.string
+  }).isRequired
 };
+

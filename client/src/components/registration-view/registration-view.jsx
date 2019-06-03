@@ -65,7 +65,7 @@ export function RegistrationView(props) {
         <Button className="btn-lg btn-dark btn-block" type="submit" variant="primary" onClick={SuccessfulRegistration}>
           Register
         </Button>
-        <Button variant="link" onClick={props.allReadyUser}>
+        <Button variant="link" onClick={props.onAlreadyAUserLinkClicked}>
           Have a logon?
           </Button>
         
@@ -75,11 +75,6 @@ export function RegistrationView(props) {
 }
 
 RegistrationView.propTypes = {
-  username: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  birthday: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  UserRegistered: PropTypes.func.isRequired,
-  OnLoggedIn: PropTypes.func.isRequired
-}
+  onAlreadyAUserLinkClicked: PropTypes.func.isRequired,
+  onUserRegistered: PropTypes.func.isRequired
+};

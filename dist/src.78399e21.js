@@ -29741,6 +29741,7 @@ function LoginView(props) {
 }
 
 LoginView.propTypes = {
+  onNewHereLinkClicked: _propTypes.default.func.isRequired,
   onLoggedIn: _propTypes.default.func.isRequired
 };
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Form":"../../node_modules/react-bootstrap/Form.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","./login-view.scss":"components/login-view/login-view.scss"}],"../../node_modules/react-bootstrap/utils/divWithClassName.js":[function(require,module,exports) {
@@ -29965,9 +29966,6 @@ function (_React$Component) {
   _createClass(MovieCard, [{
     key: "render",
     value: function render() {
-      // This is given to the <MovieCard/> component by the outer world
-      // which, in this case, is `MainView`, as `MainView` is what’s
-      // connected to your database via the movies endpoint of your API
       var _this$props = this.props,
           movie = _this$props.movie,
           _onClick = _this$props.onClick;
@@ -29990,9 +29988,10 @@ function (_React$Component) {
 exports.MovieCard = MovieCard;
 MovieCard.propTypes = {
   movie: _propTypes.default.shape({
-    title: _propTypes.default.string
-  }).isRequired,
-  onClick: _propTypes.default.func.isRequired
+    Title: _propTypes.default.string,
+    ImagePath: _propTypes.default.string,
+    Description: _propTypes.default.string
+  }).isRequired
 };
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -30179,6 +30178,7 @@ exports.MovieView = MovieView;
 MovieView.propTypes = {
   movie: _propTypes.default.shape({
     Title: _propTypes.default.string,
+    ImagePath: _propTypes.default.string,
     Description: _propTypes.default.string,
     Genre: _propTypes.default.shape({
       Name: _propTypes.default.string
@@ -30303,18 +30303,13 @@ function RegistrationView(props) {
     onClick: SuccessfulRegistration
   }, "Register"), _react.default.createElement(_Button.default, {
     variant: "link",
-    onClick: props.allReadyUser
+    onClick: props.onAlreadyAUserLinkClicked
   }, "Have a logon?")));
 }
 
 RegistrationView.propTypes = {
-  username: _propTypes.default.string.isRequired,
-  password: _propTypes.default.string.isRequired,
-  email: _propTypes.default.string.isRequired,
-  birthday: _propTypes.default.string.isRequired,
-  onClick: _propTypes.default.func.isRequired,
-  UserRegistered: _propTypes.default.func.isRequired,
-  OnLoggedIn: _propTypes.default.func.isRequired
+  onAlreadyAUserLinkClicked: _propTypes.default.func.isRequired,
+  onUserRegistered: _propTypes.default.func.isRequired
 };
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Form":"../../node_modules/react-bootstrap/Form.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"../../node_modules/react-bootstrap/Row.js":[function(require,module,exports) {
 "use strict";
@@ -30510,7 +30505,7 @@ function (_React$Component) {
         });
       } else if (!user && newUser) {
         return _react.default.createElement(_registrationView.RegistrationView, {
-          allReadyUser: function allReadyUser() {
+          onAlreadyAUserLinkClicked: function onAlreadyAUserLinkClicked() {
             return _this3.toggleNewUserState();
           },
           onUserRegistered: function onUserRegistered(user) {
@@ -30634,7 +30629,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33547" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46133" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
