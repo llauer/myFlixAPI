@@ -75,15 +75,17 @@ export class MainView extends React.Component {
     } else if (user) {
       
       return (
-        <Row className="mx-auto main-view">
-          {selectedMovie
-            ? <MovieView movie={selectedMovie} goBack={() => this.goMainView()}/>
-            : movies.map(movie => (
-              <MovieCard movie={movie} onClick={movie => this.onMovieClick(movie)} />
-              
-            ))
-          }
-        </Row>
+        <Container>
+          <Row className="main-view">
+            {selectedMovie
+              ? <MovieView movie={selectedMovie} goBack={() => this.goMainView()}/>
+              : movies.map(movie => (
+                <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
+                
+              ))
+            }
+          </Row>
+        </Container>
       );
     }
     

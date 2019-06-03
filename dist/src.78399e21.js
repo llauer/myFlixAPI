@@ -29576,7 +29576,7 @@ Container.defaultProps = defaultProps;
 var _default = Container;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutPropertiesLoose":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js","classnames":"../../node_modules/classnames/index.js","react":"../../node_modules/react/index.js","./ThemeProvider":"../../node_modules/react-bootstrap/ThemeProvider.js"}],"../../node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/interopRequireDefault.js","@babel/runtime/helpers/extends":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/extends.js","@babel/runtime/helpers/objectWithoutPropertiesLoose":"../../node_modules/react-bootstrap/node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js","classnames":"../../node_modules/classnames/index.js","react":"../../node_modules/react/index.js","./ThemeProvider":"../../node_modules/react-bootstrap/ThemeProvider.js"}],"../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -29608,7 +29608,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../../node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"../../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -29643,12 +29643,12 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../../node_modules/parcel/src/builtins/bundle-url.js"}],"components/login-view/login-view.scss":[function(require,module,exports) {
+},{"./bundle-url":"../../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"components/login-view/login-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../node_modules/parcel/src/builtins/css-loader.js"}],"components/login-view/login-view.jsx":[function(require,module,exports) {
+},{"_css_loader":"../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/login-view/login-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29692,8 +29692,8 @@ function LoginView(props) {
       setPassword = _useState4[1];
 
   var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    console.log(username, password);
+    e.preventDefault(); // console.log(username, password);
+
     /* Send a request to the server for authentication */
 
     /* then call props.onLoggedIn(username) */
@@ -29739,6 +29739,10 @@ function LoginView(props) {
     onClick: props.onNewHereLinkClicked
   }, "New Here?")));
 }
+
+LoginView.propTypes = {
+  onLoggedIn: _propTypes.default.func.isRequired
+};
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Form":"../../node_modules/react-bootstrap/Form.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","./login-view.scss":"components/login-view/login-view.scss"}],"../../node_modules/react-bootstrap/utils/divWithClassName.js":[function(require,module,exports) {
 "use strict";
 
@@ -29907,7 +29911,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../node_modules/parcel/src/builtins/css-loader.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
+},{"_css_loader":"../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29967,9 +29971,7 @@ function (_React$Component) {
       var _this$props = this.props,
           movie = _this$props.movie,
           _onClick = _this$props.onClick;
-      return _react.default.createElement(_Col.default, {
-        key: movie.Title
-      }, _react.default.createElement(_Card.default.Img, {
+      return _react.default.createElement(_Col.default, null, _react.default.createElement(_Card.default.Img, {
         style: {
           width: "250px"
         },
@@ -29983,21 +29985,21 @@ function (_React$Component) {
   }]);
 
   return MovieCard;
-}(_react.default.Component); // MovieCard.propTypes = {
-//   movie: PropTypes.shape({
-//     title: PropTypes.string
-//   }).isRequired,
-//   onClick: PropTypes.func.isRequired
-// };
-
+}(_react.default.Component);
 
 exports.MovieCard = MovieCard;
+MovieCard.propTypes = {
+  movie: _propTypes.default.shape({
+    title: _propTypes.default.string
+  }).isRequired,
+  onClick: _propTypes.default.func.isRequired
+};
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Card":"../../node_modules/react-bootstrap/Card.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../node_modules/parcel/src/builtins/css-loader.js"}],"../../node_modules/react-bootstrap/Jumbotron.js":[function(require,module,exports) {
+},{"_css_loader":"../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../node_modules/react-bootstrap/Jumbotron.js":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -30122,8 +30124,15 @@ function (_React$Component) {
           goBack = _this$props.goBack;
       if (!movie) return null;
       return _react.default.createElement(_Col.default, {
+        sm: {
+          size: 6,
+          order: 2,
+          offset: 1
+        },
         className: "text-center"
-      }, _react.default.createElement(_Jumbotron.default, null, _react.default.createElement("div", {
+      }, _react.default.createElement(_Jumbotron.default, {
+        fluid: true
+      }, _react.default.createElement("div", {
         className: "movie-title"
       }, _react.default.createElement("h1", {
         className: "display-3"
@@ -30177,15 +30186,14 @@ MovieView.propTypes = {
     Director: _propTypes.default.shape({
       Name: _propTypes.default.string
     })
-  }).isRequired // onClick: PropTypes.func.isRequired
-
+  }).isRequired
 };
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","../main-view/main-view":"components/main-view/main-view.jsx","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","./movie-view.scss":"components/movie-view/movie-view.scss","react-bootstrap/Jumbotron":"../../node_modules/react-bootstrap/Jumbotron.js","react-bootstrap/Col":"../../node_modules/react-bootstrap/Col.js"}],"components/registration-view/registration-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../node_modules/parcel/src/builtins/css-loader.js"}],"components/registration-view/registration-view.jsx":[function(require,module,exports) {
+},{"_css_loader":"../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/registration-view/registration-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30298,6 +30306,16 @@ function RegistrationView(props) {
     onClick: props.allReadyUser
   }, "Have a logon?")));
 }
+
+RegistrationView.propTypes = {
+  username: _propTypes.default.string.isRequired,
+  password: _propTypes.default.string.isRequired,
+  email: _propTypes.default.string.isRequired,
+  birthday: _propTypes.default.string.isRequired,
+  onClick: _propTypes.default.func.isRequired,
+  UserRegistered: _propTypes.default.func.isRequired,
+  OnLoggedIn: _propTypes.default.func.isRequired
+};
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Form":"../../node_modules/react-bootstrap/Form.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"../../node_modules/react-bootstrap/Row.js":[function(require,module,exports) {
 "use strict";
 
@@ -30358,7 +30376,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../node_modules/parcel/src/builtins/css-loader.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+},{"_css_loader":"../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30500,8 +30518,8 @@ function (_React$Component) {
           }
         });
       } else if (user) {
-        return _react.default.createElement(_Row.default, {
-          className: "mx-auto main-view"
+        return _react.default.createElement(_Container.default, null, _react.default.createElement(_Row.default, {
+          className: "main-view"
         }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
           movie: selectedMovie,
           goBack: function goBack() {
@@ -30509,12 +30527,13 @@ function (_React$Component) {
           }
         }) : movies.map(function (movie) {
           return _react.default.createElement(_movieCard.MovieCard, {
+            key: movie._id,
             movie: movie,
             onClick: function onClick(movie) {
               return _this3.onMovieClick(movie);
             }
           });
-        }));
+        })));
       }
     }
   }]);
@@ -30528,7 +30547,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../node_modules/parcel/src/builtins/css-loader.js"}],"index.jsx":[function(require,module,exports) {
+},{"_css_loader":"../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.jsx":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -30587,7 +30606,7 @@ function (_React$Component) {
 var container = document.getElementsByClassName('app-container')[0]; // Tell React to render our app in the root DOM element
 
 _reactDom.default.render(_react.default.createElement(MyFlixApplication), container);
-},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","./components/main-view/main-view":"components/main-view/main-view.jsx","./components/movie-card/movie-card":"components/movie-card/movie-card.jsx","./index.scss":"index.scss"}],"../../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","./components/main-view/main-view":"components/main-view/main-view.jsx","./components/movie-card/movie-card":"components/movie-card/movie-card.jsx","./index.scss":"index.scss"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -30615,7 +30634,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57688" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33547" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -30790,5 +30809,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../node_modules/parcel/src/builtins/hmr-runtime.js","index.jsx"], null)
+},{}]},{},["../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.jsx"], null)
 //# sourceMappingURL=/src.78399e21.js.map

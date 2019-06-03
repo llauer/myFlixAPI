@@ -18,8 +18,8 @@ export class MovieView extends React.Component {
     if (!movie) return null;
 
     return (
-      <Col className="text-center">
-      <Jumbotron>
+      <Col sm={{ size: 6, order: 2, offset: 1 }}  className="text-center">
+      <Jumbotron fluid>
         <div className="movie-title">
           {/* <div className="label">Title</div> */}
           <h1 className="display-3">{movie.Title}</h1>
@@ -60,5 +60,4 @@ MovieView.propTypes = {
       Name: PropTypes.string
     })
   }).isRequired,
-  // onClick: PropTypes.func.isRequired
 };
