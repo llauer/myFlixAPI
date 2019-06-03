@@ -74,6 +74,7 @@ export function RegistrationView(props) {
   );
 }
 
+
 RegistrationView.propTypes = {
   onAlreadyAUserLinkClicked: PropTypes.func.isRequired,
   onUserRegistered: PropTypes.func.isRequired
