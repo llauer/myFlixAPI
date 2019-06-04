@@ -1,22 +1,23 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import "./login-view.scss";
+/* eslint-disable react/destructuring-assignment */
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import './login-view.scss';
 
 export function LoginView(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     // console.log(username, password);
     /* Send a request to the server for authentication */
     /* then call props.onLoggedIn(username) */
     props.onLoggedIn(username);
   };
-// console.log(props)
+
   return (
     <Container className="login-form">
       <h1 className="font-weight-bold text-center">myFlix</h1>
@@ -45,14 +46,18 @@ export function LoginView(props) {
             onChange={e => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button className="btn-lg btn-dark btn-block" type="submit" variant="primary" onClick={handleSubmit}>
+        <Button
+          className="btn-lg btn-dark btn-block"
+          type="submit"
+          variant="primary"
+          onClick={handleSubmit}
+        >
           Log In
         </Button>
-        
+
         <Button variant="link" onClick={props.onNewHereLinkClicked}>
           New Here?
-          </Button>
-            
+        </Button>
       </Form>
     </Container>
   );
@@ -60,5 +65,5 @@ export function LoginView(props) {
 
 LoginView.propTypes = {
   onNewHereLinkClicked: PropTypes.func.isRequired,
-  onLoggedIn: PropTypes.func.isRequired
+  onLoggedIn: PropTypes.func.isRequired,
 };

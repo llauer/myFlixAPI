@@ -1,14 +1,19 @@
-import React from "react";
-import axios from "axios";
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-shadow */
+/* eslint no-shadow: ["error", { "hoist": "functions" }] */
+/* eslint-env es6 */
+/* eslint-disable import/no-cycle */
+import React from 'react';
+import axios from 'axios';
 
-import { LoginView } from "../login-view/login-view";
-import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
-import { RegistrationView } from "../registration-view/registration-view";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import "./main-view.scss";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
+import { LoginView } from '../login-view/login-view';
+import { MovieCard } from '../movie-card/movie-card';
+import { MovieView } from '../movie-view/movie-view';
+import { RegistrationView } from '../registration-view/registration-view';
+import './main-view.scss';
 
 export class MainView extends React.Component {
   constructor(props) {
@@ -18,17 +23,17 @@ export class MainView extends React.Component {
       movies: null,
       selectedMovie: null,
       user: null,
-      newUser: false
+      newUser: false,
     };
   }
 
   componentDidMount() {
     axios
-      .get("https://myflixapi.herokuapp.com/movies")
+      .get('https://myflixapi.herokuapp.com/movies')
       .then(response => {
         // Assign the result to the state
         this.setState({
-          movies: response.data
+          movies: response.data,
         });
       })
       .catch(function(error) {
@@ -36,58 +41,70 @@ export class MainView extends React.Component {
       });
   }
 
-  goMainView() {
-    this.setState({
-      selectedMovie: null
-    });
-  }
-
   onMovieClick(movie) {
     this.setState({
-      selectedMovie: movie
+      selectedMovie: movie,
     });
   }
 
   onLoggedIn(user) {
     this.setState({
-      user
+      user,
+    });
+  }
+
+  goMainView() {
+    this.setState({
+      selectedMovie: null,
     });
   }
 
   toggleNewUserState() {
-    this.setState((state, props) => {
-      return {
-        newUser: !state.newUser
-      }
-    });
+    this.setState((state, props) => ({
+      newUser: !state.newUser,
+    }));
   }
 
   render() {
     const { movies, selectedMovie, user, newUser } = this.state;
 
     if (!user && !newUser) {
-      
-      return <LoginView onLoggedIn={user => this.onLoggedIn(user)} onNewHereLinkClicked={() => this.toggleNewUserState()} />
-    } else if (!user && newUser) {
-      
-      return <RegistrationView onAlreadyAUserLinkClicked={() => this.toggleNewUserState()} onUserRegistered={user => this.onLoggedIn(user)}/>
-    } else if (user) {
-      
+      return (
+        <LoginView
+          onLoggedIn={user => this.onLoggedIn(user)}
+          onNewHereLinkClicked={() => this.toggleNewUserState()}
+        />
+      );
+    }
+    if (!user && newUser) {
+      return (
+        <RegistrationView
+          onAlreadyAUserLinkClicked={() => this.toggleNewUserState()}
+          onUserRegistered={user => this.onLoggedIn(user)}
+        />
+      );
+    }
+    if (user) {
       return (
         <Container>
           <Row className="main-view">
-            {selectedMovie
-              ? <MovieView movie={selectedMovie} goBack={() => this.goMainView()}/>
-              : movies.map(movie => (
-                <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
-                
+            {selectedMovie ? (
+              <MovieView
+                movie={selectedMovie}
+                goBack={() => this.goMainView()}
+              />
+            ) : (
+              movies.map(movie => (
+                <MovieCard
+                  key={movie._id}
+                  movie={movie}
+                  onClick={movie => this.onMovieClick(movie)}
+                />
               ))
-            }
+            )}
           </Row>
         </Container>
       );
     }
-    
   }
 }
-

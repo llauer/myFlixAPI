@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import "./registration-view.scss";
+/* eslint-disable react/destructuring-assignment */
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import './registration-view.scss';
 
 export function RegistrationView(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [birthday, setBirthday] = useState('');
 
   const SuccessfulRegistration = e => {
     e.preventDefault();
@@ -62,20 +63,23 @@ export function RegistrationView(props) {
             onChange={e => setBirthday(e.target.value)}
           />
         </Form.Group>
-        <Button className="btn-lg btn-dark btn-block" type="submit" variant="primary" onClick={SuccessfulRegistration}>
+        <Button
+          className="btn-lg btn-dark btn-block"
+          type="submit"
+          variant="primary"
+          onClick={SuccessfulRegistration}
+        >
           Register
         </Button>
         <Button variant="link" onClick={props.onAlreadyAUserLinkClicked}>
           Have a logon?
-          </Button>
-        
+        </Button>
       </Form>
     </Container>
   );
 }
 
-
 RegistrationView.propTypes = {
   onAlreadyAUserLinkClicked: PropTypes.func.isRequired,
-  onUserRegistered: PropTypes.func.isRequired
+  onUserRegistered: PropTypes.func.isRequired,
 };
