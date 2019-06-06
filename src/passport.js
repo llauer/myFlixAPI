@@ -1,37 +1,37 @@
-const passport = require("passport"),
-  LocalStrategy = require("passport-local").Strategy,
-  Models = require("./models.js"),
-  passportJWT = require("passport-jwt");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const passportJWT = require('passport-jwt');
+const Models = require('./models.js');
 
-var Users = Models.User;
-var JWTStrategy = passportJWT.Strategy;
-var ExtractJWT = passportJWT.ExtractJwt;
+const Users = Models.User;
+const JWTStrategy = passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
 
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "Username",
-      passwordField: "Password"
+      usernameField: 'Username',
+      passwordField: 'Password',
     },
     (username, password, callback) => {
-      console.log(username + "  " + password);
+      console.log(`${username}  ${password}`);
       Users.findOne({ Username: username }, (error, user) => {
         if (error) {
           console.log(error);
           return callback(error);
         }
         if (!user) {
-          console.log("incorrect username");
+          console.log('incorrect username');
           return callback(null, false, {
-            message: "Incorrect username."
+            message: 'Incorrect username.',
           });
         }
-        //added for password validation
+        // added for password validation
         if (!user.validatePassword(password)) {
-          console.log("incorrect password");
-          return callback(null, false, { message: "Incorrect password." });
+          console.log('incorrect password');
+          return callback(null, false, { message: 'Incorrect password.' });
         }
-        console.log("finished");
+        console.log('finished');
         return callback(null, user);
       });
     }
@@ -42,16 +42,11 @@ passport.use(
   new JWTStrategy(
     {
       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-      secretOrKey: "your_jwt_secret"
+      secretOrKey: 'your_jwt_secret',
     },
-    (jwtPayload, callback) => {
-      return Users.findById(jwtPayload._id)
-        .then(user => {
-          return callback(null, user);
-        })
-        .catch(error => {
-          return callback(error);
-        });
-    }
+    (jwtPayload, callback) =>
+      Users.findById(jwtPayload._id)
+        .then(user => callback(null, user))
+        .catch(error => callback(error))
   )
 );

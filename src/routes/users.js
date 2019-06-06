@@ -2,14 +2,14 @@
 const mongoose = require('mongoose');
 const validator = require('express-validator');
 
-const Users = Models.User;
-
 const express = require('express');
 
 const router = express.Router();
 
 const passport = require('passport');
 const Models = require('../models.js');
+
+const Users = Models.User;
 require('../passport');
 
 router.use(validator());
@@ -103,7 +103,7 @@ router.post(
     })
       .then(function(user) {
         if (user) {
-          return res.status(400).send(`${req.body.Username  } already exists`);
+          return res.status(400).send(`${req.body.Username} already exists`);
         }
         Users.create({
           Username: req.body.Username,
@@ -116,7 +116,7 @@ router.post(
           })
           .catch(function(error) {
             console.error(error);
-            res.status(500).send(`Error: ${  error}`);
+            res.status(500).send(`Error: ${error}`);
           });
       })
       .catch(function(error) {

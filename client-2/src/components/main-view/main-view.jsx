@@ -20,7 +20,7 @@ export class MainView extends React.Component {
     super(props);
 
     this.state = {
-      movies: null,
+      //movies: null,
       selectedMovie: null,
       user: null,
       newUser: false,
