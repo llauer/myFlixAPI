@@ -12,6 +12,8 @@ export function RegistrationView(props) {
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
 
+  const isEnabled = username.length > 0 && password.length > 0 && email.length > 0;
+
   const SuccessfulRegistration = e => {
     e.preventDefault();
     props.onUserRegistered(username);
@@ -64,6 +66,7 @@ export function RegistrationView(props) {
           />
         </Form.Group>
         <Button
+          disabled={!isEnabled}
           className="btn-lg btn-dark btn-block"
           type="submit"
           variant="primary"

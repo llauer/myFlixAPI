@@ -18,6 +18,8 @@ export class MovieCard extends React.Component {
           <Button onClick={() => onClick(movie)}>Info</Button>
         </Card.Body>
       </Col>
+      
+
     );
   }
 }

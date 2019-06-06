@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import './movie-view.scss';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Col from 'react-bootstrap/Col';
+
 // import { MainView } from '../main-view/main-view';
 
 export class MovieView extends React.Component {
@@ -14,7 +15,7 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie, goBack } = this.props;
+    const { movie, goBack, logout } = this.props;
 
     if (!movie) return null;
 
@@ -47,6 +48,9 @@ export class MovieView extends React.Component {
           </div>
           <Button className="movieBack" onClick={() => goBack()}>
             Back
+          </Button>
+          <Button className="logout" onClick={() => logout()}>
+            Logout
           </Button>
         </Jumbotron>
       </Col>

@@ -28,17 +28,13 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
-    axios
-      .get('https://myflixapi.herokuapp.com/movies')
-      .then(response => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
-      })
-      .catch(function(error) {
-        console.log(error);
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
       });
+      this.getMovies(accessToken);
+    }
   }
 
   onMovieClick(movie) {
@@ -57,6 +53,15 @@ export class MainView extends React.Component {
     localStorage.setItem('user', authData.user.Username
     );
     this.getMovies(authData.token);
+  }
+
+  onLogOut () {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    this.setState({
+      user: null
+    });
   }
 
   getMovies(token) {
@@ -114,6 +119,7 @@ export class MainView extends React.Component {
               <MovieView
                 movie={selectedMovie}
                 goBack={() => this.goMainView()}
+                logout={() => this.onLogOut()}
               />
             ) : (
               movies.map(movie => (
