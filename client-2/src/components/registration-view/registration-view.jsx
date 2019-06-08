@@ -1,4 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
+import axios from 'axios';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
@@ -13,6 +14,23 @@ export function RegistrationView(props) {
   const [birthday, setBirthday] = useState('');
 
   const isEnabled = username.length > 0 && password.length > 0 && email.length > 0;
+
+  const handleRegistration = () => {
+    axios.post('https://myflixapi.herokuapp.com/users', {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
+})
+.then(response => {
+        const data = response.data;
+        console.log(data);
+        window.open('/');
+      })
+    .catch(e => {
+      console.log('error registering the user')
+    });
+  }
 
   const SuccessfulRegistration = e => {
     e.preventDefault();
