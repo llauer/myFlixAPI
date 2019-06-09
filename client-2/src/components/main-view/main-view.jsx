@@ -28,20 +28,19 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('hashchange', this.handleNewHash, false);
-
-    this.handleNewHash();
-  
-    // eslint-disable-next-line no-undef
-    handleNewHash = () => {
+    
+    const handleNewHash = () => {
       const movieId = window.location.hash.replace(
         /^#\/?|\/$/g, '').split('/');
 
-        this.setState({
-          selectedMovieId: movieId[0]
-        });
-      
+      this.setState({
+        selectedMovieId: movieId[0]
+      });
+
     }
+    window.addEventListener('hashchange', handleNewHash, false);
+
+    handleNewHash();
     
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
@@ -55,7 +54,7 @@ export class MainView extends React.Component {
   onMovieClick(movie) {
     window.location.hash = '#' + movie._id;
     this.setState({
-      selectedMovie: movie,
+      selectedMovieId: movie,
     });
   }
 
@@ -98,7 +97,7 @@ export class MainView extends React.Component {
 
   goMainView() {
     this.setState({
-      selectedMovie: null,
+      selectedMovieId: null,
     });
   }
 
@@ -121,18 +120,14 @@ export class MainView extends React.Component {
         />
       );
     }
-    if (!movies || !movies.length) return <div className="main-view"/>
-      const selectedMovie = selectedMovieId ? movies.find(m => m._id === selectedMovieId) : null;
-
+    if (!user && newUser) {
       return (
-        <div className="main-view">
-          {selectedMovie ? <MovieView movie={selectedMovie}/> : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)}/>
-          ))
-          }
-        </div>
-      );
-    
+        <RegistrationView
+        onAlreadyAUserLinkClicked={() => this.toggleNewUserState()}
+        onUserRegistered={user => this.onLoggedIn(user)}
+        />
+      )
+    }
     if (!user && newUser) {
       return (
         <RegistrationView
@@ -141,6 +136,9 @@ export class MainView extends React.Component {
         />
       );
     }
+
+    const selectedMovie = selectedMovieId ? movies.find(m => m._id === selectedMovieId) : null;
+
     if (user) {
       return (
         <Container>
@@ -152,17 +150,51 @@ export class MainView extends React.Component {
                 logout={() => this.onLogOut()}
               />
             ) : (
-              movies.map(movie => (
-                <MovieCard
-                  key={movie._id}
-                  movie={movie}
-                  onClick={movie => this.onMovieClick(movie)}
-                />
-              ))
-            )}
+                movies.map(movie => (
+                  <MovieCard
+                    key={movie._id}
+                    movie={movie}
+                    onClick={movie => this.onMovieClick(movie)}
+                  />
+                ))
+              )}
           </Row>
         </Container>
       );
     }
+    
+    if (user) {
+      return (
+        <Container>
+          <Row className="main-view">
+            {selectedMovie ? (
+              <MovieView
+                movie={selectedMovie}
+                goBack={() => this.goMainView()}
+                logout={() => this.onLogOut()}
+              />
+            ) : (
+                movies.map(movie => (
+                  <MovieCard
+                    key={movie._id}
+                    movie={movie}
+                    onClick={movie => this.onMovieClick(movie)}
+                  />
+                ))
+              )}
+          </Row>
+        </Container>
+      );
+    }
+    if (!movies || !movies.length) return <div className="main-view" />
+    
+    return (
+      <div className="main-view">
+        {selectedMovie ? <MovieView movie={selectedMovie} /> : movies.map(movie => (
+          <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
+        ))
+        }
+      </div>
+    );
   }
 }
