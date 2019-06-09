@@ -16,18 +16,32 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import './main-view.scss';
 
 export class MainView extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       movies: [],
-      // selectedMovie: null,
+      selectedMovieId: null,
       user: null,
-      // newUser: false,
+      newUser: false,
     };
   }
 
   componentDidMount() {
+    window.addEventListener('hashchange', this.handleNewHash, false);
+
+    this.handleNewHash();
+  
+    // eslint-disable-next-line no-undef
+    handleNewHash = () => {
+      const movieId = window.location.hash.replace(
+        /^#\/?|\/$/g, '').split('/');
+
+        this.setState({
+          selectedMovieId: movieId[0]
+        });
+      
+    }
     
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
@@ -39,6 +53,7 @@ export class MainView extends React.Component {
   }
 
   onMovieClick(movie) {
+    window.location.hash = '#' + movie._id;
     this.setState({
       selectedMovie: movie,
     });
@@ -93,8 +108,10 @@ export class MainView extends React.Component {
     }));
   }
 
+
+
   render() {
-    const { movies, selectedMovie, user, newUser } = this.state;
+    const { movies, selectedMovieId, user, newUser } = this.state;
 
     if (!user && !newUser) {
       return (
@@ -104,6 +121,18 @@ export class MainView extends React.Component {
         />
       );
     }
+    if (!movies || !movies.length) return <div className="main-view"/>
+      const selectedMovie = selectedMovieId ? movies.find(m => m._id === selectedMovieId) : null;
+
+      return (
+        <div className="main-view">
+          {selectedMovie ? <MovieView movie={selectedMovie}/> : movies.map(movie => (
+            <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)}/>
+          ))
+          }
+        </div>
+      );
+    
     if (!user && newUser) {
       return (
         <RegistrationView
