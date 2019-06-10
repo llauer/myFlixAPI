@@ -7,15 +7,6 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import './login-view.scss';
 
-
-// function validate(username, password) {
-
-//   return {
-//     username: username.length === 0,
-//     password: password.length === 0
-//   };
-// }
-
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

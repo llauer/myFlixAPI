@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
+import {Col, Button, Jumbotron } from 'react-bootstrap'
 import './movie-view.scss';
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Col from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom'
 
 // import { MainView } from '../main-view/main-view';
 
@@ -15,7 +14,7 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie, goBack, logout } = this.props;
+    const { movie, logout } = this.props;
 
     if (!movie) return null;
 
@@ -46,9 +45,13 @@ export class MovieView extends React.Component {
             <h3 className="label">Director</h3>
             <div className="value">{movie.Director.Name}</div>
           </div>
-          <Button className="movieBack" onClick={() => goBack()}>
+          <Link to={'/'}>
+          <Button className="movieBack" variant="primary" type="button">
             Back
           </Button>
+
+          </Link>
+
           <Button className="logout" onClick={() => logout()}>
             Logout
           </Button>
@@ -70,5 +73,4 @@ MovieView.propTypes = {
       Name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  goBack: PropTypes.func.isRequired,
 };

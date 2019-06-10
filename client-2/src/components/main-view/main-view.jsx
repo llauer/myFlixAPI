@@ -5,14 +5,18 @@
 /* eslint-disable import/no-cycle */
 import React from 'react';
 import axios from 'axios';
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { GenreView } from '../genre-view/genre-view';
+import { DirectorView } from '../director-view/director-view';
+
 import './main-view.scss';
 
 export class MainView extends React.Component {
@@ -29,18 +33,18 @@ export class MainView extends React.Component {
 
   componentDidMount() {
     
-    const handleNewHash = () => {
-      const movieId = window.location.hash.replace(
-        /^#\/?|\/$/g, '').split('/');
+    // const handleNewHash = () => {
+    //   const movieId = window.location.hash.replace(
+    //     /^#\/?|\/$/g, '').split('/');
 
-      this.setState({
-        selectedMovieId: movieId[0]
-      });
+    //   this.setState({
+    //     selectedMovieId: movieId[0]
+    //   });
 
-    }
-    window.addEventListener('hashchange', handleNewHash, false);
+    // }
+    // window.addEventListener('hashchange', handleNewHash, false);
 
-    handleNewHash();
+    // handleNewHash();
     
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
@@ -83,16 +87,15 @@ export class MainView extends React.Component {
     axios.get('https://myflixapi.herokuapp.com/movies',{
       headers: { Authorization: `Bearer ${token}`}
     })
-    .then(response => {
-      // Assign the result to the state
-      this.setState({
-        movies: response.data
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(err => {
+        console.error(err);
       });
-    })
-      .catch (function (error) {
-        console.log(error);
-      });
-
+      
   }
 
   goMainView() {
@@ -110,7 +113,7 @@ export class MainView extends React.Component {
 
 
   render() {
-    const { movies, selectedMovieId, user, newUser } = this.state;
+    const { movies, user, newUser } = this.state;
 
     if (!user && !newUser) {
       return (
@@ -137,64 +140,68 @@ export class MainView extends React.Component {
       );
     }
 
-    const selectedMovie = selectedMovieId ? movies.find(m => m._id === selectedMovieId) : null;
+    // const selectedMovie = selectedMovieId ? movies.find(m => m._id === selectedMovieId) : null;
 
-    if (user) {
-      return (
-        <Container>
-          <Row className="main-view">
-            {selectedMovie ? (
-              <MovieView
-                movie={selectedMovie}
-                goBack={() => this.goMainView()}
-                logout={() => this.onLogOut()}
-              />
-            ) : (
-                movies.map(movie => (
-                  <MovieCard
-                    key={movie._id}
-                    movie={movie}
-                    onClick={movie => this.onMovieClick(movie)}
-                  />
-                ))
-              )}
-          </Row>
-        </Container>
-      );
-    }
-    
-    if (user) {
-      return (
-        <Container>
-          <Row className="main-view">
-            {selectedMovie ? (
-              <MovieView
-                movie={selectedMovie}
-                goBack={() => this.goMainView()}
-                logout={() => this.onLogOut()}
-              />
-            ) : (
-                movies.map(movie => (
-                  <MovieCard
-                    key={movie._id}
-                    movie={movie}
-                    onClick={movie => this.onMovieClick(movie)}
-                  />
-                ))
-              )}
-          </Row>
-        </Container>
-      );
-    }
+    // if (user) {
+    //   return (
+    //     <Container>
+    //       <Row className="main-view">
+    //         {selectedMovie ? (
+    //           <MovieView
+    //             movie={selectedMovie}
+    //             goBack={() => this.goMainView()}
+    //             logout={() => this.onLogOut()}
+    //           />
+    //         ) : (
+    //             movies.map(movie => (
+    //               <MovieCard
+    //                 key={movie._id}
+    //                 movie={movie}
+    //                 onClick={movie => this.onMovieClick(movie)}
+    //               />
+    //             ))
+    //           )}
+    //       </Row>
+    //     </Container>
+    //   );
+    // }
     if (!movies || !movies.length) return <div className="main-view" />
     
     return (
-      <div className="main-view">
-        {selectedMovie ? <MovieView movie={selectedMovie} /> : movies.map(movie => (
-          <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
-        ))
-        }
-      </div>
+      <Router>
+        <div className="main-view">
+
+          <Route exact path="/" render={() => {
+            if (!user) {
+              return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            } else {
+              return movies.map(movie => <MovieCard key={movie._id} movie={movie} />);
+            }
+          }} />
+
+          <Route exact path="/movies/:movieID" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieID)} />} />
+
+          <Route path='/register' render={() => <RegistrationView />} />
+          
+
+          <Route exact path="/directors/:director" render={({ match }) => {
+            if (!movies || !movies.length) return <div className="main-view" />;
+            return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
+          }
+          } />
+
+          <Route path="/genres/:name" render={() => <GenreView /> } />
+
+          
+
+          {/* {selectedMovie ? <MovieView movie={selectedMovie} /> : movies.map(movie => (
+            <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
+          ))
+          } */}
+        </div>
+      </Router>
+      
+      
     );
   }
 }
