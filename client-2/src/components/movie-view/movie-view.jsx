@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Col, Button, Jumbotron } from 'react-bootstrap'
+import { Col, Button, Jumbotron } from 'react-bootstrap'
 import './movie-view.scss';
 import { Link } from 'react-router-dom'
 
-// import { MainView } from '../main-view/main-view';
+
 
 export class MovieView extends React.Component {
   constructor(props) {
@@ -19,10 +19,9 @@ export class MovieView extends React.Component {
     if (!movie) return null;
 
     return (
-      <Col sm={{ size: 6, order: 2, offset: 1 }} className="text-center">
+      <Col className="container row col-sm">
         <Jumbotron fluid>
           <div className="movie-title">
-            {/* <div className="label">Title</div> */}
             <h1 className="display-3">{movie.Title}</h1>
           </div>
           <hr className="my-2" />
@@ -49,7 +48,6 @@ export class MovieView extends React.Component {
           <Button className="movieBack" variant="primary" type="button">
             Back
           </Button>
-
           </Link>
 
           <Button className="logout" onClick={() => logout()}>

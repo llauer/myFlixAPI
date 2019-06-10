@@ -74,7 +74,7 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
-  onLogOut () {
+  onLogOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
 
@@ -169,6 +169,7 @@ export class MainView extends React.Component {
     
     return (
       <Router>
+      
         <div className="main-view">
 
           <Route exact path="/" render={() => {
@@ -179,7 +180,7 @@ export class MainView extends React.Component {
             }
           }} />
 
-          <Route exact path="/movies/:movieID" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieID)} />} />
+          <Route exact path="/movies/:movieID" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieID)} logout={() => this.onLogOut()} />} />
 
           <Route path='/register' render={() => <RegistrationView />} />
           
