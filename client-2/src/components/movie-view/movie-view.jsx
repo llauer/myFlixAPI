@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col, Button, Jumbotron } from 'react-bootstrap'
+import {  Button } from 'react-bootstrap'
 import './movie-view.scss';
 import { Link } from 'react-router-dom'
 
@@ -19,14 +19,15 @@ export class MovieView extends React.Component {
     if (!movie) return null;
 
     return (
-      <Col className="container row col-sm">
-        <Jumbotron fluid>
+      
+      <div className='movie-view text-center'>
+
           <div className="movie-title">
-            <h1 className="display-3">{movie.Title}</h1>
+            <h1 className=''>{movie.Title}</h1>
           </div>
           <hr className="my-2" />
           <img
-            className="rounded mb-0 movie-poster"
+            className="rounded movie-poster"
             src={movie.ImagePath}
             alt="Movie Poster"
           />
@@ -38,23 +39,30 @@ export class MovieView extends React.Component {
           <div className="movie-genre">
             <h3 className="label">Genre</h3>
             <div className="value">{movie.Genre.Name}</div>
+          <Link to={`/genres/${movie.Genre.Name}`}>
+            <Button className="btn btn-outline-success" variant='link'>Info</Button>
+          </Link>
           </div>
           <hr className="my-2" />
           <div className="movie-director">
             <h3 className="label">Director</h3>
             <div className="value">{movie.Director.Name}</div>
+          <Link to={`/director/${movie.Director.Name}`}>
+            <Button className="btn btn-outline-success" variant='link'>Info</Button>
+          </Link>
+            
           </div>
           <Link to={'/'}>
-          <Button className="movieBack" variant="primary" type="button">
+          <Button className="movieBack btn btn-outline-success" variant="link">
             Back
           </Button>
           </Link>
 
-          <Button className="logout" onClick={() => logout()}>
+        <Button className="logout btn btn-outline-danger" variant="link" onClick={() => logout()}>
             Logout
           </Button>
-        </Jumbotron>
-      </Col>
+      </div>
+      
     );
   }
 }

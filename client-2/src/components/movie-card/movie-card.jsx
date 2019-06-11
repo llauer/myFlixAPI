@@ -10,20 +10,6 @@ export class MovieCard extends React.Component {
 
     return (
 
-      // <div className="card text-center">
-      //   <div className="overflow">
-      //     <img src={movie.ImagePath} alt="Movie Poster"/>
-      //   </div>
-      //   <div className="card-body text-dark"></div>
-      //   <h4 className="card-title">{movie.Title}</h4>
-      //   <p className="card-text text-secondary">{movie.Description}</p>
-      //   <Link to={`/movies/${movie._id}`}>
-      //   <Button className="btn btn-outline-success" variant='link'>Info</Button></Link>
-      // </div>
-    
-
-      
-        
           <Container>
             <Row>
               <Col>
