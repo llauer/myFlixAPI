@@ -27,43 +27,6 @@ export class MovieCard extends React.Component {
             </Row>
         </Container>
 
-        
-          
-          
-          
-          //   {/* <Card className="movieCard text-center card-body" border="primary" style={{ flex: 1 }}>
-          //     <Card.Img variant="top" src={movie.ImagePath} />
-          //     <Card.Body>
-          //       <Card.Title>{movie.Title}</Card.Title>
-          //       <Card.Text className="card-text">{movie.Description}</Card.Text>
-          //       <Link to={`/movies/${movie._id}`}>
-          //         <Button className="btn btn-outline-success" variant='link'>Info</Button>
-          //       </Link>
-          //     </Card.Body>
-          //   </Card>
-          //   <Card className="movieCard text-center card-body" border="primary" style={{ flex: 1 }}>
-          //     <Card.Img variant="top" src={movie.ImagePath} />
-          //     <Card.Body>
-          //       <Card.Title>{movie.Title}</Card.Title>
-          //       <Card.Text className="card-text">{movie.Description}</Card.Text>
-          //       <Link to={`/movies/${movie._id}`}>
-          //         <Button className="btn btn-outline-success" variant='link'>Info</Button>
-          //       </Link>
-          //     </Card.Body>
-          //   </Card>
-          //  */}
-  
-     
-      
-      
-        
-          
-          
-      
-     
-      
-      
-
     );
   }
 }

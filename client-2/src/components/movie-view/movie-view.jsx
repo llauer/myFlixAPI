@@ -52,15 +52,6 @@ export class MovieView extends React.Component {
           </Link>
             
           </div>
-          <Link to={'/'}>
-          <Button className="movieBack btn btn-outline-success" variant="link">
-            Back
-          </Button>
-          </Link>
-
-        <Button className="logout btn btn-outline-danger" variant="link" onClick={() => logout()}>
-            Logout
-          </Button>
       </div>
       
     );

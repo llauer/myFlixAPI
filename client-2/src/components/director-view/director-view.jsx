@@ -29,16 +29,6 @@ export class DirectorView extends React.Component {
         <div className="death">{director.Death}</div>
         <h2>Movies</h2>
         <div className="movies">{director.Movies}</div>
-        <div>
-          <Link to={'/'}>
-            <Button className="movieBack btn btn-outline-success" variant="link" type="button">
-              Back
-          </Button>
-            <Button className="logout btn btn-outline-danger" variant="link" onClick={() => logout()}>
-              Logout
-            </Button>
-          </Link>
-        </div>
       </div>
     );
   }

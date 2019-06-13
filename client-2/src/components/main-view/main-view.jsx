@@ -6,8 +6,9 @@
 import React from 'react';
 import axios from 'axios';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import { Navbar, NavbarBrand, Nav, NavItem, NavLink, Row, Container } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
+import { Fragment } from 'react';
+import { Navbar, NavbarBrand, Nav, NavItem}  from 'react-bootstrap';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -21,6 +22,8 @@ import './main-view.scss';
 export class MainView extends React.Component {
   constructor() {
     super();
+
+    this.goBack = this.goBack.bind(this);
 
     this.state = {
       movies: [],
@@ -39,6 +42,9 @@ export class MainView extends React.Component {
       });
       this.getMovies(accessToken);
     }
+  }
+  goBack() {
+    this.props.history.goBack();
   }
 
   onMovieClick(movie) {
@@ -131,6 +137,33 @@ export class MainView extends React.Component {
     return (
       <Router>
 
+        
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+          <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Welcome Back, { user }!</a>
+              </li>
+            </ul>
+          </div>
+          <div class="mx-auto order-0">
+            <a class="navbar-brand mx-auto" href="#">MyFlix</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <Link to={'/'} className="font-weight-bold nav-link">Back</Link>
+              </li>
+              <li class="nav-item">
+                <Link to={'/'} className="font-weight-bold nav-link " onClick={() => this.onLogOut()}>Logout</Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        
         <div className="main-view">
 
           <Route exact path="/" render={() => {
@@ -145,12 +178,6 @@ export class MainView extends React.Component {
 
           <Route path='/register' render={() => <RegistrationView />} />
           
-
-          {/* <Route path="/directors/:director" render={({ match }) => {
-            if (!movies || !movies.length) return <div className="main-view" />;
-            return <DirectorView director={movies.find(movie => movie.Director.Name === match.params.name).Director } />
-          }
-          } /> */}
 
           <Route path="/director/:name" render={({ match }) => {
             if (!movies || !movies.length) return <div className="main-view" />;
