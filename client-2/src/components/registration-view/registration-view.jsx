@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -14,6 +14,12 @@ export function RegistrationView(props) {
   const [birthday, setBirthday] = useState('');
 
   const isEnabled = username.length > 0 && password.length > 0 && email.length > 0;
+
+  // useEffect(() => {
+  //   return () => {
+  //     console.log('something')
+  //   };
+  // })
 
   const handleRegistration = () => {
     axios.post('https://myflixapi.herokuapp.com/users', {

@@ -17,6 +17,7 @@ import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 
+
 import './main-view.scss';
 
 export class MainView extends React.Component {
@@ -123,14 +124,7 @@ export class MainView extends React.Component {
         />
       )
     }
-    if (!user && newUser) {
-      return (
-        <RegistrationView
-          onAlreadyAUserLinkClicked={() => this.toggleNewUserState()}
-          onUserRegistered={user => this.onLoggedIn(user)}
-        />
-      );
-    }
+
 
     if (!movies || !movies.length) return <div className="main-view" />
     
@@ -138,26 +132,31 @@ export class MainView extends React.Component {
       <Router>
 
         
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-          <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Welcome Back, { user }!</a>
+<nav className="navbar navbar-expand-md navbar-dark bg-dark">
+          <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <Link to={'/RegistrationView'}className="nav-link">Welcome Back, { user }!</Link>
+              </li>
+              <li className="nav-item">
+                <Link to={'/profile'} className="font-weight-bold nav-link">
+                  User Settings
+                </Link>
               </li>
             </ul>
           </div>
-          <div class="mx-auto order-0">
-            <a class="navbar-brand mx-auto" href="#">MyFlix</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-              <span class="navbar-toggler-icon"></span>
+          <div className="mx-auto order-0">
+            <h1 className="navbar-brand mx-auto">MyFlix</h1>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+              <span className="navbar-toggler-icon"></span>
             </button>
           </div>
-          <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
+          <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
                 <Link to={'/'} className="font-weight-bold nav-link">Back</Link>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <Link to={'/'} className="font-weight-bold nav-link " onClick={() => this.onLogOut()}>Logout</Link>
               </li>
             </ul>
@@ -165,6 +164,8 @@ export class MainView extends React.Component {
         </nav>
         
         <div className="main-view">
+
+          <Route path='/profile' render={() => <ProfileView />} />
 
           <Route exact path="/" render={() => {
             if (!user) {
@@ -177,7 +178,6 @@ export class MainView extends React.Component {
           <Route exact path="/movies/:movieID" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieID)} logout={() => this.onLogOut()} />} />
 
           <Route path='/register' render={() => <RegistrationView />} />
-          
 
           <Route path="/director/:name" render={({ match }) => {
             if (!movies || !movies.length) return <div className="main-view" />;
@@ -194,7 +194,6 @@ export class MainView extends React.Component {
 
           {/* <Route path="/genres/:genre" render={() => <GenreView />} /> */}
 
-          <Route path="/profile" render={() => <ProfileView movies={this.state.movies} />} />
 
           
 

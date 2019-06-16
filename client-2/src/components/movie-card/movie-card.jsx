@@ -10,9 +10,9 @@ export class MovieCard extends React.Component {
 
     return (
 
-          <Container>
             <Row>
               <Col>
+
                   <Card className="movieCard text-center card-body" border="primary">
                   <Card.Img variant="top" src={movie.ImagePath} />
                   <Card.Body>
@@ -24,8 +24,10 @@ export class MovieCard extends React.Component {
                   </Card.Body>
                   </Card>
               </Col>
+
+              
             </Row>
-        </Container>
+
 
     );
   }
