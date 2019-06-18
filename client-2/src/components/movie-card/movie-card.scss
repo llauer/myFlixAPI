@@ -1,18 +1,33 @@
+.movies-col {
+  margin: 25px 0 10px 0;
+}
 .movieCard {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  min-height: 34rem;
+  max-width: 352px;
+  height: 775px;
+  box-shadow: 0 0 10px #aaaaaa;
+}
+
+.movies-img {
+  width: 350px;
+  height: 500px;
 }
 
 .movieCard:hover {
-  box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253) !important;
+  
+  box-shadow: 0 0 20px #111111;
 }
-.card-body {
-  padding: 3rem 0 !important;
+
+.movies-title {
+  height: 50px;
 }
 .card-text {
   font-size: 0.9rem;
-  padding: 0.4rem 1.9rem;
+  height: 120px;
+  margin: 0;
+}
+
+.movies-btn {
+  margin: 0;
 }
 
 .logout {
