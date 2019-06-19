@@ -1,46 +1,39 @@
 /* eslint-disable react/destructuring-assignment */
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import './registration-view.scss';
+import axios from "axios";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import "./registration-view.scss";
 
 export function RegistrationView(props) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
 
-  const isEnabled = username.length > 0 && password.length > 0 && email.length > 0;
+  const isEnabled =
+    username.length > 0 && password.length > 0 && email.length > 0;
 
-  // useEffect(() => {
-  //   return () => {
-  //     console.log('something')
-  //   };
-  // })
-
-  const handleRegistration = () => {
-    axios.post('https://myflixapi.herokuapp.com/users', {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday
-})
-.then(response => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    /* Send a request to the server for to creat the user. */
+    axios
+      .post("https://myflixapi.herokuapp.com/users", {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
+      })
+      .then(response => {
         const data = response.data;
         console.log(data);
-        window.open('/');
+        window.open("/", "_self");
       })
-    .catch(e => {
-      console.log('error registering the user')
-    });
-  }
-
-  const SuccessfulRegistration = e => {
-    e.preventDefault();
-    props.onUserRegistered(username);
+      .catch(event => {
+        console.log("error registering the user");
+      });
   };
 
   return (
@@ -94,7 +87,7 @@ export function RegistrationView(props) {
           className="btn-lg btn-dark btn-block"
           type="submit"
           variant="primary"
-          onClick={SuccessfulRegistration}
+          onClick={handleSubmit}
         >
           Register
         </Button>
@@ -106,7 +99,7 @@ export function RegistrationView(props) {
   );
 }
 
-RegistrationView.propTypes = {
-  onAlreadyAUserLinkClicked: PropTypes.func.isRequired,
-  onUserRegistered: PropTypes.func.isRequired,
-};
+// RegistrationView.propTypes = {
+//   onAlreadyAUserLinkClicked: PropTypes.func.isRequired
+//   // onUserRegistered: PropTypes.func.isRequired
+// };
