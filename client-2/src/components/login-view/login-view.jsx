@@ -28,9 +28,9 @@ export function LoginView(props) {
       alert('Username or Password is incorrect')
     });
   };
-  
+
   return (
-    
+
       <Container className="login-form">
         <h1 className="font-weight-bold text-center">myFlix</h1>
         <h3>Login</h3>
