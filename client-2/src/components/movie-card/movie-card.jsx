@@ -10,15 +10,15 @@ export class MovieCard extends React.Component {
 
     return (
       <Col className="movies-col">
-        <Card
-          className="movieCard"
-        >
+        <Card className="movieCard">
           <Card.Img className="movies-img" src={movie.ImagePath} />
           <Card.Body>
             <Card.Title className="movies-title">{movie.Title}</Card.Title>
-            <Card.Text className="card-text movies-text">{movie.Description}</Card.Text>
+            <Card.Text className="card-text movies-text">
+              {movie.Description}
+            </Card.Text>
             <Link to={`/movies/${movie._id}`}>
-              <Button className="btn-outline-success movies-btn" variant="link">
+              <Button className="btn-outline-success" variant="link">
                 Info
               </Button>
             </Link>
