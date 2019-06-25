@@ -62,7 +62,8 @@ export class ProfileView extends React.Component {
           Username: this.state.username,
           Password: this.state.password,
           Email: this.state.email,
-          Birthday: this.state.birthday
+          Birthday: this.state.birthday,
+          FavoriteMovies: this.state.favoriteMovies
         },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
