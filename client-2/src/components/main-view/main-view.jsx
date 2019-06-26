@@ -160,7 +160,7 @@ export class MainView extends React.Component {
               data-toggle="collapse"
               data-target=".dual-collapse2"
             >
-              <span className="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon" />
             </button>
           </div>
           <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">

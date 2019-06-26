@@ -1,9 +1,6 @@
 import React from "react";
 import axios from "axios";
-
-import { Redirect } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./profile-view.scss";
@@ -21,17 +18,55 @@ export class ProfileView extends React.Component {
   }
 
   componentDidMount() {
-    this.getUserInfo();
+    let accessToken = localStorage.getItem("token");
+    if (accessToken !== null) {
+      this.getUser(accessToken);
+    }
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  getUserInfo() {
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.username);
+    console.log(this.state.password);
+    console.log(this.state.birthday);
+    console.log(this.state.email);
+    console.log(this.state.favoriteMovies);
     axios
-      .get(`https://myflixapi.herokuapp.com/users/${localStorage.user}`, {
-        headers: { Authorization: `Bearer ${localStorage.token}` }
+      .put(
+        `https://myflixapi.herokuapp.com/users/${localStorage.getItem("user")}`,
+        {
+          Username: this.state.username,
+          Password: this.state.password,
+          Email: this.state.email,
+          Birthday: this.state.birthday,
+          FavoriteMovies: this.state.favoriteMovies
+        },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+        }
+      )
+      .then(response => {
+        console.log(response);
+        alert("Information Updated.");
+        //update localStorage
+        localStorage.setItem("user", this.state.username);
+        this.getUser(localStorage.getItem("token"));
+      })
+      .catch(event => {
+        console.log("Error updating your information");
+        alert("Cannot continue. Something is wrong.");
+      });
+  }
+
+  getUser(token) {
+    let username = localStorage.getItem("user");
+    axios
+      .get(`https://myflixapi.herokuapp.com/users/${username}`, {
+        headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
         this.setState({
@@ -49,81 +84,80 @@ export class ProfileView extends React.Component {
   render() {
     const { username, email, birthday, password, favoriteMovies } = this.state;
 
-    if (!username) return null;
+    // if (!username) return null;
 
-      return (
-        <Container className="registration-view mt-10 mb-3">
-          <h1 className="font-weight-bold text-center">myFlix</h1>
-          <h3>Update Information</h3>
-          <Form>
-            <Form.Group controlId="regUsername">
-              <Form.Label>Username:</Form.Label>
-              <Form.Control
-                name="username"
-                autoFocus
-                size="sm"
-                type="text"
-                placeholder="Desired Username"
-                defaultValue={username}
-                onChange={e => this.handleChange(e)}
-              />
-            </Form.Group>
-            <Form.Group controlId="regPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                name="password"
-                size="sm"
-                type="password"
-                placeholder="Password"
-                defaultValue={password}
-                onChange={e => this.handleChange(e)}
-              />
-            </Form.Group>
-            <Form.Group controlId="regEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                name="email"
-                size="sm"
-                type="email"
-                placeholder="Email"
-                defaultValue={email}
-                onChange={e => this.handleChange(e)}
-              />
-            </Form.Group>
-            <Form.Group controlId="regBirthday">
-              <Form.Label>Birthday</Form.Label>
-              <Form.Control
-                name="birthday"
-                size="sm"
-                type="date"
-                placeholder="MM-DD-YYYY"
-                defaultValue={birthday}
-                onChange={e => this.handleChange(e)}
-              />
-            </Form.Group>
-            <Form.Group controlId="regFavoriteMovies">
-              <Form.Label>FavoriteMovies</Form.Label>
-              <Form.Control
-                name="favoriteMovies"
-                size="sm"
-                type="text"
-                placeholder="MovieID"
-                defaultValue={favoriteMovies}
-                onChange={e => this.handleChange(e)}
-              />
-            </Form.Group>
-            <Button
-              className="btn-lg btn-dark btn-block"
-              type="submit"
-              variant="primary"
-              onClick={e => this.handleSubmit(e)}
-            >
-              Update
-            </Button>
-          </Form>
-        </Container>
-      );
-    }
+    return (
+      <Container className="registration-view mt-10 mb-3">
+        <h1 className="font-weight-bold text-center">myFlix</h1>
+        <h3>Update Information</h3>
+        <Form>
+          <Form.Group controlId="regUsername">
+            <Form.Label>Username:</Form.Label>
+            <Form.Control
+              name="username"
+              autoFocus
+              size="sm"
+              type="text"
+              placeholder="Desired Username"
+              defaultValue={username}
+              onChange={e => this.handleChange(e)}
+            />
+          </Form.Group>
+          <Form.Group controlId="regPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              name="password"
+              size="sm"
+              type="password"
+              placeholder="Password"
+              defaultValue={password}
+              onChange={e => this.handleChange(e)}
+            />
+          </Form.Group>
+          <Form.Group controlId="regEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              name="email"
+              size="sm"
+              type="email"
+              placeholder="Email"
+              defaultValue={email}
+              onChange={e => this.handleChange(e)}
+            />
+          </Form.Group>
+          <Form.Group controlId="regBirthday">
+            <Form.Label>Birthday</Form.Label>
+            <Form.Control
+              name="birthday"
+              size="sm"
+              // type="date"
+              placeholder="YYYY-MM-DD"
+              defaultValue={birthday}
+              onChange={e => this.handleChange(e)}
+            />
+          </Form.Group>
+          <Form.Group controlId="regFavoriteMovies">
+            <Form.Label>FavoriteMovies</Form.Label>
+            <Form.Control
+              name="favoriteMovies"
+              size="sm"
+              type="text"
+              placeholder="MovieID"
+              defaultValue={favoriteMovies}
+              onChange={e => this.handleChange(e)}
+            />
+          </Form.Group>
+          <Button
+            className="btn-lg btn-dark btn-block"
+            type="submit"
+            variant="primary"
+            onClick={e => this.handleSubmit(e)}
+          >
+            Update
+          </Button>
+        </Form>
+      </Container>
+    );
   }
 }
 
