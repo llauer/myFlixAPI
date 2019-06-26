@@ -49,10 +49,8 @@ export class ProfileView extends React.Component {
   render() {
     const { username, email, birthday, password, favoriteMovies } = this.state;
 
-    if (!localStorage.user) {
-      return <Redirect to="/" />;
-    } else {
-      console.log(this.props.movies);
+    if (!username) return null;
+
       return (
         <Container className="registration-view mt-10 mb-3">
           <h1 className="font-weight-bold text-center">myFlix</h1>
