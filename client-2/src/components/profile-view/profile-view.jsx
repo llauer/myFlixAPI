@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import moment, { isMoment } from "moment";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -52,7 +53,6 @@ export class ProfileView extends React.Component {
       .then(response => {
         console.log(response);
         alert("Information Updated.");
-        //update localStorage
         localStorage.setItem("user", this.state.username);
         this.getUser(localStorage.getItem("token"));
       })
@@ -78,6 +78,26 @@ export class ProfileView extends React.Component {
       })
       .catch(err => {
         console.error(err);
+      });
+  }
+
+  deleteUser(event) {
+    event.preventDefault();
+    axios
+      .delete(
+        `https://myflixapi.herokuapp.com/users/${localStorage.getItem("user")}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+        }
+      )
+      .then(response => {
+        alert("Account Deleted");
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.open("/", "_self");
+      })
+      .catch(event => {
+        alert("There was a problem trying to delete the user.");
       });
   }
 
@@ -109,7 +129,7 @@ export class ProfileView extends React.Component {
               name="password"
               size="sm"
               type="password"
-              placeholder="Password"
+              placeholder="Please Enter Password"
               defaultValue={password}
               onChange={e => this.handleChange(e)}
             />
@@ -130,9 +150,9 @@ export class ProfileView extends React.Component {
             <Form.Control
               name="birthday"
               size="sm"
-              // type="date"
+              type="date"
               placeholder="YYYY-MM-DD"
-              defaultValue={birthday}
+              value={moment(birthday).format("YYYY-MM-DD")}
               onChange={e => this.handleChange(e)}
             />
           </Form.Group>
@@ -154,6 +174,14 @@ export class ProfileView extends React.Component {
             onClick={e => this.handleSubmit(e)}
           >
             Update
+          </Button>
+          <Button
+            className="btn-lg btn-block"
+            type="submit"
+            variant="danger"
+            onClick={e => this.deleteUser(e)}
+          >
+            Delete Account
           </Button>
         </Form>
       </Container>
