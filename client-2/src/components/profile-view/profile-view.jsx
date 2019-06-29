@@ -4,6 +4,7 @@ import moment, { isMoment } from "moment";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
 import "./profile-view.scss";
 
 export class ProfileView extends React.Component {
@@ -31,11 +32,11 @@ export class ProfileView extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.username);
-    console.log(this.state.password);
-    console.log(this.state.birthday);
-    console.log(this.state.email);
-    console.log(this.state.favoriteMovies);
+    // console.log(this.state.username);
+    // console.log(this.state.password);
+    // console.log(this.state.birthday);
+    // console.log(this.state.email);
+    // console.log(this.state.favoriteMovies);
     axios
       .put(
         `https://myflixapi.herokuapp.com/users/${localStorage.getItem("user")}`,
@@ -156,17 +157,23 @@ export class ProfileView extends React.Component {
               onChange={e => this.handleChange(e)}
             />
           </Form.Group>
-          <Form.Group controlId="regFavoriteMovies">
-            <Form.Label>FavoriteMovies</Form.Label>
-            <Form.Control
+
+          <h3 class="list-group-item-heading">Favorite Movies List</h3>
+
+          <ListGroup controlId="regFavoriteMovies">
+            {favoriteMovies.map(favMovie => (
+              <ListGroup.Item>{favMovie}</ListGroup.Item>
+            ))}
+
+            {/* <Form.Control
               name="favoriteMovies"
               size="sm"
               type="text"
               placeholder="MovieID"
               defaultValue={favoriteMovies}
               onChange={e => this.handleChange(e)}
-            />
-          </Form.Group>
+            /> */}
+          </ListGroup>
           <Button
             className="btn-lg btn-dark btn-block"
             type="submit"
