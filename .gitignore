@@ -36,4 +36,5 @@
 ehthumbs.db
 Thumbs.db
 node_modules
-.cache/ 
+.cache/
+test.js

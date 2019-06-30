@@ -113,10 +113,10 @@ export class MainView extends React.Component {
     }));
   }
 
-  handleFavorite(movieID) {
-    //if check ? findAndUpdate the movieID - change movie.favorite true
-    //if !check ? findAndUpdate the movieID - change movie.favorite false
-  }
+  // handleFavorite(movieID) {
+  //   //if check ? findAndUpdate the movieID - change movie.favorite true
+  //   //if !check ? findAndUpdate the movieID - change movie.favorite false
+  // }
 
   render() {
     const { movies, user, newUser } = this.state;

@@ -162,8 +162,14 @@ export class ProfileView extends React.Component {
 
           <ListGroup controlId="regFavoriteMovies">
             {favoriteMovies.map(favMovie => (
+              <div>
               <ListGroup.Item>{favMovie}</ListGroup.Item>
-            ))}
+
+              </div>
+
+            )
+            )}
+
 
             {/* <Form.Control
               name="favoriteMovies"

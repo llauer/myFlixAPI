@@ -35,7 +35,10 @@ router.get(
   '/users/:Username',
   passport.authenticate('jwt', { session: false }),
   function(req, res) {
-    Users.findOne({ Username: req.params.Username })
+    Users.findOne({ Username: req.params.Username }).populate({
+      path: 'FavoriteMovies',
+      model: 'Movie'
+    })
       .then(function(user) {
         res.json(user);
       })
