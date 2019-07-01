@@ -33,14 +33,14 @@ export class ProfileView extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const id = event.target.dataset.id;
-    const fMovies = this.state.favoriteMovies.map(movie => movie._id);
+    // const id = event.target.dataset.id;
+    // const fMovies = this.state.favoriteMovies.map(movie => movie._id);
 
-    let newFavMovies = fMovies.filter(movie => {
-      return id !== movie
-    })
+    // let newFavMovies = fMovies.filter(movie => {
+    //   return id !== movie
+    // })
 
-    console.log(newFavMovies)
+    // console.log(newFavMovies)
 
     axios
       .put(
@@ -50,7 +50,7 @@ export class ProfileView extends React.Component {
           Password: this.state.password,
           Email: this.state.email,
           Birthday: this.state.birthday,
-          FavoriteMovies: newFavMovies
+          FavoriteMovies: []
         },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
@@ -85,6 +85,21 @@ export class ProfileView extends React.Component {
       .catch(err => {
         console.error(err);
       });
+  }
+
+  deleteFavorite(e, favMovie) {
+
+    console.log(favMovie._id)
+
+    axios.delete (`https://myflixapi.herokuapp.com/users/${localStorage.getItem("user")}/movies/${favMovie._id}`,
+    {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }).then(response => {
+      this.getUser(localStorage.getItem('token'));
+    })
+    .catch(event => {
+      alert('There was a problem trying to delete favorite movie.')
+    });
   }
 
   deleteUser(event) {
@@ -163,27 +178,27 @@ export class ProfileView extends React.Component {
             />
           </Form.Group>
 
-          <h3 className="list-group-item-heading">Favorite Movies List</h3>
+        </Form>
+        <h3 className="list-group-item-heading">Favorite Movies List</h3>
 
-          <ListGroup>
-            {favoriteMovies.map(favMovie => (
-              <ListGroup.Item key={favMovie._id}>
+        <ListGroup>
+          {favoriteMovies.map(favMovie => (
+            <ListGroup.Item key={favMovie._id}>
 
-                  {favMovie.Title}
-                  <Button
-                    className="btn btn-outline-danger"
-                    variant="link"
-                    data-id={favMovie._id}
-                    onClick={e => this.handleSubmit(e)}
-                  >
-                    X
+              {favMovie.Title}
+
+              <Button
+                className="btn btn-outline-danger"
+                variant="link"
+                data-id={favMovie._id}
+                onClick={e => this.deleteFavorite(e, favMovie)}
+              >
+                X
                   </Button>
 
-              </ListGroup.Item>
-            ))}
+            </ListGroup.Item>
+          ))}
 
-
-          </ListGroup>
           <Button
             className="btn-lg btn-dark btn-block"
             type="submit"
@@ -200,7 +215,9 @@ export class ProfileView extends React.Component {
           >
             Delete Account
           </Button>
-        </Form>
+
+
+        </ListGroup>
       </Container>
     );
   }
