@@ -50,7 +50,7 @@ export class ProfileView extends React.Component {
           Password: this.state.password,
           Email: this.state.email,
           Birthday: this.state.birthday,
-          FavoriteMovies: []
+
         },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
@@ -94,12 +94,25 @@ export class ProfileView extends React.Component {
     axios.delete (`https://myflixapi.herokuapp.com/users/${localStorage.getItem("user")}/movies/${favMovie._id}`,
     {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    }).then(response => {
-      this.getUser(localStorage.getItem('token'));
-    })
-    .catch(event => {
-      alert('There was a problem trying to delete favorite movie.')
-    });
+      }).then(response => {
+
+        const newFavMovie = this.state.favoriteMovies.filter(newfaves=> {
+          return newfaves._id !== favMovie._id
+
+        });
+
+        this.setState({
+          favoriteMovies: [...newFavMovie]
+        })
+
+        console.log(response);
+        alert("Favorite Movies Updated.");
+
+      })
+      .catch(event => {
+        console.log("Error updating your favorite movies");
+        alert("Cannot continue. Something is wrong.");
+      });
   }
 
   deleteUser(event) {
