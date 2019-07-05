@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import './genre-view.scss';
+import React from "react";
+import PropTypes from "prop-types";
+// import { Button } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
+import "./genre-view.scss";
 
 export class GenreView extends React.Component {
   constructor() {
@@ -12,7 +12,7 @@ export class GenreView extends React.Component {
   }
 
   render() {
-    const { genre, logout } = this.props;
+    const { genre } = this.props;
 
     if (!genre) return null;
 
@@ -25,14 +25,9 @@ export class GenreView extends React.Component {
   }
 }
 
-
 GenreView.propTypes = {
   genre: PropTypes.shape({
     Name: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired
   })
 };
-    
-    
- 
-

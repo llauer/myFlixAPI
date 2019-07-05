@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
-import moment, { isMoment } from "moment";
+import moment from "moment";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 import "./profile-view.scss";
 
 export class ProfileView extends React.Component {
@@ -49,8 +49,7 @@ export class ProfileView extends React.Component {
           Username: this.state.username,
           Password: this.state.password,
           Email: this.state.email,
-          Birthday: this.state.birthday,
-
+          Birthday: this.state.birthday
         },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
@@ -88,26 +87,28 @@ export class ProfileView extends React.Component {
   }
 
   deleteFavorite(e, favMovie) {
+    console.log(favMovie._id);
 
-    console.log(favMovie._id)
-
-    axios.delete (`https://myflixapi.herokuapp.com/users/${localStorage.getItem("user")}/movies/${favMovie._id}`,
-    {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-      }).then(response => {
-
-        const newFavMovie = this.state.favoriteMovies.filter(newfaves=> {
-          return newfaves._id !== favMovie._id
-
+    axios
+      .delete(
+        `https://myflixapi.herokuapp.com/users/${localStorage.getItem(
+          "user"
+        )}/movies/${favMovie._id}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+        }
+      )
+      .then(response => {
+        const newFavMovie = this.state.favoriteMovies.filter(newfaves => {
+          return newfaves._id !== favMovie._id;
         });
 
         this.setState({
           favoriteMovies: [...newFavMovie]
-        })
+        });
 
         console.log(response);
         alert("Favorite Movies Updated.");
-
       })
       .catch(event => {
         console.log("Error updating your favorite movies");
@@ -138,7 +139,7 @@ export class ProfileView extends React.Component {
   render() {
     const { username, email, birthday, password, favoriteMovies } = this.state;
     // if (!username) return null;
-    console.log(this.state)
+    console.log(this.state);
 
     return (
       <Container className="registration-view mt-10 mb-3">
@@ -190,25 +191,22 @@ export class ProfileView extends React.Component {
               onChange={e => this.handleChange(e)}
             />
           </Form.Group>
-
         </Form>
         <h3 className="list-group-item-heading">Favorite Movies List</h3>
 
         <ListGroup>
           {favoriteMovies.map(favMovie => (
             <ListGroup.Item key={favMovie._id}>
-
               {favMovie.Title}
 
               <Button
-                className="btn btn-outline-danger"
+                className="listGroup__delete--button btn-outline-danger"
                 variant="link"
                 data-id={favMovie._id}
                 onClick={e => this.deleteFavorite(e, favMovie)}
               >
                 X
-                  </Button>
-
+              </Button>
             </ListGroup.Item>
           ))}
 
@@ -228,15 +226,11 @@ export class ProfileView extends React.Component {
           >
             Delete Account
           </Button>
-
-
         </ListGroup>
       </Container>
     );
   }
 }
-
-
 
 // // RegistrationView.propTypes = {
 // //   onAlreadyAUserLinkClicked: PropTypes.func.isRequired

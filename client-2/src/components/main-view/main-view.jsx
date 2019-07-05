@@ -1,29 +1,20 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-shadow */
-/* eslint no-shadow: ["error", { "hoist": "functions" }] */
-/* eslint-env es6 */
-/* eslint-disable import/no-cycle */
+
 import React from "react";
 import axios from "axios";
 
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-  Link
-} from "react-router-dom";
-import { Fragment } from "react";
-import {
-  Navbar,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  Container,
-  Row
-} from "react-bootstrap";
+import { connect } from "react-redux";
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+import { setMovies } from "../../actions/actions";
+
+import MoviesList from "../../actions/actions";
+
+import { Row } from "react-bootstrap";
 import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
+import MovieView from "../movie-view/movie-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
@@ -92,12 +83,12 @@ export class MainView extends React.Component {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
-        this.setState({
-          movies: response.data
-        });
+        this.props.setMovies(response.data);
+        // this.setState({
+        // movies: response.data
       })
-      .catch(err => {
-        console.error(err);
+      .catch(function(error) {
+        console.log(error);
       });
   }
 
@@ -108,15 +99,10 @@ export class MainView extends React.Component {
   }
 
   toggleNewUserState() {
-    this.setState((state, props) => ({
+    this.setState(state => ({
       newUser: !state.newUser
     }));
   }
-
-  // handleFavorite(movieID) {
-  //   //if check ? findAndUpdate the movieID - change movie.favorite true
-  //   //if !check ? findAndUpdate the movieID - change movie.favorite false
-  // }
 
   render() {
     const { movies, user, newUser } = this.state;
@@ -258,9 +244,12 @@ export class MainView extends React.Component {
             }}
           />
 
-          {/* <Route path="/genres/:genre" render={() => <GenreView />} /> */}
         </div>
       </Router>
     );
   }
 }
+export default connect(
+  null,
+  { setMovies }
+)(MainView);

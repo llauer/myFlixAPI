@@ -1,73 +1,48 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {  Button } from 'react-bootstrap'
-import './movie-view.scss';
-import { Link } from 'react-router-dom'
+import React from "react";
+import { connect } from "react-redux";
+import "./movie-view.scss";
 
+function MovieView(props) {
+  const { movies, movieId } = props;
 
+  if (!movies || !movies.length) return null;
+  const movie = movies.find(movie => movie._id === movieId);
 
-export class MovieView extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
-  render() {
-    const { movie, logout } = this.props;
-
-    if (!movie) return null;
-
-    return (
-      
-      <div className='movie-view text-center'>
-
-          <div className="movie-title">
-            <h1 className=''>{movie.Title}</h1>
-          </div>
-          <hr className="my-2" />
-          <img
-            className="rounded movie-poster"
-            src={movie.ImagePath}
-            alt="Movie Poster"
-          />
-          <div className="lead movie-description">
-            <h3 className="label">Description</h3>
-            <div className="value">{movie.Description}</div>
-          </div>
-          <hr className="my-2" />
-          <div className="movie-genre">
-            <h3 className="label">Genre</h3>
-            <div className="value">{movie.Genre.Name}</div>
-          <Link to={`/genres/${movie.Genre.Name}`}>
-            <Button className="btn btn-outline-success" variant='link'>Info</Button>
-          </Link>
-          </div>
-          <hr className="my-2" />
-          <div className="movie-director">
-            <h3 className="label">Director</h3>
-            <div className="value">{movie.Director.Name}</div>
-          <Link to={`/director/${movie.Director.Name}`}>
-            <Button className="btn btn-outline-success" variant='link'>Info</Button>
-          </Link>
-            
-          </div>
-      </div>
-      
-    );
-  }
+  return (
+    <div className="movie-view">
+      <div className="movie-title">{movie.Title}</div>
+      <div className="movie-imagepath">{movie.ImagePath}</div>
+      <div className="movie-description">{movie.Description}</div>
+    </div>
+  );
 }
 
-MovieView.propTypes = {
-  movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-    }).isRequired,
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
+export default connect(({ movies }) => ({ movies }))(MovieView);
+
+// export class MovieView extends React.Component {
+//   constructor(props) {
+//     super(props);
+
+//     this.state = {};
+//   }
+
+//   render() {
+//     const { movie } = this.props;
+
+//     if (!movie) return null;
+
+//
+
+// MovieView.propTypes = {
+//   movie: PropTypes.shape({
+//     Title: PropTypes.string.isRequired,
+//     ImagePath: PropTypes.string.isRequired,
+//     Description: PropTypes.string.isRequired,
+//     Genre: PropTypes.shape({
+//       Name: PropTypes.string.isRequired
+//     }).isRequired,
+//     Director: PropTypes.shape({
+//       Name: PropTypes.string.isRequired
+//     }).isRequired
+//   }).isRequired
+// };
