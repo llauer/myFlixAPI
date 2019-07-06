@@ -3,7 +3,7 @@ export const SET_FILTER = 'SET_FILTER';
 export const SET_SORT_COLUMN = 'SET_SORT_COLUMN';
 
 export function setMovies(value) {
-  return { type: SET_MOVIES, value};
+  return { type: SET_MOVIES, value };
 }
 
 export function setFilter(value) {

@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import VisibilityFilterInput from "../visibility-filter-input/visibility-filter-input";
+import VisibilityFilterInput from "../visibility-filter-input/visibilty-filter-input";
 import { MovieCard } from "../movie-card/movie-card";
 
 const mapStateToProps = state => {

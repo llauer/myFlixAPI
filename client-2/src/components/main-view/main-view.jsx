@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import { setMovies } from "../../actions/actions";
 
-import MoviesList from "../../actions/actions";
+import MoviesList from "../movies-list/movies-list";
 
 import { Row } from "react-bootstrap";
 import { LoginView } from "../login-view/login-view";
@@ -84,8 +84,6 @@ export class MainView extends React.Component {
       })
       .then(response => {
         this.props.setMovies(response.data);
-        // this.setState({
-        // movies: response.data
       })
       .catch(function(error) {
         console.log(error);
@@ -243,7 +241,6 @@ export class MainView extends React.Component {
               );
             }}
           />
-
         </div>
       </Router>
     );
