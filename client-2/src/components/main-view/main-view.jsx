@@ -111,8 +111,11 @@ export class MainView extends React.Component {
           onLoggedIn={user => this.onLoggedIn(user)}
           onNewHereLinkClicked={() => this.toggleNewUserState()}
         />
+
       );
     }
+
+
     if (!user && newUser) {
       return (
         <RegistrationView
