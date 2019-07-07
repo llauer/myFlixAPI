@@ -1,37 +1,21 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+// eslint-disable-next-line no-unused-vars
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import Form from "react-bootstrap/Form";
+import Form from 'react-bootstrap/Form';
 
-import { setFilter } from "../../actions/actions";
-import { setSortColumn } from "../../actions/actions";
-
-import "./visibility-filter-input.scss";
+import { setFilter } from '../../actions/actions';
 
 function VisibilityFilterInput(props) {
-  return (
-    <Form>
-      <Form.Control
-        className="visibilityFilterForm"
-        onChange={event => props.setFilter(event.target.value)}
-        value={props.visibilityFilter}
-        placeholder="filter movies"
-      />
-      <Form.Control
-        as="select"
-        className="selectFilter"
-        onChange={event => props.setSortColumn(event.target.value)}
-        value={props.sortColumn}
-      >
-        <option>Title</option>
-        <option>Genre</option>
-        <option>Director</option>
-      </Form.Control>
-    </Form>
-  );
+  return <Form.Control
+    onChange={e => props.setFilter(e.target.value)}
+    value={props.visibilityFilter}
+    placeholder="filter"
+  />;
 }
 
 export default connect(
-  ({ visibilityFilter, sortColumn }) => ({ visibilityFilter, sortColumn }),
-  { setFilter, setSortColumn }
+  ({ visibilityFilter }) => ({ visibilityFilter }),
+  { setFilter }
 )(VisibilityFilterInput);

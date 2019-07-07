@@ -1,12 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
-import VisibilityFilterInput from "../visibility-filter-input/visibilty-filter-input";
-import { MovieCard } from "../movie-card/movie-card";
+import VisibilityFilterInput from '../visibility-filter-input/visibilty-filter-input';
+import { MovieCard } from '../movie-card/movie-card';
 
 const mapStateToProps = state => {
   const { movies, visibilityFilter, sortColumn } = state;
@@ -17,22 +13,8 @@ const mapStateToProps = state => {
     return 0;
   });
 
-  if (visibilityFilter !== "" && sortColumn === "Title") {
-    moviesToShow = moviesToShow.filter(movie =>
-      movie.Title.toLowerCase().includes(visibilityFilter.toLowerCase())
-    );
-  }
-
-  if (visibilityFilter !== "" && sortColumn === "Genre") {
-    moviesToShow = moviesToShow.filter(movie =>
-      movie.Genre.Name.toLowerCase().includes(visibilityFilter.toLowerCase())
-    );
-  }
-
-  if (visibilityFilter !== "" && sortColumn === "Director") {
-    moviesToShow = moviesToShow.filter(movie =>
-      movie.Director.Name.toLowerCase().includes(visibilityFilter.toLowerCase())
-    );
+  if (visibilityFilter !== '') {
+    moviesToShow = moviesToShow.filter(m => m.title.includes(visibilityFilter));
   }
 
   return { movies: moviesToShow };
@@ -43,20 +25,10 @@ function MoviesList(props) {
 
   if (!movies) return <div className="main-view" />;
 
-  return (
-    <div className="movie-list">
-      <VisibilityFilterInput />
-      <Container>
-        <Row>
-          {movies.map(movie => (
-            <Col key={movie._id} xs={6} sm={6} md={4}>
-              <MovieCard key={movie._id} movie={movie} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </div>
-  );
+  return <div className="movies-list">
+    <VisibilityFilterInput />
+    {movies.map(m => <MovieCard key={m._id} movie={m} />)}
+  </div>;
 }
 
 export default connect(mapStateToProps)(MoviesList);

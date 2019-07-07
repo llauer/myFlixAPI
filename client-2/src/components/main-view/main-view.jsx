@@ -22,7 +22,7 @@ import { ProfileView } from "../profile-view/profile-view";
 
 import "./main-view.scss";
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   constructor() {
     super();
 
@@ -178,6 +178,8 @@ export class MainView extends React.Component {
         <div className="main-view">
           <Route path="/profile" render={() => <ProfileView />} />
 
+
+
           <Route
             exact
             path="/"
@@ -187,8 +189,7 @@ export class MainView extends React.Component {
               } else {
                 return (
                   <Row>
-                    {movies.map(movie => (
-                      <MovieCard key={movie._id} movie={movie} />
+                    return <MoviesList />;
                     ))}
                   </Row>
                 );
@@ -213,7 +214,7 @@ export class MainView extends React.Component {
             path="/director/:name"
             render={({ match }) => {
               if (!movies || !movies.length)
-                return <div className="main-view" />;
+                return <MainView />;
               return (
                 <DirectorView
                   director={

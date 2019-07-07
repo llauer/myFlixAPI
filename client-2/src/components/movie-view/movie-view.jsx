@@ -11,7 +11,10 @@ function MovieView(props) {
 
   if (!movies || !movies.length) return null;
 
-  const movie = movies.find(movie => movie._id === movieId);
+
+
+  // eslint-disable-next-line eqeqeq
+  const movie = movies.find(movie => movie._id == movieId);
 
   return (
     <div className="movie-view text-center">
