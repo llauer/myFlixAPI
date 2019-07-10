@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { SET_FILTER, SET_SORT_COLUMN, SET_MOVIES } from '../actions/actions';
+import { SET_FILTER, SET_MOVIES, SET_SORT_COLUMN } from '../actions/actions.js';
 
 function visibilityFilter(state = '', action) {
   switch (action.type) {
@@ -11,18 +11,18 @@ function visibilityFilter(state = '', action) {
   }
 }
 
-function sortColumn(state = 'title', action) {
+function movies(state = [], action) {
   switch (action.type) {
-    case SET_SORT_COLUMN:
+    case SET_MOVIES:
       return action.value;
     default:
       return state;
   }
 }
 
-function movies(state = [], action) {
+function sortColumn(state = 'title', action) {
   switch (action.type) {
-    case SET_MOVIES:
+    case SET_SORT_COLUMN:
       return action.value;
     default:
       return state;
