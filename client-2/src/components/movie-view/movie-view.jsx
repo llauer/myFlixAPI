@@ -40,7 +40,7 @@ export class MovieView extends React.Component {
             <h3 className="label">Genre</h3>
             <div className="value">{movie.Genre.Name}</div>
           <Link to={`/genres/${movie.Genre.Name}`}>
-            <Button className="btn btn-outline-success" variant='link'>Info</Button>
+            <Button className="infobtn btn-outline-success" variant='link'>Info</Button>
           </Link>
           </div>
           <hr className="my-2" />
@@ -48,7 +48,7 @@ export class MovieView extends React.Component {
             <h3 className="label">Director</h3>
             <div className="value">{movie.Director.Name}</div>
           <Link to={`/director/${movie.Director.Name}`}>
-            <Button className="btn btn-outline-success" variant='link'>Info</Button>
+            <Button className="infobtn btn-outline-success" variant='link'>Info</Button>
           </Link>
             
           </div>

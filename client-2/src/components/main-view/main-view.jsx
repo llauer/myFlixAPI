@@ -113,11 +113,6 @@ export class MainView extends React.Component {
     }));
   }
 
-  // handleFavorite(movieID) {
-  //   //if check ? findAndUpdate the movieID - change movie.favorite true
-  //   //if !check ? findAndUpdate the movieID - change movie.favorite false
-  // }
-
   render() {
     const { movies, user, newUser } = this.state;
 
@@ -146,8 +141,8 @@ export class MainView extends React.Component {
           <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <Link to={"/RegistrationView"} className="nav-link">
-                  Welcome Back, {user}!
+                <Link to={"/"} className="nav-link">
+                  Welcome Back!
                 </Link>
               </li>
               <li className="nav-item">
@@ -264,3 +259,4 @@ export class MainView extends React.Component {
     );
   }
 }
+

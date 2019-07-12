@@ -12,7 +12,7 @@ export class ProfileView extends React.Component {
     super(props);
 
     this.state = {
-      username: null,
+      username: {},
       email: null,
       birthday: null,
       favoriteMovies: []
@@ -32,15 +32,6 @@ export class ProfileView extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
-    // const id = event.target.dataset.id;
-    // const fMovies = this.state.favoriteMovies.map(movie => movie._id);
-
-    // let newFavMovies = fMovies.filter(movie => {
-    //   return id !== movie
-    // })
-
-    // console.log(newFavMovies)
 
     axios
       .put(
@@ -76,7 +67,7 @@ export class ProfileView extends React.Component {
       })
       .then(response => {
         this.setState({
-          username: response.data.Username,
+          username: null,
           email: response.data.Email,
           birthday: response.data.Birthday,
           favoriteMovies: response.data.FavoriteMovies
@@ -201,7 +192,7 @@ export class ProfileView extends React.Component {
               {favMovie.Title}
 
               <Button
-                className="btn btn-outline-danger"
+                className="listGroup__delete--button btn-outline-danger"
                 variant="link"
                 data-id={favMovie._id}
                 onClick={e => this.deleteFavorite(e, favMovie)}
