@@ -3,11 +3,12 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux';
 
 import moviesApp from './reducers/reducers';
-import MainView from './components/main-view/main-view';
+import  MainView from './components/main-view/main-view';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 
 import './App.css';
 
-const store = createStore(moviesApp);
+const store = createStore(moviesApp, devToolsEnhancer());
 
 class App extends Component {
 

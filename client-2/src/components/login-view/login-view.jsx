@@ -80,6 +80,6 @@ export function LoginView(props) {
 
 
 LoginView.propTypes = {
-  onNewHereLinkClicked: PropTypes.func.isRequired,
+  // onNewHereLinkClicked: PropTypes.func.isRequired,
   onLoggedIn: PropTypes.func.isRequired,
 };

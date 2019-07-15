@@ -12,9 +12,9 @@ export class ProfileView extends React.Component {
     super(props);
 
     this.state = {
-      username: null,
-      email: null,
-      birthday: null,
+      username: this.props.user.Username,
+      email: this.props.user.Email,
+      birthday: this.props.user.Birthday,
       favoriteMovies: []
     };
   }
@@ -75,7 +75,7 @@ export class ProfileView extends React.Component {
       })
       .then(response => {
         this.setState({
-          username: response.data.Username,
+          username: null,
           email: response.data.Email,
           birthday: response.data.Birthday,
           favoriteMovies: response.data.FavoriteMovies

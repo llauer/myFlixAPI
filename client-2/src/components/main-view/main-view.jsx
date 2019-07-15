@@ -9,13 +9,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import { setMovies } from "../../actions/actions";
 
-import MoviesList from "../movies-list/movies-list";
-import MovieView from "../movie-view/movie-view";
+import MoviesList from "../../actions/actions";
 
 import { Row } from "react-bootstrap";
 import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
-
+import MovieView from "../movie-view/movie-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
@@ -23,22 +22,18 @@ import { ProfileView } from "../profile-view/profile-view";
 
 import "./main-view.scss";
 
- class MainView extends React.Component {
+export class MainView extends React.Component {
   constructor() {
     super();
 
+    this.goBack = this.goBack.bind(this);
+
     this.state = {
-      user: null
+      movies: [],
+      selectedMovieId: null,
+      user: null,
+      newUser: false
     };
-
-    // this.goBack = this.goBack.bind(this);
-
-    // this.state = {
-    //   movies: [],
-    //   selectedMovieId: null,
-    //   user: null,
-    //   newUser: false
-    // };
   }
 
   componentDidMount() {
@@ -89,8 +84,10 @@ import "./main-view.scss";
       })
       .then(response => {
         this.props.setMovies(response.data);
+        // this.setState({
+        // movies: response.data
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   }
@@ -116,10 +113,8 @@ import "./main-view.scss";
           onLoggedIn={user => this.onLoggedIn(user)}
           onNewHereLinkClicked={() => this.toggleNewUserState()}
         />
-
       );
     }
-
     if (!user && newUser) {
       return (
         <RegistrationView
@@ -191,7 +186,8 @@ import "./main-view.scss";
               } else {
                 return (
                   <Row>
-                    return <MoviesList />;
+                    {movies.map(movie => (
+                      <MovieCard key={movie._id} movie={movie} />
                     ))}
                   </Row>
                 );
@@ -216,7 +212,7 @@ import "./main-view.scss";
             path="/director/:name"
             render={({ match }) => {
               if (!movies || !movies.length)
-                return <MainView />;
+                return <div className="main-view" />;
               return (
                 <DirectorView
                   director={
@@ -247,6 +243,7 @@ import "./main-view.scss";
               );
             }}
           />
+
         </div>
       </Router>
     );
