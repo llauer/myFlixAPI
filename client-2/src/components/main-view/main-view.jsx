@@ -10,11 +10,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { setMovies } from "../../actions/actions";
 
 import MoviesList from "../movies-list/movies-list";
+import MovieView from "../movie-view/movie-view";
 
 import { Row } from "react-bootstrap";
 import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
-import MovieView from "../movie-view/movie-view";
+
 import { RegistrationView } from "../registration-view/registration-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
@@ -22,18 +23,22 @@ import { ProfileView } from "../profile-view/profile-view";
 
 import "./main-view.scss";
 
-class MainView extends React.Component {
+ class MainView extends React.Component {
   constructor() {
     super();
 
-    this.goBack = this.goBack.bind(this);
-
     this.state = {
-      movies: [],
-      selectedMovieId: null,
-      user: null,
-      newUser: false
+      user: null
     };
+
+    // this.goBack = this.goBack.bind(this);
+
+    // this.state = {
+    //   movies: [],
+    //   selectedMovieId: null,
+    //   user: null,
+    //   newUser: false
+    // };
   }
 
   componentDidMount() {
@@ -115,7 +120,6 @@ class MainView extends React.Component {
       );
     }
 
-
     if (!user && newUser) {
       return (
         <RegistrationView
@@ -177,8 +181,6 @@ class MainView extends React.Component {
 
         <div className="main-view">
           <Route path="/profile" render={() => <ProfileView />} />
-
-
 
           <Route
             exact
