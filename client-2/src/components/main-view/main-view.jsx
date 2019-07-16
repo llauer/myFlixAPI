@@ -55,7 +55,6 @@ export class MainView extends React.Component {
       });
   }
 
-
   onLoggedIn(authData) {
     const config = {
       Username: authData.user.Username,
