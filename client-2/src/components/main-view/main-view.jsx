@@ -30,7 +30,6 @@ export class MainView extends React.Component {
       user: null
     };
 
-
   }
 
   componentDidMount() {
