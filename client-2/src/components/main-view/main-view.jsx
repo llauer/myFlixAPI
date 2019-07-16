@@ -294,19 +294,6 @@ export default connect(null, { setMovies })(MainView);
 //                   Back
 //                 </Link>
 //               </li>
-//               <li className="nav-item">
-//                 <Link
-//                   to={"/"}
-//                   className="font-weight-bold nav-link "
-//                   onClick={() => this.onLogOut()}
-//                 >
-//                   Logout
-//                 </Link>
-//               </li>
-//             </ul>
-//           </div>
-//         </nav>
-
 //         <div className="main-view">
 //           <Route path="/profile" render={() => <ProfileView />} />
 
