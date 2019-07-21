@@ -13,7 +13,6 @@
 }
 
 .movieCard:hover {
-  
   box-shadow: 0 0 20px #111111;
 }
 
@@ -28,6 +27,11 @@
 
 .movies-btn {
   margin: 0;
+}
+
+.btn {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .logout {
