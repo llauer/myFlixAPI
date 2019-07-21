@@ -113,11 +113,6 @@ export class MainView extends React.Component {
     }));
   }
 
-  // handleFavorite(movieID) {
-  //   //if check ? findAndUpdate the movieID - change movie.favorite true
-  //   //if !check ? findAndUpdate the movieID - change movie.favorite false
-  // }
-
   render() {
     const { movies, user, newUser } = this.state;
 
@@ -146,9 +141,7 @@ export class MainView extends React.Component {
           <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active nav-link">
-                {/* <Link to={"/profile"} className="nav-link"> */}
-                  Welcome Back, {user}!
-                {/* </Link> */}
+                Welcome Back, {user}!
               </li>
               <li className="nav-item">
                 <Link to={"/profile"} className="font-weight-bold nav-link">
@@ -257,8 +250,6 @@ export class MainView extends React.Component {
               );
             }}
           />
-
-          {/* <Route path="/genres/:genre" render={() => <GenreView />} /> */}
         </div>
       </Router>
     );
