@@ -145,10 +145,10 @@ export class MainView extends React.Component {
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
           <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <Link to={"/RegistrationView"} className="nav-link">
+              <li className="nav-item active nav-link">
+                {/* <Link to={"/profile"} className="nav-link"> */}
                   Welcome Back, {user}!
-                </Link>
+                {/* </Link> */}
               </li>
               <li className="nav-item">
                 <Link to={"/profile"} className="font-weight-bold nav-link">
