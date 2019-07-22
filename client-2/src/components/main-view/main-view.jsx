@@ -6,12 +6,19 @@
 import React from "react";
 import axios from "axios";
 
+import { connect } from "react-redux";
+
 import {
   BrowserRouter as Router,
   Route,
   NavLink,
   Link
 } from "react-router-dom";
+
+import { setMovies } from "../../actions/actions";
+
+import MoviesList from "../movies-list/movies-list";
+
 import { Fragment } from "react";
 import {
   Navbar,
@@ -92,9 +99,7 @@ export class MainView extends React.Component {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
-        this.setState({
-          movies: response.data
-        });
+        this.props.setMovies(response.data);
       })
       .catch(err => {
         console.error(err);
@@ -255,3 +260,8 @@ export class MainView extends React.Component {
     );
   }
 }
+
+export default connect(
+  null,
+  { setMovies }
+)(MainView);

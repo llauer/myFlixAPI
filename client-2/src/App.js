@@ -13,7 +13,6 @@ class App extends Component {
       <Provider store={store}>
         <MainView/>
       </Provider>
-
     );
   }
 }
