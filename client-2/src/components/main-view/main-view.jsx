@@ -30,10 +30,10 @@ import {
 } from "react-bootstrap";
 import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
+import MovieView from "../movie-view/movie-view";
 import { RegistrationView } from "../registration-view/registration-view";
-import { DirectorView } from "../director-view/director-view";
-import { GenreView } from "../genre-view/genre-view";
+import DirectorView from "../director-view/director-view";
+import GenreView from "../genre-view/genre-view";
 import { ProfileView } from "../profile-view/profile-view";
 
 import "./main-view.scss";
@@ -138,8 +138,6 @@ export class MainView extends React.Component {
       );
     }
 
-    if (!movies || !movies.length) return <div className="main-view" />;
-
     return (
       <Router>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
@@ -197,11 +195,12 @@ export class MainView extends React.Component {
                 return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
               } else {
                 return (
-                  <Row>
-                    {movies.map(movie => (
-                      <MovieCard key={movie._id} movie={movie} />
-                    ))}
-                  </Row>
+                  <MoviesList />
+                  // <Row>
+                  //   {movies.map(movie => (
+                  //     <MovieCard key={movie._id} movie={movie} />
+                  //   ))}
+                  // </Row>
                 );
               }
             }}
@@ -212,7 +211,8 @@ export class MainView extends React.Component {
             path="/movies/:movieID"
             render={({ match }) => (
               <MovieView
-                movie={movies.find(m => m._id === match.params.movieID)}
+                movieId={match.params.movieID}
+                // movie={movies.find(m => m._id === match.params.movieID)}
                 logout={() => this.onLogOut()}
               />
             )}
@@ -223,16 +223,9 @@ export class MainView extends React.Component {
           <Route
             path="/director/:name"
             render={({ match }) => {
-              if (!movies || !movies.length)
-                return <div className="main-view" />;
               return (
                 <DirectorView
-                  director={
-                    movies.find(
-                      movie => movie.Director.Name === match.params.name
-                    ).Director
-                  }
-                  logout={() => this.onLogOut()}
+                  directorName={match.params.name}
                 />
               );
             }}
@@ -242,15 +235,9 @@ export class MainView extends React.Component {
             exact
             path="/genres/:name"
             render={({ match }) => {
-              if (!movies || !movies.length)
-                return <div className="main-view" />;
               return (
                 <GenreView
-                  genre={
-                    movies.find(movie => movie.Genre.Name === match.params.name)
-                      .Genre
-                  }
-                  logout={() => this.onLogOut()}
+                  genreName={match.params.name}
                 />
               );
             }}

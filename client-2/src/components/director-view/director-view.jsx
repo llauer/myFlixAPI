@@ -1,20 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
-import './director-view.scss';
+import "./director-view.scss";
+import { connect } from "react-redux";
 
-
-export class DirectorView extends React.Component {
-  constructor() {
-    super();
+class DirectorView extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.state = {};
   }
 
   render() {
-    const { director, logout } = this.props;
+    const { directorName, movies } = this.props;
+
+    const director = movies.length > 0 ? movies.find(movie => movie.Director.Name === directorName).Director : null;
 
     if (!director) return null;
 
@@ -34,12 +36,14 @@ export class DirectorView extends React.Component {
   }
 }
 
-DirectorView.propTypes = {
-  director: PropTypes.shape({
-    Name: PropTypes.string,
-    Bio: PropTypes.string,
-    Birth: PropTypes.string,
-    Death: PropTypes.string,
-    Movies: PropTypes.array
-  }).isRequired
-};
+export default connect(({ movies }) => ({ movies }))(DirectorView);
+
+// DirectorView.propTypes = {
+//   director: PropTypes.shape({
+//     Name: PropTypes.string,
+//     Bio: PropTypes.string,
+//     Birth: PropTypes.string,
+//     Death: PropTypes.string,
+//     Movies: PropTypes.array
+//   }).isRequired
+// };
