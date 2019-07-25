@@ -1,12 +1,12 @@
-.registration-view {
+.filterControl {
   width: 100%;
-  max-width: 500px;
+  max-width: auto;
   padding: 15px;
   margin: auto;
   height: 100%;
   box-shadow: 0 0px 20px 0 rgba(15, 15, 15, 0.4);
 }
 
-.error {
-  border: 1px solid red;
+.filterControl:hover {
+  box-shadow: 0 0 20px #111111;
 }

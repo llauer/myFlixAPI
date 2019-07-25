@@ -1,9 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import './genre-view.scss';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import "./genre-view.scss";
 
 class GenreView extends React.Component {
   constructor() {
@@ -13,9 +11,12 @@ class GenreView extends React.Component {
   }
 
   render() {
-    const { genreName, movies, logout } = this.props;
+    const { genreName, movies } = this.props;
 
-    const genre = movies.length > 0 ? movies.find(movie => movie.Genre.Name === genreName).Genre : null;
+    const genre =
+      movies.length > 0
+        ? movies.find(movie => movie.Genre.Name === genreName).Genre
+        : null;
 
     if (!genre) return null;
 
@@ -30,14 +31,9 @@ class GenreView extends React.Component {
 
 export default connect(({ movies }) => ({ movies }))(GenreView);
 
-
 GenreView.propTypes = {
   genre: PropTypes.shape({
     Name: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired
   })
 };
-
-
-
-

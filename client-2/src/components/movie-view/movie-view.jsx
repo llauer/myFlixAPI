@@ -1,36 +1,10 @@
-// import React from "react";
-// import { connect } from "react-redux";
-
-// function MovieView(props) {
-//   const { movies, movieId } = props;
-
-//   if (!movies || !movies.length) return null;
-
-//   const movie = movies.find(m => m._id == movieId);
-
-//   return (
-//     <div className="movie-view">
-//       <div className="movie-title">{movie.Title}</div>
-//       <div className="movie-imagepath">{movie.ImagePath}</div>
-//       <div className="movie-description">{movie.Description}</div>
-//     </div>
-//   );
-// }
-
-// export default connect(({ movies }) => ({ movies }))(MovieView);
-
 import React from "react";
+import axios from "axios";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+
 import { Button } from "react-bootstrap";
 import "./movie-view.scss";
 import { Link } from "react-router-dom";
-
-// function MovieView(props) {
-//   const { movies, movieId } = props;
-
-//   if (!movies || !movies.length) return null;
-//   const movie = movies.find(m => m._id == movieId);
 class MovieView extends React.Component {
   constructor(props) {
     super(props);
@@ -39,56 +13,86 @@ class MovieView extends React.Component {
   }
 
   render() {
-             const { movies, movieId, logout } = this.props;
+    const { movies, movieId } = this.props;
 
-             const movie = movies.find(m => m._id == movieId);
+    const movie = movies.find(m => m._id == movieId);
 
-             if (!movie) return null;
+    function addFavorite(event) {
+      event.preventDefault();
+      axios
+        .post(
+          `https://myflixapi.herokuapp.com/users/${localStorage.getItem(
+            "user"
+          )}/movies/${movie._id}`,
+          {
+            Username: localStorage.getItem("user")
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+          }
+        )
+        .then(response => {
+          console.log(response);
+          alert("Movie has been added to your Favorite List!");
+        })
+        .catch(event => {
+          console.log("error adding movie to list");
+          alert("Oops... Something went wrong!");
+        });
+    }
 
-             return (
-               <div className="movie-view text-center">
-                 <div className="movie-title">
-                   <h1 className="">{movie.Title}</h1>
-                 </div>
-                 <hr className="my-2" />
-                 <img
-                   className="rounded movie-poster"
-                   src={movie.ImagePath}
-                   alt="Movie Poster"
-                 />
-                 <div className="lead movie-description">
-                   <h3 className="label">Description</h3>
-                   <div className="value">{movie.Description}</div>
-                 </div>
-                 <hr className="my-2" />
-                 <div className="movie-genre">
-                   <h3 className="label">Genre</h3>
-                   <div className="value">{movie.Genre.Name}</div>
-                   <Link to={`/genres/${movie.Genre.Name}`}>
-                     <Button
-                       className="btn btn-outline-success"
-                       variant="link"
-                     >
-                       Info
-                     </Button>
-                   </Link>
-                 </div>
-                 <hr className="my-2" />
-                 <div className="movie-director">
-                   <h3 className="label">Director</h3>
-                   <div className="value">{movie.Director.Name}</div>
-                   <Link to={`/director/${movie.Director.Name}`}>
-                     <Button
-                       className="btn btn-outline-success"
-                       variant="link"
-                     >
-                       Info
-                     </Button>
-                   </Link>
-                 </div>
-               </div>
-             );
-           }
+    if (!movie) return null;
+
+    return (
+      <div className="movie-view text-center">
+        <div className="movie-title">
+          <h1 className="">{movie.Title}</h1>
+        </div>
+        <hr className="my-2" />
+        <img
+          className="rounded movie-poster"
+          src={movie.ImagePath}
+          alt="Movie Poster"
+        />
+        <div className="lead movie-description">
+          <h3 className="label">Description</h3>
+          <div className="value">{movie.Description}</div>
+        </div>
+        <hr className="my-2" />
+        <div className="movie-genre">
+          <h3 className="label">Genre</h3>
+          <div className="value">{movie.Genre.Name}</div>
+          <Link to={`/genres/${movie.Genre.Name}`}>
+            <Button className="btn btn-outline-success" variant="link">
+              Info
+            </Button>
+          </Link>
+        </div>
+        <hr className="my-2" />
+        <div className="movie-director">
+          <h3 className="label">Director</h3>
+          <div className="value">{movie.Director.Name}</div>
+          <Link to={`/director/${movie.Director.Name}`}>
+            <Button className="btn btn-outline-success" variant="link">
+              Info
+            </Button>
+          </Link>
+          <div>
+            <Button
+              className="favorite-Btn"
+              variant="success"
+              type="button"
+              onClick={e => addFavorite(e)}
+            >
+              Add Favorite
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 export default connect(({ movies }) => ({ movies }))(MovieView);
 

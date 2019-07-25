@@ -1,11 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
 
 import "./director-view.scss";
 import { connect } from "react-redux";
-
 class DirectorView extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +12,10 @@ class DirectorView extends React.Component {
   render() {
     const { directorName, movies } = this.props;
 
-    const director = movies.length > 0 ? movies.find(movie => movie.Director.Name === directorName).Director : null;
+    const director =
+      movies.length > 0
+        ? movies.find(movie => movie.Director.Name === directorName).Director
+        : null;
 
     if (!director) return null;
 

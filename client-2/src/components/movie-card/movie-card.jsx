@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Button, Card, Container } from "react-bootstrap";
+import { Col, Button, Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./movie-card.scss";
@@ -18,10 +18,7 @@ export class MovieCard extends React.Component {
               {movie.Description}
             </Card.Text>
             <Link to={`/movies/${movie._id}`}>
-              <Button
-                className="btn-outline-success info-card"
-                variant="link"
-              >
+              <Button className="btn-outline-success info-card" variant="link">
                 Info
               </Button>
             </Link>
