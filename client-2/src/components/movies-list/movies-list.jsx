@@ -14,18 +14,20 @@ const mapStateToProps = state => {
   });
 
   if (visibilityFilter !== "" && sortColumn === "Title") {
-    moviesToShow = moviesToShow.filter(m => m.Title.includes(visibilityFilter));
+    moviesToShow = moviesToShow.filter(m =>
+      m.Title.toLowerCase().includes(visibilityFilter.toLowerCase())
+    );
   }
 
   if (visibilityFilter !== "" && sortColumn === "Genre") {
     moviesToShow = moviesToShow.filter(m =>
-      m.Genre.Name.includes(visibilityFilter)
+      m.Genre.Name.toLowerCase().includes(visibilityFilter.toLowerCase())
     );
   }
 
   if (visibilityFilter !== "" && sortColumn === "Director") {
     moviesToShow = moviesToShow.filter(m =>
-      m.Director.Name.includes(visibilityFilter)
+      m.Director.Name.toLowerCase().includes(visibilityFilter.toLowerCase())
     );
   }
 
