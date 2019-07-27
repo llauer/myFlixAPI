@@ -15,7 +15,7 @@ import {
   Link
 } from "react-router-dom";
 
-import { setMovies } from "../../actions/actions";
+import { setMovies, setLoggedInUser } from "../../actions/actions";
 
 import MoviesList from "../movies-list/movies-list";
 
@@ -59,6 +59,7 @@ export class MainView extends React.Component {
         user: localStorage.getItem("user")
       });
       this.getMovies(accessToken);
+      this.getUser(accessToken);
     }
   }
   goBack() {
@@ -77,9 +78,10 @@ export class MainView extends React.Component {
       user: authData.user.Username
     });
 
+    this.props.setLoggedInUser(authData.user);
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
-    localStorage.setItem("userInfo", JSON.stringify(authData.user));
+    // localStorage.setItem("userInfo", JSON.stringify(authData.user));
     this.getMovies(authData.token);
   }
 
@@ -106,6 +108,19 @@ export class MainView extends React.Component {
       });
   }
 
+  getUser(token) {
+    let username = localStorage.getItem('user');
+    axios.get(`https://myflixapi.herokuapp.com/users/${username}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.props.setLoggedInUser(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   goMainView() {
     this.setState({
       selectedMovieId: null
@@ -120,7 +135,6 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, user, newUser } = this.state;
-
     if (!user && !newUser) {
       return (
         <LoginView
@@ -138,6 +152,7 @@ export class MainView extends React.Component {
       );
     }
 
+    console.log(this.props)
     return (
       <Router>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
@@ -223,11 +238,7 @@ export class MainView extends React.Component {
           <Route
             path="/director/:name"
             render={({ match }) => {
-              return (
-                <DirectorView
-                  directorName={match.params.name}
-                />
-              );
+              return <DirectorView directorName={match.params.name} />;
             }}
           />
 
@@ -235,11 +246,7 @@ export class MainView extends React.Component {
             exact
             path="/genres/:name"
             render={({ match }) => {
-              return (
-                <GenreView
-                  genreName={match.params.name}
-                />
-              );
+              return <GenreView genreName={match.params.name} />;
             }}
           />
         </div>
@@ -248,7 +255,5 @@ export class MainView extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  { setMovies }
-)(MainView);
+export default connect(null, { setMovies, setLoggedInUser })(MainView);
+
