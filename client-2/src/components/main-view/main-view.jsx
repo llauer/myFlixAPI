@@ -28,7 +28,7 @@ import {
   Container,
   Row
 } from "react-bootstrap";
-import { LoginView } from "../login-view/login-view";
+import LoginView from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
 import { RegistrationView } from "../registration-view/registration-view";
@@ -223,11 +223,7 @@ export class MainView extends React.Component {
           <Route
             path="/director/:name"
             render={({ match }) => {
-              return (
-                <DirectorView
-                  directorName={match.params.name}
-                />
-              );
+              return <DirectorView directorName={match.params.name} />;
             }}
           />
 
@@ -235,11 +231,7 @@ export class MainView extends React.Component {
             exact
             path="/genres/:name"
             render={({ match }) => {
-              return (
-                <GenreView
-                  genreName={match.params.name}
-                />
-              );
+              return <GenreView genreName={match.params.name} />;
             }}
           />
         </div>
