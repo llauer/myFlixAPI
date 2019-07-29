@@ -29,7 +29,7 @@ function movies(state = [], action) {
   }
 }
 
-function loggedInUser(state = [], action) {
+function loggedInUser(state = null, action) {
   switch (action.type) {
     case SET_LOGGED_IN_USER:
       return action.value;
