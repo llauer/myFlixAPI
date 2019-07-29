@@ -15,7 +15,7 @@ import {
   Link
 } from "react-router-dom";
 
-import { setMovies } from "../../actions/actions";
+import { setMovies, setLoggedInUser } from "../../actions/actions";
 
 import MoviesList from "../movies-list/movies-list";
 
@@ -38,16 +38,14 @@ import { ProfileView } from "../profile-view/profile-view";
 
 import "./main-view.scss";
 
+const mapStateToProps = state => {
+  return { user: state.loggedInUser };
+};
 export class MainView extends React.Component {
   constructor() {
     super();
 
-    this.goBack = this.goBack.bind(this);
-
     this.state = {
-      movies: [],
-      selectedMovieId: null,
-      user: null,
       newUser: false
     };
   }
@@ -59,17 +57,8 @@ export class MainView extends React.Component {
         user: localStorage.getItem("user")
       });
       this.getMovies(accessToken);
+      this.getUser(accessToken);
     }
-  }
-  goBack() {
-    this.props.history.goBack();
-  }
-
-  onMovieClick(movie) {
-    window.location.hash = "#" + movie._id;
-    this.setState({
-      selectedMovieId: movie
-    });
   }
 
   onLoggedIn(authData) {
@@ -81,6 +70,7 @@ export class MainView extends React.Component {
     localStorage.setItem("user", authData.user.Username);
     localStorage.setItem("userInfo", JSON.stringify(authData.user));
     this.getMovies(authData.token);
+    
   }
 
   onLogOut() {
@@ -106,12 +96,6 @@ export class MainView extends React.Component {
       });
   }
 
-  goMainView() {
-    this.setState({
-      selectedMovieId: null
-    });
-  }
-
   toggleNewUserState() {
     this.setState((state, props) => ({
       newUser: !state.newUser
@@ -119,7 +103,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user, newUser } = this.state;
+    const { newUser } = this.state;
+    const { user } = this.props;
 
     if (!user && !newUser) {
       return (
@@ -144,7 +129,7 @@ export class MainView extends React.Component {
           <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active nav-link">
-                Welcome Back, {user}!
+                Welcome Back, {user.Username}!
               </li>
               <li className="nav-item">
                 <Link to={"/profile"} className="font-weight-bold nav-link">
@@ -194,14 +179,7 @@ export class MainView extends React.Component {
               if (!user) {
                 return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
               } else {
-                return (
-                  <MoviesList />
-                  // <Row>
-                  //   {movies.map(movie => (
-                  //     <MovieCard key={movie._id} movie={movie} />
-                  //   ))}
-                  // </Row>
-                );
+                return <MoviesList />;
               }
             }}
           />
@@ -212,7 +190,6 @@ export class MainView extends React.Component {
             render={({ match }) => (
               <MovieView
                 movieId={match.params.movieID}
-                // movie={movies.find(m => m._id === match.params.movieID)}
                 logout={() => this.onLogOut()}
               />
             )}
@@ -241,6 +218,6 @@ export class MainView extends React.Component {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   { setMovies }
 )(MainView);

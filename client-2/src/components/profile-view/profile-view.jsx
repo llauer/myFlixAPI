@@ -7,6 +7,8 @@ import Form from "react-bootstrap/Form";
 import { ListGroup } from "react-bootstrap";
 import "./profile-view.scss";
 
+
+
 export class ProfileView extends React.Component {
   constructor(props) {
     super(props);
@@ -32,6 +34,8 @@ export class ProfileView extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
+    console.log(this.state.Username);
 
     axios
       .put(
@@ -129,8 +133,6 @@ export class ProfileView extends React.Component {
 
   render() {
     const { username, email, birthday, password, favoriteMovies } = this.state;
-    // if (!username) return null;
-    console.log(this.state);
 
     return (
       <Container className="registration-view mt-10 mb-3">
