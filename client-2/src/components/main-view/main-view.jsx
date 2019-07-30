@@ -57,7 +57,6 @@ export class MainView extends React.Component {
         user: localStorage.getItem("user")
       });
       this.getMovies(accessToken);
-      this.getUser(accessToken);
     }
   }
 
@@ -70,7 +69,6 @@ export class MainView extends React.Component {
     localStorage.setItem("user", authData.user.Username);
     localStorage.setItem("userInfo", JSON.stringify(authData.user));
     this.getMovies(authData.token);
-    
   }
 
   onLogOut() {

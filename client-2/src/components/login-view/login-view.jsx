@@ -25,6 +25,7 @@ export function LoginView(props) {
       })
       .then(response => {
         const data = response.data;
+        props.onLoggedIn(data);
         props.setLoggedInUser(data.user);
         console.log(data);
       })
